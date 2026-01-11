@@ -1,11 +1,12 @@
 {
   "name": "@screegen/cli",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "type": "module",
   "bin": {
-    "screegen": "./bin/screegen.js"
+    "screegen": "bin/screegen.js"
   },
   "main": "dist/index.js",
+  "license": "MIT",
   "types": "dist/index.d.ts",
   "files": [
     "bin",
