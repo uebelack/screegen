@@ -1,29 +1,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { screegen, ScreengenMeta } from '@screegen/components';
-
-const meta: ScreengenMeta = {
-  languages: ['en-US', 'de-DE'],
-  devices: [
-    {
-      key: 'iphone',
-      fastlaneKeys: ['APP_IPHONE_67'],
-      width: 1290,
-      height: 2796,
-      screens: [{ key: 'features' }],
-    },
-    {
-      key: 'ipad',
-      fastlaneKeys: ['APP_IPAD_PRO_129'],
-      width: 2732,
-      height: 2048,
-      screens: [{ key: 'features' }],
-    },
-  ],
-};
 
 export default defineConfig({
-  plugins: [react(), screegen({ meta })],
+  plugins: [react()],
   server: {
     open: true,
   },

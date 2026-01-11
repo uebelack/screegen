@@ -1,50 +1,31 @@
-import { FeatureSection } from '@screegen/components';
+/**
+ * Translations for your app screenshots.
+ * Add your supported languages and translation keys here.
+ */
 
-export interface Translation {
-  title: string;
-  subtitle: string;
-  features: FeatureSection;
+export const translations: Record<string, Record<string, string>> = {
+  "en-US": {
+    title: "Your App Name",
+    subtitle: "The best app for your needs",
+    feature1: "Amazing Feature",
+    feature1Desc: "Description of this amazing feature",
+    feature2: "Another Feature",
+    feature2Desc: "Description of another great feature",
+  },
+  "de-DE": {
+    title: "Deine App",
+    subtitle: "Die beste App für deine Bedürfnisse",
+    feature1: "Tolle Funktion",
+    feature1Desc: "Beschreibung dieser tollen Funktion",
+    feature2: "Weitere Funktion",
+    feature2Desc: "Beschreibung einer weiteren Funktion",
+  },
+};
+
+/**
+ * Helper function to get a translation for a given language and key.
+ * Falls back to en-US if the key is not found in the requested language.
+ */
+export function t(language: string, key: string): string {
+  return translations[language]?.[key] ?? translations["en-US"]?.[key] ?? key;
 }
-
-type Translations = {
-  [key: string]: Translation;
-};
-
-const translations: Translations = {
-  'en-US': {
-    title: 'Your App Name',
-    subtitle: 'A brief description of your app',
-    features: {
-      title: 'Features',
-      features: [
-        { title: 'Cloud Sync', description: 'Seamlessly sync across all devices', icon: 'cloud' },
-        { title: 'Dark Mode', description: 'Easy on your eyes, day or night', icon: 'moon' },
-        { title: 'Fast Search', description: 'Find anything in milliseconds', icon: 'magnifying-glass' },
-        { title: 'Secure', description: 'End-to-end encryption for your data', icon: 'lock' },
-        { title: 'Offline Mode', description: 'Works without internet connection', icon: 'plane' },
-        { title: 'Notifications', description: 'Get notified about what matters', icon: 'bell' },
-        { title: 'Customizable', description: 'Make it yours with themes and layouts', icon: 'palette' },
-        { title: 'Analytics', description: 'Track your progress with insights', icon: 'chart-line' },
-      ],
-    },
-  },
-  'de-DE': {
-    title: 'Dein App Name',
-    subtitle: 'Eine kurze Beschreibung deiner App',
-    features: {
-      title: 'Funktionen',
-      features: [
-        { title: 'Cloud-Sync', description: 'Nahtlose Synchronisierung auf allen Geräten', icon: 'cloud' },
-        { title: 'Dunkelmodus', description: 'Schont die Augen, Tag und Nacht', icon: 'moon' },
-        { title: 'Schnelle Suche', description: 'Finde alles in Millisekunden', icon: 'magnifying-glass' },
-        { title: 'Sicher', description: 'Ende-zu-Ende-Verschlüsselung für deine Daten', icon: 'lock' },
-        { title: 'Offline-Modus', description: 'Funktioniert ohne Internetverbindung', icon: 'plane' },
-        { title: 'Benachrichtigungen', description: 'Werde über Wichtiges informiert', icon: 'bell' },
-        { title: 'Anpassbar', description: 'Gestalte es mit Themes und Layouts', icon: 'palette' },
-        { title: 'Analysen', description: 'Verfolge deinen Fortschritt mit Einblicken', icon: 'chart-line' },
-      ],
-    },
-  },
-};
-
-export default translations;

@@ -1,25 +1,41 @@
-import { ProjectConfig } from '@screegen/components';
-import FeaturesScreen from './src/screens/FeaturesScreen';
+import { ProjectConfig, ScreenComponentProps } from "@screegen/components";
+import { FeaturesScreen } from "./src/screens/FeaturesScreen";
+import { t } from "./src/translations";
 
-// Define your supported languages
-export type AppLanguageCode = 'en-US' | 'de-DE';
+export type AppLanguageCode = "en-US" | "de-DE";
+
+// Wrapper component that provides translations
+function FeaturesScreenWrapper({ language, deviceKey }: ScreenComponentProps) {
+  return (
+    <FeaturesScreen
+      language={language}
+      deviceKey={deviceKey}
+      title={t(language, "title")}
+      subtitle={t(language, "subtitle")}
+      features={[
+        { title: t(language, "feature1"), description: t(language, "feature1Desc") },
+        { title: t(language, "feature2"), description: t(language, "feature2Desc") },
+      ]}
+    />
+  );
+}
 
 const config: ProjectConfig<AppLanguageCode> = {
-  languages: ['en-US', 'de-DE'],
+  languages: ["en-US", "de-DE"],
   devices: [
     {
-      key: 'iphone',
-      fastlaneKeys: ['APP_IPHONE_67'],
+      key: "iphone",
+      fastlaneKeys: ["APP_IPHONE_67"],
       width: 1290,
       height: 2796,
-      screens: [{ key: 'features', component: FeaturesScreen }],
+      screens: [{ key: "features", component: FeaturesScreenWrapper }],
     },
     {
-      key: 'ipad',
-      fastlaneKeys: ['APP_IPAD_PRO_129'],
-      width: 2732,
-      height: 2048,
-      screens: [{ key: 'features', component: FeaturesScreen }],
+      key: "ipad",
+      fastlaneKeys: ["APP_IPAD_PRO_129"],
+      width: 2048,
+      height: 2732,
+      screens: [{ key: "features", component: FeaturesScreenWrapper }],
     },
   ],
 };
