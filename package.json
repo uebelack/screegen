@@ -1,6 +1,6 @@
 {
   "name": "screegen",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "type": "module",
   "workspaces": [
@@ -10,7 +10,8 @@
     "build": "yarn workspaces foreach -A run build",
     "test": "yarn workspaces foreach -A run test",
     "lint": "yarn workspaces foreach -A run lint",
-    "test-init": "yarn workspace @screegen/cli node bin/screegen.js init -n my-screenshot-app -d ../../../"
+    "test-init": "yarn workspace @screegen/cli node bin/screegen.js init -n my-screenshot-app -d ../../../",
+    "update-version": "node scripts/update-version.js"
   },
   "packageManager": "yarn@4.6.0",
   "devDependencies": {
