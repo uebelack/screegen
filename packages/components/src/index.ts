@@ -27,3 +27,6 @@ export type { OverviewGridProps } from "./components/OverviewGrid";
 
 export { ScreengenConfig } from "./components/ScreengenConfig";
 export type { ScreengenConfigProps } from "./components/ScreengenConfig";
+
+export { Screegen } from "./components/Screegen";
+export type { ScreegenProps } from "./components/Screegen";

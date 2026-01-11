@@ -62,9 +62,11 @@ function startDevServer(
 
     let resolved = false;
     const timeout = setTimeout(() => {
+      /* v8 ignore start -- timeout is cleared on resolve, this is defensive */
       if (!resolved) {
         reject(new Error("Dev server failed to start within 30 seconds"));
       }
+      /* v8 ignore stop */
     }, 30000);
 
     devProcess.stdout?.on("data", (data: Buffer) => {

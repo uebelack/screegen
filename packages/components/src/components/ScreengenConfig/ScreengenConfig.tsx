@@ -22,7 +22,7 @@ export function ScreengenConfig<L extends string = string>({
   };
 
   return (
-    <pre id="screegen-config">
+    <pre id="screegen-config" data-testid="screegen-config">
       {JSON.stringify(serializedConfig, null, 2)}
     </pre>
   );

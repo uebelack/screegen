@@ -1704,7 +1704,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@screegen/cli@npm:0.1.0, @screegen/cli@workspace:packages/cli":
+"@screegen/cli@npm:0.0.2, @screegen/cli@workspace:packages/cli":
   version: 0.0.0-use.local
   resolution: "@screegen/cli@workspace:packages/cli"
   dependencies:
@@ -1737,7 +1737,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@screegen/components@npm:0.1.0, @screegen/components@workspace:packages/components":
+"@screegen/components@npm:0.0.2, @screegen/components@workspace:packages/components":
   version: 0.0.0-use.local
   resolution: "@screegen/components@workspace:packages/components"
   dependencies:
@@ -3620,8 +3620,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "example@workspace:packages/example"
   dependencies:
-    "@screegen/cli": "npm:0.1.0"
-    "@screegen/components": "npm:0.1.0"
+    "@screegen/cli": "npm:0.0.2"
+    "@screegen/components": "npm:0.0.2"
     "@types/react": "npm:^18.3.17"
     "@types/react-dom": "npm:^18.3.5"
     "@typescript-eslint/eslint-plugin": "npm:^8.52.0"

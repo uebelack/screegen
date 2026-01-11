@@ -438,4 +438,195 @@ describe('generateCommand', () => {
       { recursive: true }
     );
   });
+
+  it('ignores stderr URL after already resolved from stdout', async () => {
+    const mockProcess = createMockProcess();
+    mockSpawn.mockReturnValue(mockProcess as never);
+
+    const configPage = createMockPage();
+    configPage.$eval.mockResolvedValue(
+      JSON.stringify({
+        languages: ['en-US'],
+        devices: [
+          {
+            key: 'iphone',
+            fastlaneKeys: ['APP_IPHONE_67'],
+            width: 1290,
+            height: 2796,
+            screens: [{ key: 'home' }],
+          },
+        ],
+      })
+    );
+
+    const screenshotPage = createMockPage();
+    const mockBrowser = createMockBrowser(configPage, screenshotPage);
+    mockChromium.launch.mockResolvedValue(mockBrowser as never);
+
+    const generatePromise = generateCommand({ output: 'screenshots', port: '3000' });
+
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    // First resolve via stdout
+    mockProcess.stdout.emit('data', Buffer.from('Local: http://localhost:3000'));
+    // Then emit stderr (should be ignored since already resolved)
+    mockProcess.stderr.emit('data', Buffer.from('Local: http://localhost:4000'));
+
+    await generatePromise;
+
+    expect(mockBrowser.close).toHaveBeenCalled();
+  });
+
+  it('ignores error event after already resolved', async () => {
+    const mockProcess = createMockProcess();
+    mockSpawn.mockReturnValue(mockProcess as never);
+
+    const configPage = createMockPage();
+    configPage.$eval.mockResolvedValue(
+      JSON.stringify({
+        languages: ['en-US'],
+        devices: [
+          {
+            key: 'iphone',
+            fastlaneKeys: ['APP_IPHONE_67'],
+            width: 1290,
+            height: 2796,
+            screens: [{ key: 'home' }],
+          },
+        ],
+      })
+    );
+
+    const screenshotPage = createMockPage();
+    const mockBrowser = createMockBrowser(configPage, screenshotPage);
+    mockChromium.launch.mockResolvedValue(mockBrowser as never);
+
+    const generatePromise = generateCommand({ output: 'screenshots', port: '3000' });
+
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    // First resolve via stdout
+    mockProcess.stdout.emit('data', Buffer.from('Local: http://localhost:3000'));
+    // Then emit error (should be ignored since already resolved)
+    mockProcess.emit('error', new Error('Late error'));
+
+    await generatePromise;
+
+    // Should complete successfully, not exit with error
+    expect(mockBrowser.close).toHaveBeenCalled();
+  });
+
+  it('ignores exit event after already resolved', async () => {
+    const mockProcess = createMockProcess();
+    mockSpawn.mockReturnValue(mockProcess as never);
+
+    const configPage = createMockPage();
+    configPage.$eval.mockResolvedValue(
+      JSON.stringify({
+        languages: ['en-US'],
+        devices: [
+          {
+            key: 'iphone',
+            fastlaneKeys: ['APP_IPHONE_67'],
+            width: 1290,
+            height: 2796,
+            screens: [{ key: 'home' }],
+          },
+        ],
+      })
+    );
+
+    const screenshotPage = createMockPage();
+    const mockBrowser = createMockBrowser(configPage, screenshotPage);
+    mockChromium.launch.mockResolvedValue(mockBrowser as never);
+
+    const generatePromise = generateCommand({ output: 'screenshots', port: '3000' });
+
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    // First resolve via stdout
+    mockProcess.stdout.emit('data', Buffer.from('Local: http://localhost:3000'));
+    // Then emit exit (should be ignored since already resolved)
+    mockProcess.emit('exit', 1);
+
+    await generatePromise;
+
+    // Should complete successfully, not exit with error
+    expect(mockBrowser.close).toHaveBeenCalled();
+  });
+
+  it('ignores duplicate stdout URL after already resolved', async () => {
+    const mockProcess = createMockProcess();
+    mockSpawn.mockReturnValue(mockProcess as never);
+
+    const configPage = createMockPage();
+    configPage.$eval.mockResolvedValue(
+      JSON.stringify({
+        languages: ['en-US'],
+        devices: [
+          {
+            key: 'iphone',
+            fastlaneKeys: ['APP_IPHONE_67'],
+            width: 1290,
+            height: 2796,
+            screens: [{ key: 'home' }],
+          },
+        ],
+      })
+    );
+
+    const screenshotPage = createMockPage();
+    const mockBrowser = createMockBrowser(configPage, screenshotPage);
+    mockChromium.launch.mockResolvedValue(mockBrowser as never);
+
+    const generatePromise = generateCommand({ output: 'screenshots', port: '3000' });
+
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    // First resolve via stdout
+    mockProcess.stdout.emit('data', Buffer.from('Local: http://localhost:3000'));
+    // Emit again (should be ignored)
+    mockProcess.stdout.emit('data', Buffer.from('Local: http://localhost:3000'));
+
+    await generatePromise;
+
+    expect(mockBrowser.close).toHaveBeenCalled();
+  });
+
+  it('ignores timeout after already resolved', async () => {
+    vi.useFakeTimers();
+    const mockProcess = createMockProcess();
+    mockSpawn.mockReturnValue(mockProcess as never);
+
+    const configPage = createMockPage();
+    configPage.$eval.mockResolvedValue(
+      JSON.stringify({
+        languages: ['en-US'],
+        devices: [
+          {
+            key: 'iphone',
+            fastlaneKeys: ['APP_IPHONE_67'],
+            width: 1290,
+            height: 2796,
+            screens: [{ key: 'home' }],
+          },
+        ],
+      })
+    );
+
+    const screenshotPage = createMockPage();
+    const mockBrowser = createMockBrowser(configPage, screenshotPage);
+    mockChromium.launch.mockResolvedValue(mockBrowser as never);
+
+    const generatePromise = generateCommand({ output: 'screenshots', port: '3000' });
+
+    // Let the command start
+    await vi.advanceTimersByTimeAsync(10);
+    // Resolve via stdout first
+    mockProcess.stdout.emit('data', Buffer.from('Local: http://localhost:3000'));
+    // Now advance past the 30 second timeout (should be ignored since already resolved)
+    await vi.advanceTimersByTimeAsync(31000);
+
+    await generatePromise;
+
+    // Should complete successfully, not exit with error
+    expect(mockBrowser.close).toHaveBeenCalled();
+    vi.useRealTimers();
+  });
 });

@@ -29,6 +29,7 @@ export function OverviewGrid<L extends string>({
 }: OverviewGridProps<L>) {
   return (
     <div
+      data-testid="overview-grid"
       className={`${styles.overviewPage} ${styles[colorScheme]} ${
         className || ''
       }`}
