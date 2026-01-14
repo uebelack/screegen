@@ -1,2 +1,2 @@
-export { Screegen } from './Screegen';
-export type { ScreegenProps } from './Screegen';
+export { Screegen } from "./Screegen";
+export type { ScreegenProps } from "./Screegen";

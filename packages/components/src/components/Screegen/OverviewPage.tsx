@@ -3,14 +3,14 @@ import { OverviewGrid } from '../OverviewGrid';
 import { useColorScheme } from '../../hooks/useColorScheme';
 import { useUrlState } from '../../hooks/useUrlState';
 
-export interface OverviewPageProps<L extends string = string> {
-  config: ProjectConfig<L>;
+export interface OverviewPageProps {
+  config: ProjectConfig;
 }
 
-export function OverviewPage<L extends string>({
+export function OverviewPage({
   config,
-}: OverviewPageProps<L>) {
-  const [language, setLanguage] = useUrlState<L>(
+}: OverviewPageProps) {
+  const [language, setLanguage] = useUrlState(
     'language',
     config.languages[0]
   );

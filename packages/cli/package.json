@@ -1,6 +1,6 @@
 {
   "name": "@screegen/cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "bin": {
     "screegen": "bin/screegen.js"
@@ -17,8 +17,7 @@
     "dev": "tsup --watch",
     "build": "tsup",
     "lint": "eslint src",
-    "test": "vitest run --coverage",
-    "generate-templates": "tsx scripts/generate-templates.ts"
+    "test": "vitest run --coverage"
   },
   "dependencies": {
     "chalk": "^5.3.0",

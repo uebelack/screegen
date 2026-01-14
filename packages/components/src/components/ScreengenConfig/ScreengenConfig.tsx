@@ -1,12 +1,12 @@
 import { ProjectConfig } from '../../types';
 
-export interface ScreengenConfigProps<L extends string = string> {
-  config: ProjectConfig<L>;
+export interface ScreengenConfigProps {
+  config: ProjectConfig;
 }
 
-export function ScreengenConfig<L extends string = string>({
+export function ScreengenConfig({
   config,
-}: ScreengenConfigProps<L>) {
+}: ScreengenConfigProps) {
   // Create a serializable version without React components
   const serializedConfig = {
     languages: config.languages,

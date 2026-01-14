@@ -78,6 +78,7 @@ export async function initCommand(options: InitOptions): Promise<void> {
   );
   await copyTemplate("tsconfig.json.template", targetDir, "tsconfig.json");
   await copyTemplate("vite.config.ts.template", targetDir, "vite.config.ts");
+  await copyTemplate(".gitignore.template", targetDir, ".gitignore");
   await copyTemplate(
     "screegen.config.ts.template",
     targetDir,
@@ -102,14 +103,14 @@ export async function initCommand(options: InitOptions): Promise<void> {
     "src/translations.ts",
   );
   await copyTemplate(
-    "src/screens/FeaturesScreen.tsx.template",
+    "src/screens/ExampleScreen.tsx.template",
     targetDir,
-    "src/screens/FeaturesScreen.tsx",
+    "src/screens/ExampleScreen.tsx",
   );
   await copyTemplate(
-    "src/screens/FeaturesScreen.module.scss.template",
+    "src/screens/ExampleScreen.module.scss.template",
     targetDir,
-    "src/screens/FeaturesScreen.module.scss",
+    "src/screens/ExampleScreen.module.scss",
   );
 
   console.log(chalk.green("Project created successfully!\n"));

@@ -1,11 +1,4 @@
-import { FeatureSection } from "@screegen/components";
-
-export interface Translation {
-  overview: string;
-  edit: string;
-  features: FeatureSection;
-  proFeatures: FeatureSection;
-}
+import { Translation } from './types';
 
 const translations: Record<string, Translation> = {
   "en-US": {

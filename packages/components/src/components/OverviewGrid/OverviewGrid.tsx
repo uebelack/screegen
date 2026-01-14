@@ -6,18 +6,18 @@ import styles from './OverviewGrid.module.scss';
 const SCALE_OPTIONS = [0.1, 0.25, 1.0];
 const DEFAULT_SCALE = 0.25;
 
-export interface OverviewGridProps<L extends string = string> {
-  config: ProjectConfig<L>;
-  language: L;
+export interface OverviewGridProps {
+  config: ProjectConfig;
+  language: string;
   scale?: number;
   colorScheme?: ColorScheme;
-  onLanguageChange?: (language: L) => void;
+  onLanguageChange?: (language: string) => void;
   onScaleChange?: (scale: number) => void;
   onColorSchemeChange?: (scheme: ColorScheme) => void;
   className?: string;
 }
 
-export function OverviewGrid<L extends string>({
+export function OverviewGrid({
   config,
   language,
   scale = DEFAULT_SCALE,
@@ -26,7 +26,7 @@ export function OverviewGrid<L extends string>({
   onScaleChange,
   onColorSchemeChange,
   className,
-}: OverviewGridProps<L>) {
+}: OverviewGridProps) {
   return (
     <div
       data-testid="overview-grid"
@@ -40,7 +40,7 @@ export function OverviewGrid<L extends string>({
           <select
             value={language}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-              onLanguageChange?.(e.target.value as L)
+              onLanguageChange?.(e.target.value)
             }
           >
             {config.languages.map((lang) => (

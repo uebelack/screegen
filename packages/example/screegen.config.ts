@@ -12,9 +12,7 @@ import MacOverview from './src/screens/MacOverview';
 import MacEdit from './src/screens/MacEdit';
 import ProFeaturesScreen from './src/screens/ProFeatures';
 
-export type AppLanguageCode = string;
-
-const config: ProjectConfig<AppLanguageCode> = {
+const config: ProjectConfig = {
   languages: Object.keys(translations),
   devices: [
     {

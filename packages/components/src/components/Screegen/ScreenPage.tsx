@@ -2,11 +2,11 @@ import { useParams } from 'react-router-dom';
 import { ProjectConfig } from '../../types';
 import { Screen } from '../Screen';
 
-export interface ScreenPageProps<L extends string = string> {
-  config: ProjectConfig<L>;
+export interface ScreenPageProps {
+  config: ProjectConfig;
 }
 
-export function ScreenPage<L extends string>({ config }: ScreenPageProps<L>) {
+export function ScreenPage({ config }: ScreenPageProps) {
   const { deviceKey, screenKey, language } = useParams<{
     deviceKey: string;
     screenKey: string;
@@ -22,7 +22,7 @@ export function ScreenPage<L extends string>({ config }: ScreenPageProps<L>) {
       config={config}
       deviceKey={deviceKey}
       screenKey={screenKey}
-      language={language as L}
+      language={language}
     />
   );
 }

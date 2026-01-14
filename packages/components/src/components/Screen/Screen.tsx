@@ -1,21 +1,21 @@
 import { ProjectConfig } from '../../types';
 import styles from './Screen.module.scss';
 
-export interface ScreenProps<L extends string = string> {
-  config: ProjectConfig<L>;
+export interface ScreenProps {
+  config: ProjectConfig;
   deviceKey: string;
   screenKey: string;
-  language: L;
+  language: string;
   className?: string;
 }
 
-export function Screen<L extends string>({
+export function Screen({
   config,
   deviceKey,
   screenKey,
   language,
   className,
-}: ScreenProps<L>) {
+}: ScreenProps) {
   const device = config.devices.find((d) => d.key === deviceKey);
   const screen = device?.screens.find((s) => s.key === screenKey);
 

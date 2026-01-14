@@ -4,11 +4,11 @@ import { ScreengenConfig } from '../ScreengenConfig';
 import { ScreenPage } from './ScreenPage';
 import { OverviewPage } from './OverviewPage';
 
-export interface ScreegenProps<L extends string = string> {
-  config: ProjectConfig<L>;
+export interface ScreegenProps {
+  config: ProjectConfig;
 }
 
-export function Screegen<L extends string>({ config }: ScreegenProps<L>) {
+export function Screegen({ config }: ScreegenProps) {
   return (
     <Routes>
       <Route path="/" element={<OverviewPage config={config} />} />

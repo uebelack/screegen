@@ -7,18 +7,10 @@ export const translations: Record<string, Record<string, string>> = {
   "en-US": {
     title: "Your App Name",
     subtitle: "The best app for your needs",
-    feature1: "Amazing Feature",
-    feature1Desc: "Description of this amazing feature",
-    feature2: "Another Feature",
-    feature2Desc: "Description of another great feature",
   },
   "de-DE": {
     title: "Deine App",
     subtitle: "Die beste App für deine Bedürfnisse",
-    feature1: "Tolle Funktion",
-    feature1Desc: "Beschreibung dieser tollen Funktion",
-    feature2: "Weitere Funktion",
-    feature2Desc: "Beschreibung einer weiteren Funktion",
   },
 };
 

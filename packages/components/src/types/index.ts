@@ -8,27 +8,10 @@ export type ColorScheme = "light" | "dark";
 export const colorSchemes: ColorScheme[] = ["light", "dark"];
 
 /**
- * A feature item with title, description, and icon
- */
-export interface Feature {
-  title: string;
-  description: string;
-  icon: string;
-}
-
-/**
- * A section of features with a title
- */
-export interface FeatureSection {
-  title: string;
-  features: Feature[];
-}
-
-/**
  * Props passed to screen components
  */
-export interface ScreenComponentProps<L extends string = string> {
-  language: L;
+export interface ScreenComponentProps {
+  language: string;
   deviceKey: string;
   width: number;
   height: number;
@@ -37,35 +20,35 @@ export interface ScreenComponentProps<L extends string = string> {
 /**
  * Configuration for a single screen
  */
-export interface ScreenConfig<L extends string = string> {
+export interface ScreenConfig {
   key: string;
-  component: ComponentType<ScreenComponentProps<L>>;
+  component: ComponentType<ScreenComponentProps>;
 }
 
 /**
  * Configuration for a device (iPhone, iPad, Mac, etc.)
  */
-export interface DeviceConfig<L extends string = string> {
+export interface DeviceConfig {
   key: string;
   fastlaneKeys: string[];
   width: number;
   height: number;
-  screens: ScreenConfig<L>[];
+  screens: ScreenConfig[];
 }
 
 /**
  * Root project configuration
  */
-export interface ProjectConfig<L extends string = string> {
-  languages: L[];
-  devices: DeviceConfig<L>[];
+export interface ProjectConfig {
+  languages: string[];
+  devices: DeviceConfig[];
 }
 
 /**
  * Props for screen components
  */
-export interface ScreenProps<L extends string = string> {
+export interface ScreenProps {
   deviceKey: string;
   screenKey: string;
-  language: L;
+  language: string;
 }

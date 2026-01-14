@@ -76,66 +76,6 @@ yarn build
 yarn test
 ```
 
-## Components
-
-### Screen
-
-Config-driven screen renderer that dynamically loads the correct component based on device and screen key.
-
-```tsx
-import { Screen } from '@screegen/components';
-
-<Screen
-  config={config}
-  deviceKey="iphone"
-  screenKey="overview"
-  language="en-US"
-/>
-```
-
-### FeatureList
-
-Renders a list of features with icons.
-
-```tsx
-import { FeatureList } from '@screegen/components';
-
-<FeatureList
-  title="Features"
-  features={[
-    { title: 'Feature 1', description: 'Description', icon: 'star' }
-  ]}
-/>
-```
-
-### OverviewGrid
-
-Full-page overview with controls for language, scale, and color scheme.
-
-```tsx
-import { OverviewGrid } from '@screegen/components';
-
-<OverviewGrid
-  config={config}
-  language="en-US"
-  scale={0.5}
-  colorScheme="light"
-  onLanguageChange={setLanguage}
-/>
-```
-
-### Hooks
-
-```tsx
-import { useColorScheme, useUrlState } from '@screegen/components';
-
-// Detect system color scheme
-const colorScheme = useColorScheme();
-
-// Manage state via URL parameters
-const [language, setLanguage] = useUrlState('language', 'en-US');
-```
-
 ## Configuration
 
 Create a `screegen.config.ts` file:
@@ -145,9 +85,7 @@ import { ProjectConfig } from '@screegen/components';
 import OverviewScreen from './src/screens/Overview';
 import FeaturesScreen from './src/screens/Features';
 
-type AppLanguageCode = 'en-US' | 'de-DE';
-
-const config: ProjectConfig<AppLanguageCode> = {
+const config: ProjectConfig = {
   languages: ['en-US', 'de-DE'],
   devices: [
     {

@@ -1,4 +1,4 @@
-import { Feature } from '@screegen/components';
+import { Feature } from '../../types';
 import styles from './FeatureItem.module.scss';
 
 export interface FeatureItemProps {

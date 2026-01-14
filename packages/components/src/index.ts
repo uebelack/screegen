@@ -4,8 +4,6 @@ import "./styles/base.scss";
 // Types
 export type {
   ColorScheme,
-  Feature,
-  FeatureSection,
   ScreenConfig,
   ScreenComponentProps,
   DeviceConfig,
