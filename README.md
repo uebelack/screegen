@@ -2,6 +2,8 @@
 
 A screenshot generation toolkit for creating App Store screenshots. Build beautiful, localized screenshots for multiple devices with React and Playwright.
 
+![](screen.png)
+
 ## Packages
 
 | Package | Description |
@@ -28,7 +30,7 @@ yarn dev
 ### Generate screenshots
 
 ```bash
-npx screegen generate
+yarn generate
 ```
 
 ## Features

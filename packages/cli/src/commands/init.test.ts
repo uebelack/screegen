@@ -149,7 +149,7 @@ describe("initCommand", () => {
     expect(consoleLogs.some((log) => log.includes("cd my-app"))).toBe(true);
     expect(consoleLogs.some((log) => log.includes("yarn install"))).toBe(true);
     expect(consoleLogs.some((log) => log.includes("yarn dev"))).toBe(true);
-    expect(consoleLogs.some((log) => log.includes("screegen generate"))).toBe(
+    expect(consoleLogs.some((log) => log.includes("yarn generate"))).toBe(
       true,
     );
   });
