@@ -14,6 +14,20 @@
     "update-version": "node scripts/update-version.js"
   },
   "packageManager": "yarn@4.6.0",
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.mjs"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
+  },
   "devDependencies": {
     "@types/node": "^22.10.5",
     "typescript": "^5.7.2"
