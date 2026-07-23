@@ -6,10 +6,10 @@ A screenshot generation toolkit for creating App Store screenshots. Build beauti
 
 ## Packages
 
-| Package | Description |
-|---------|-------------|
-| [@screegen/components](./packages/components) | Reusable React components for building screenshot layouts |
-| [@screegen/cli](./packages/cli) | CLI tool for scaffolding projects and generating screenshots |
+| Package                                       | Description                                                  |
+| --------------------------------------------- | ------------------------------------------------------------ |
+| [@screegen/components](./packages/components) | Reusable React components for building screenshot layouts    |
+| [@screegen/cli](./packages/cli)               | CLI tool for scaffolding projects and generating screenshots |
 
 ## Quick Start
 
@@ -18,19 +18,19 @@ A screenshot generation toolkit for creating App Store screenshots. Build beauti
 ```bash
 npx @screegen/cli init -n my-app
 cd my-app
-yarn install
+pnpm install
 ```
 
 ### Development
 
 ```bash
-yarn dev
+pnpm dev
 ```
 
 ### Generate screenshots
 
 ```bash
-yarn generate
+pnpm generate
 ```
 
 ## Features
@@ -65,17 +65,17 @@ screegen/
 
 ## Development
 
-This is a yarn workspaces monorepo.
+This is a pnpm workspaces monorepo.
 
 ```bash
 # Install dependencies
-yarn install
+pnpm install
 
 # Build all packages
-yarn build
+pnpm build
 
 # Run tests
-yarn test
+pnpm test
 ```
 
 ## Configuration
@@ -83,21 +83,21 @@ yarn test
 Create a `screegen.config.ts` file:
 
 ```typescript
-import { ProjectConfig } from '@screegen/components';
-import OverviewScreen from './src/screens/Overview';
-import FeaturesScreen from './src/screens/Features';
+import { ProjectConfig } from "@screegen/components";
+import OverviewScreen from "./src/screens/Overview";
+import FeaturesScreen from "./src/screens/Features";
 
 const config: ProjectConfig = {
-  languages: ['en-US', 'de-DE'],
+  languages: ["en-US", "de-DE"],
   devices: [
     {
-      key: 'iphone',
-      fastlaneKeys: ['APP_IPHONE_67'],
+      key: "iphone",
+      fastlaneKeys: ["APP_IPHONE_67"],
       width: 1290,
       height: 2796,
       screens: [
-        { key: 'overview', component: OverviewScreen },
-        { key: 'features', component: FeaturesScreen },
+        { key: "overview", component: OverviewScreen },
+        { key: "features", component: FeaturesScreen },
       ],
     },
   ],
