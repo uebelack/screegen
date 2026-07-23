@@ -1,7 +1,7 @@
-import { ScreenComponentProps } from '@screegen/components';
-import { FeatureList } from '../components/FeatureList';
-import translations from '../translations';
-import styles from './Features.module.scss';
+import { ScreenComponentProps } from "@screegen/components";
+import { FeatureList } from "../components/FeatureList";
+import translations from "../translations";
+import styles from "./Features.module.scss";
 
 function Features({ language }: ScreenComponentProps) {
   const t = translations[language];

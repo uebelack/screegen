@@ -1,28 +1,19 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vite-plus/test";
 import { createProgram, runCli, isMainModule } from "./index.js";
 
 describe("isMainModule", () => {
   it("returns true when import.meta.url matches process.argv[1]", () => {
-    const result = isMainModule("file:///path/to/script.js", [
-      "node",
-      "/path/to/script.js",
-    ]);
+    const result = isMainModule("file:///path/to/script.js", ["node", "/path/to/script.js"]);
     expect(result).toBe(true);
   });
 
   it("returns true when process.argv[1] ends with screegen.js", () => {
-    const result = isMainModule("file:///other/path.js", [
-      "node",
-      "/usr/bin/screegen.js",
-    ]);
+    const result = isMainModule("file:///other/path.js", ["node", "/usr/bin/screegen.js"]);
     expect(result).toBe(true);
   });
 
   it("returns false when neither condition is met", () => {
-    const result = isMainModule("file:///path/to/module.js", [
-      "node",
-      "/path/to/other.js",
-    ]);
+    const result = isMainModule("file:///path/to/module.js", ["node", "/path/to/other.js"]);
     expect(result).toBe(false);
   });
 
@@ -73,7 +64,9 @@ describe("main entry point", () => {
     // Set up argv to make isMainModule return true
     process.argv = ["node", "/path/to/screegen.js", "--version"];
 
-    // Dynamic import to get fresh module evaluation
+    // Dynamic import to get fresh module evaluation. The `?test=main` query
+    // forces Vite to re-evaluate the module and is not resolvable by tsc.
+    // @ts-expect-error -- query-suffixed module specifier has no type declaration
     const indexModule = await import("./index.js?test=main");
 
     // Verify the functions exist (module loaded successfully)
@@ -91,9 +84,7 @@ describe("createProgram", () => {
 
   it("creates a program with correct description", () => {
     const program = createProgram();
-    expect(program.description()).toBe(
-      "Screenshot generation tool for app store assets",
-    );
+    expect(program.description()).toBe("Screenshot generation tool for app store assets");
   });
 
   it("creates a program with correct version", () => {
@@ -117,41 +108,29 @@ describe("createProgram", () => {
     expect(nameOption).toBeDefined();
     expect(nameOption?.short).toBe("-n");
 
-    const dirOption = initCmd?.options.find(
-      (opt) => opt.long === "--directory",
-    );
+    const dirOption = initCmd?.options.find((opt) => opt.long === "--directory");
     expect(dirOption).toBeDefined();
     expect(dirOption?.short).toBe("-d");
   });
 
   it("has generate command", () => {
     const program = createProgram();
-    const generateCmd = program.commands.find(
-      (cmd) => cmd.name() === "generate",
-    );
+    const generateCmd = program.commands.find((cmd) => cmd.name() === "generate");
 
     expect(generateCmd).toBeDefined();
-    expect(generateCmd?.description()).toBe(
-      "Generate screenshots using Playwright",
-    );
+    expect(generateCmd?.description()).toBe("Generate screenshots using Playwright");
   });
 
   it("generate command has correct options", () => {
     const program = createProgram();
-    const generateCmd = program.commands.find(
-      (cmd) => cmd.name() === "generate",
-    );
+    const generateCmd = program.commands.find((cmd) => cmd.name() === "generate");
 
-    const outputOption = generateCmd?.options.find(
-      (opt) => opt.long === "--output",
-    );
+    const outputOption = generateCmd?.options.find((opt) => opt.long === "--output");
     expect(outputOption).toBeDefined();
     expect(outputOption?.short).toBe("-o");
     expect(outputOption?.defaultValue).toBe("screenshots");
 
-    const portOption = generateCmd?.options.find(
-      (opt) => opt.long === "--port",
-    );
+    const portOption = generateCmd?.options.find((opt) => opt.long === "--port");
     expect(portOption).toBeDefined();
     expect(portOption?.short).toBe("-p");
     expect(portOption?.defaultValue).toBe("3000");

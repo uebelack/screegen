@@ -1,6 +1,6 @@
-import { ScreenComponentProps } from '@screegen/components';
-import translations from '../translations';
-import styles from './MacEdit.module.scss';
+import { ScreenComponentProps } from "@screegen/components";
+import translations from "../translations";
+import styles from "./MacEdit.module.scss";
 
 function MacEditScreen({ language }: ScreenComponentProps) {
   const t = translations[language];
@@ -9,11 +9,7 @@ function MacEditScreen({ language }: ScreenComponentProps) {
     <div className={styles.edit}>
       <div className={styles.teaser}>{t.edit}</div>
       <img className={styles.mock} alt="mac" src="/mac.png" />
-      <img
-        className={styles.screenshot}
-        alt="screenshot"
-        src={`/raw/${language}/Mac_Edit.png`}
-      />
+      <img className={styles.screenshot} alt="screenshot" src={`/raw/${language}/Mac_Edit.png`} />
     </div>
   );
 }

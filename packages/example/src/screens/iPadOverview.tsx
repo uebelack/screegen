@@ -1,6 +1,6 @@
-import { ScreenComponentProps } from '@screegen/components';
-import translations from '../translations';
-import styles from './iPadOverview.module.scss';
+import { ScreenComponentProps } from "@screegen/components";
+import translations from "../translations";
+import styles from "./iPadOverview.module.scss";
 
 function iPadOverviewScreen({ language }: ScreenComponentProps) {
   const t = translations[language];

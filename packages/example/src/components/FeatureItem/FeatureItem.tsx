@@ -1,5 +1,5 @@
-import { Feature } from '../../types';
-import styles from './FeatureItem.module.scss';
+import { Feature } from "../../types";
+import styles from "./FeatureItem.module.scss";
 
 export interface FeatureItemProps {
   feature: Feature;
@@ -16,19 +16,18 @@ export function FeatureItem({
   titleClassName,
   descriptionClassName,
 }: FeatureItemProps) {
-  // Check if icon is an emoji (non-ASCII) or a Font Awesome name
+  // Check if icon is an emoji (non-ASCII) or a Font Awesome name.
+  // eslint-disable-next-line no-control-regex -- intentional full ASCII range match
   const isEmoji = feature.icon && /[^\x00-\x7F]/.test(feature.icon);
 
   return (
-    <div className={`${styles.feature} ${className || ''}`}>
-      <div className={`${styles.featureIcon} ${iconClassName || ''}`}>
+    <div className={`${styles.feature} ${className || ""}`}>
+      <div className={`${styles.featureIcon} ${iconClassName || ""}`}>
         {isEmoji ? feature.icon : <i className={`fa-solid fa-${feature.icon}`} />}
       </div>
       <div className={styles.featureDetails}>
-        <div className={`${styles.featureTitle} ${titleClassName || ''}`}>
-          {feature.title}
-        </div>
-        <div className={`${styles.featureDescription} ${descriptionClassName || ''}`}>
+        <div className={`${styles.featureTitle} ${titleClassName || ""}`}>{feature.title}</div>
+        <div className={`${styles.featureDescription} ${descriptionClassName || ""}`}>
           {feature.description}
         </div>
       </div>

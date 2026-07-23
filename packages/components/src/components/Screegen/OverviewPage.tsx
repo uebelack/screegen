@@ -1,24 +1,16 @@
-import { ProjectConfig, ColorScheme } from '../../types';
-import { OverviewGrid } from '../OverviewGrid';
-import { useColorScheme } from '../../hooks/useColorScheme';
-import { useUrlState } from '../../hooks/useUrlState';
+import { ProjectConfig, ColorScheme } from "../../types";
+import { OverviewGrid } from "../OverviewGrid";
+import { useColorScheme } from "../../hooks/useColorScheme";
+import { useUrlState } from "../../hooks/useUrlState";
 
 export interface OverviewPageProps {
   config: ProjectConfig;
 }
 
-export function OverviewPage({
-  config,
-}: OverviewPageProps) {
-  const [language, setLanguage] = useUrlState(
-    'language',
-    config.languages[0]
-  );
-  const [scale, setScale] = useUrlState<string>('scale', '0.25');
-  const [colorSchemeParam, setColorScheme] = useUrlState<ColorScheme | ''>(
-    'colorScheme',
-    ''
-  );
+export function OverviewPage({ config }: OverviewPageProps) {
+  const [language, setLanguage] = useUrlState("language", config.languages[0]);
+  const [scale, setScale] = useUrlState<string>("scale", "0.25");
+  const [colorSchemeParam, setColorScheme] = useUrlState<ColorScheme | "">("colorScheme", "");
   const systemColorScheme = useColorScheme();
   const colorScheme = colorSchemeParam || systemColorScheme;
 

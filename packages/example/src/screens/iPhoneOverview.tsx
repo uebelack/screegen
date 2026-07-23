@@ -1,6 +1,6 @@
-import { ScreenComponentProps } from '@screegen/components';
-import translations from '../translations';
-import styles from './iPhoneOverview.module.scss';
+import { ScreenComponentProps } from "@screegen/components";
+import translations from "../translations";
+import styles from "./iPhoneOverview.module.scss";
 
 function iPhoneOverviewScreen({ language }: ScreenComponentProps) {
   const t = translations[language];

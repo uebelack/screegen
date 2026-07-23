@@ -6,9 +6,7 @@ import { ColorScheme } from "../types";
  */
 export function getSystemColorScheme(): ColorScheme {
   if (typeof window !== "undefined" && window.matchMedia) {
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   }
   return "light";
 }
@@ -17,9 +15,7 @@ export function getSystemColorScheme(): ColorScheme {
  * Hook to track system color scheme preference with optional override
  */
 export function useColorScheme(override?: ColorScheme): ColorScheme {
-  const [systemScheme, setSystemScheme] = useState<ColorScheme>(() =>
-    getSystemColorScheme(),
-  );
+  const [systemScheme, setSystemScheme] = useState<ColorScheme>(() => getSystemColorScheme());
 
   useEffect(() => {
     if (typeof window === "undefined" || !window.matchMedia) {

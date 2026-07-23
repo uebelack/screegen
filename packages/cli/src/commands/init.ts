@@ -70,38 +70,16 @@ export async function initCommand(options: InitOptions): Promise<void> {
   // Copy templates
   const replacements = { projectName };
 
-  await copyTemplate(
-    "package.json.template",
-    targetDir,
-    "package.json",
-    replacements,
-  );
+  await copyTemplate("package.json.template", targetDir, "package.json", replacements);
   await copyTemplate("tsconfig.json.template", targetDir, "tsconfig.json");
   await copyTemplate("vite.config.ts.template", targetDir, "vite.config.ts");
   await copyTemplate(".gitignore.template", targetDir, ".gitignore");
-  await copyTemplate(
-    "screegen.config.ts.template",
-    targetDir,
-    "screegen.config.ts",
-  );
-  await copyTemplate(
-    "index.html.template",
-    targetDir,
-    "index.html",
-    replacements,
-  );
+  await copyTemplate("screegen.config.ts.template", targetDir, "screegen.config.ts");
+  await copyTemplate("index.html.template", targetDir, "index.html", replacements);
   await copyTemplate("src/index.tsx.template", targetDir, "src/index.tsx");
-  await copyTemplate(
-    "src/vite-env.d.ts.template",
-    targetDir,
-    "src/vite-env.d.ts",
-  );
+  await copyTemplate("src/vite-env.d.ts.template", targetDir, "src/vite-env.d.ts");
   await copyTemplate("src/App.tsx.template", targetDir, "src/App.tsx");
-  await copyTemplate(
-    "src/translations.ts.template",
-    targetDir,
-    "src/translations.ts",
-  );
+  await copyTemplate("src/translations.ts.template", targetDir, "src/translations.ts");
   await copyTemplate(
     "src/screens/ExampleScreen.tsx.template",
     targetDir,
@@ -116,7 +94,7 @@ export async function initCommand(options: InitOptions): Promise<void> {
   console.log(chalk.green("Project created successfully!\n"));
   console.log(chalk.gray("Next steps:\n"));
   console.log(chalk.white(`  cd ${projectName}`));
-  console.log(chalk.white("  yarn install"));
-  console.log(chalk.white("  yarn dev           # Start dev server"));
-  console.log(chalk.white("  screegen generate  # Generate screenshots\n"));
+  console.log(chalk.white("  pnpm install"));
+  console.log(chalk.white("  pnpm dev       # Start dev server"));
+  console.log(chalk.white("  pnpm generate  # Generate screenshots\n"));
 }

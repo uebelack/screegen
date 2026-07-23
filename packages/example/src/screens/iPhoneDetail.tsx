@@ -1,5 +1,5 @@
-import { ScreenComponentProps } from '@screegen/components';
-import styles from './iPhoneDetail.module.scss';
+import { ScreenComponentProps } from "@screegen/components";
+import styles from "./iPhoneDetail.module.scss";
 
 function iPhoneDetailsScreen({ language }: ScreenComponentProps) {
   return (

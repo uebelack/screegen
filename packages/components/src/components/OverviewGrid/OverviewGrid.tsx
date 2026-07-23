@@ -1,7 +1,7 @@
-import React from 'react';
-import { ProjectConfig, ColorScheme, colorSchemes } from '../../types';
-import { Screen } from '../Screen';
-import styles from './OverviewGrid.module.scss';
+import React from "react";
+import { ProjectConfig, ColorScheme, colorSchemes } from "../../types";
+import { Screen } from "../Screen";
+import styles from "./OverviewGrid.module.scss";
 
 const SCALE_OPTIONS = [0.1, 0.25, 1.0];
 const DEFAULT_SCALE = 0.25;
@@ -21,7 +21,7 @@ export function OverviewGrid({
   config,
   language,
   scale = DEFAULT_SCALE,
-  colorScheme = 'light',
+  colorScheme = "light",
   onLanguageChange,
   onScaleChange,
   onColorSchemeChange,
@@ -30,9 +30,7 @@ export function OverviewGrid({
   return (
     <div
       data-testid="overview-grid"
-      className={`${styles.overviewPage} ${styles[colorScheme]} ${
-        className || ''
-      }`}
+      className={`${styles.overviewPage} ${styles[colorScheme]} ${className || ""}`}
     >
       <div className={styles.overviewControls}>
         <label>
@@ -102,7 +100,7 @@ export function OverviewGrid({
                     className={styles.overviewScreenScaled}
                     style={{
                       transform: `scale(${scale})`,
-                      transformOrigin: 'top left',
+                      transformOrigin: "top left",
                     }}
                   >
                     <Screen

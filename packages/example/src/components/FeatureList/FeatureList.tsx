@@ -1,6 +1,6 @@
-import { Feature } from '../../types';
-import { FeatureItem } from '../FeatureItem';
-import styles from './FeatureList.module.scss';
+import { Feature } from "../../types";
+import { FeatureItem } from "../FeatureItem";
+import styles from "./FeatureList.module.scss";
 
 export interface FeatureListProps {
   title: string;
@@ -20,17 +20,11 @@ export function FeatureList({
   itemClassName,
 }: FeatureListProps) {
   return (
-    <div className={`${styles.features} ${className || ''}`}>
-      <div className={`${styles.featuresTitle} ${titleClassName || ''}`}>
-        {title}
-      </div>
-      <div className={`${styles.featuresList} ${listClassName || ''}`}>
+    <div className={`${styles.features} ${className || ""}`}>
+      <div className={`${styles.featuresTitle} ${titleClassName || ""}`}>{title}</div>
+      <div className={`${styles.featuresList} ${listClassName || ""}`}>
         {features.map((feature) => (
-          <FeatureItem
-            key={feature.title}
-            feature={feature}
-            className={itemClassName}
-          />
+          <FeatureItem key={feature.title} feature={feature} className={itemClassName} />
         ))}
       </div>
     </div>

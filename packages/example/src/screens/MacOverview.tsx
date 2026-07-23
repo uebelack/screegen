@@ -1,6 +1,6 @@
-import { ScreenComponentProps } from '@screegen/components';
-import translations from '../translations';
-import styles from './MacOverview.module.scss';
+import { ScreenComponentProps } from "@screegen/components";
+import translations from "../translations";
+import styles from "./MacOverview.module.scss";
 
 function MacOverviewScreen({ language }: ScreenComponentProps) {
   const t = translations[language];
