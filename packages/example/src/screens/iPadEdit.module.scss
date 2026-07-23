@@ -14,14 +14,9 @@
   align-items: center;
 }
 
-.mock {
-  width: 2000px;
+.device {
   position: absolute;
   top: 684px;
-}
-
-.screenshot {
-  width: 1868px;
-  position: absolute;
-  top: 750px;
+  left: 50%;
+  transform: translateX(-50%);
 }

@@ -1,4 +1,4 @@
-import { ScreenComponentProps } from "@screegen/components";
+import { DeviceFrame, ScreenComponentProps } from "@screegen/components";
 import translations from "../translations";
 import styles from "./MacEdit.module.scss";
 
@@ -8,8 +8,11 @@ function MacEditScreen({ language }: ScreenComponentProps) {
   return (
     <div className={styles.edit}>
       <div className={styles.teaser}>{t.edit}</div>
-      <img className={styles.mock} alt="mac" src="/mac.png" />
-      <img className={styles.screenshot} alt="screenshot" src={`/raw/${language}/Mac_Edit.png`} />
+      <DeviceFrame
+        variant="laptop"
+        className={styles.device}
+        src={`/raw/${language}/Mac_Edit.png`}
+      />
     </div>
   );
 }
