@@ -10,6 +10,7 @@ import {
   Search,
   Settings,
   Signature,
+  Type,
   WandSparkles,
 } from "lucide-react";
 import { Feature } from "../../types";
@@ -28,6 +29,7 @@ const ICONS: Record<string, LucideIcon> = {
   "book-user": BookUser,
   "file-text": FileText,
   settings: Settings,
+  type: Type,
 };
 
 export interface FeatureItemProps {

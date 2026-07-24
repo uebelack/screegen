@@ -13,6 +13,11 @@ const translations: Record<string, Translation> = {
           icon: "align-justify",
         },
         {
+          title: "Rich Text",
+          description: "Emphasize what matters with bold, italic and underline",
+          icon: "type",
+        },
+        {
           title: "Print",
           description: "Easily print your letters directly from the app",
           icon: "printer",
@@ -82,6 +87,11 @@ const translations: Record<string, Translation> = {
           icon: "align-justify",
         },
         {
+          title: "Textformatierung",
+          description: "Heben Sie Wichtiges mit Fett, Kursiv und Unterstreichung hervor",
+          icon: "type",
+        },
+        {
           title: "Drucken",
           description: "Drucken Sie Ihre Briefe bequem direkt aus der App",
           icon: "printer",
@@ -149,6 +159,11 @@ const translations: Record<string, Translation> = {
           title: "Automatische Opmaak",
           description: "Brieven worden automatisch op professionele wijze opgemaakt",
           icon: "align-justify",
+        },
+        {
+          title: "Tekstopmaak",
+          description: "Benadruk wat belangrijk is met vet, cursief en onderstreping",
+          icon: "type",
         },
         {
           title: "Afdrukken",
@@ -221,6 +236,11 @@ const translations: Record<string, Translation> = {
           icon: "align-justify",
         },
         {
+          title: "Texte enrichi",
+          description: "Mettez en valeur l'essentiel en gras, italique et souligné",
+          icon: "type",
+        },
+        {
           title: "Impression",
           description: "Imprimez facilement vos lettres directement depuis l'application",
           icon: "printer",
@@ -289,6 +309,11 @@ const translations: Record<string, Translation> = {
           title: "Formattazione Auto",
           description: "Le lettere vengono automaticamente formattate in modo professionale",
           icon: "align-justify",
+        },
+        {
+          title: "Testo formattato",
+          description: "Evidenzia ciò che conta con grassetto, corsivo e sottolineato",
+          icon: "type",
         },
         {
           title: "Stampa",
@@ -361,6 +386,11 @@ const translations: Record<string, Translation> = {
           icon: "align-justify",
         },
         {
+          title: "Texto enriquecido",
+          description: "Destaca lo importante con negrita, cursiva y subrayado",
+          icon: "type",
+        },
+        {
           title: "Imprimir",
           description: "Imprime fácilmente tus cartas directamente desde la aplicación",
           icon: "printer",
@@ -428,6 +458,11 @@ const translations: Record<string, Translation> = {
           title: "Formatação Automática",
           description: "As cartas são automaticamente formatadas de forma profissional",
           icon: "align-justify",
+        },
+        {
+          title: "Texto formatado",
+          description: "Realce o que importa com negrito, itálico e sublinhado",
+          icon: "type",
         },
         {
           title: "Imprimir",
