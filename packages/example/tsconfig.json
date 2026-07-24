@@ -18,7 +18,11 @@
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "paths": {
+      "@screegen/components": ["../components/src/index.ts"],
+      "@screegen/components/styles.css": ["../components/src/styles/base.scss"]
+    }
   },
   "include": ["src", "screegen.config.ts"]
 }

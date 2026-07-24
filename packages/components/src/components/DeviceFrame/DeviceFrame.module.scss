@@ -51,25 +51,45 @@
   filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.12)) drop-shadow(0 54px 84px rgba(0, 0, 0, 0.24));
 }
 
+/* Outer white bezel (20px). */
 .laptop .lid {
   position: relative;
-  padding: 15px;
+  padding: 20px;
   background: #ffffff;
-  border-radius: 26px 26px 0 0;
-  box-shadow: inset 0 0 0 2px #e4e4ea;
+  border-radius: 28px 28px 10px 10px;
+  box-shadow: inset 0 0 0 1px #e4e4ea;
 }
 
+/* Inner light-gray bezel (5px) that also clips the screenshot to a rounded corner.
+   The aspect ratio trims the taller bottom shadow off the source screenshot so
+   the gap above and below the window is even. */
+.laptop .display {
+  box-sizing: border-box;
+  width: 1580px;
+  aspect-ratio: 2372 / 1487;
+  padding: 5px;
+  background: #d5d5da;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+/* Anchored to the top so the top gap is kept and the surplus bottom shadow is
+   trimmed — no window content is lost. */
 .laptop .screen {
-  width: 1400px;
-  border-radius: 8px;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0;
+  border-radius: 7px;
 }
 
 /* Aluminium deck seen from the front: bright hinge lip up top, shaded metal
    below, rounded front edge, and a centred opening notch. */
 .laptop .base {
   position: relative;
-  width: calc(100% + 76px);
-  height: 32px;
+  width: calc(100% + 200px);
+  height: 42px;
   background: linear-gradient(180deg, #f4f5f7 0%, #cccfd5 44%, #a4a8b2 100%);
   border-radius: 4px 4px 26px 26px;
   box-shadow:

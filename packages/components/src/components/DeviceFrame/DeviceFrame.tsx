@@ -30,7 +30,9 @@ export function DeviceFrame({
     return (
       <div className={classNames}>
         <div className={styles.lid} style={bodyStyle}>
-          <img className={styles.screen} alt={alt} src={src} />
+          <div className={styles.display}>
+            <img className={styles.screen} alt={alt} src={src} />
+          </div>
         </div>
         <div className={styles.base} />
       </div>
