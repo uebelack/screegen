@@ -33,7 +33,7 @@
     "@vitest/coverage-v8": "4.1.10",
     "jiti": "^2.6.1",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3",
+    "typescript": "^7.0.2",
     "vite-plus": "0.2.6",
     "vitest": "4.1.10"
   }
