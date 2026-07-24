@@ -1,21 +1,31 @@
-.features {
-  display: flex;
-  flex-direction: column;
+/* Centre the block both ways so the margins stay even. Portrait uses a single
+   narrow column; landscape (iPad/Mac) widens out into two columns. */
+.screen {
+  width: 100%;
   height: 100%;
-  padding: 20px;
-}
-
-.featuresTitle {
-  text-align: center;
-  font-size: 88px;
-  font-weight: 400;
-  margin: 0 0 60px 0;
-}
-
-.featuresList {
+  box-sizing: border-box;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  flex-grow: 1;
-  margin-bottom: 120px;
+  align-items: center;
+  justify-content: center;
+  padding: 150px 140px;
+}
+
+.inner {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.inner.wide {
+  max-width: 2360px;
+}
+
+.title {
+  margin: 0 0 110px;
+  font-size: 100px;
+}
+
+.list {
+  display: grid;
+  column-gap: 150px;
+  row-gap: 104px;
 }

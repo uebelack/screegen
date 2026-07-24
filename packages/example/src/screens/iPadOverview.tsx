@@ -1,19 +1,12 @@
-import { DeviceFrame, ScreenComponentProps } from "@screegen/components";
+import { ScreenComponentProps } from "@screegen/components";
+import { DeviceTeaser } from "../components/DeviceTeaser";
 import translations from "../translations";
-import styles from "./iPadOverview.module.scss";
 
 function iPadOverviewScreen({ language }: ScreenComponentProps) {
   const t = translations[language];
 
   return (
-    <div className={styles.overview}>
-      <div className={styles.teaser}>{t.overview}</div>
-      <DeviceFrame
-        variant="tablet"
-        className={styles.device}
-        src={`/raw/${language}/iPad_Overview.png`}
-      />
-    </div>
+    <DeviceTeaser teaser={t.overview} variant="tablet" src={`/raw/${language}/iPad_Overview.png`} />
   );
 }
 

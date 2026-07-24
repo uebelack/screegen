@@ -1,19 +1,12 @@
-import { DeviceFrame, ScreenComponentProps } from "@screegen/components";
+import { ScreenComponentProps } from "@screegen/components";
+import { DeviceTeaser } from "../components/DeviceTeaser";
 import translations from "../translations";
-import styles from "./MacOverview.module.scss";
 
 function MacOverviewScreen({ language }: ScreenComponentProps) {
   const t = translations[language];
 
   return (
-    <div className={styles.overview}>
-      <div className={styles.teaser}>{t.overview}</div>
-      <DeviceFrame
-        variant="laptop"
-        className={styles.device}
-        src={`/raw/${language}/Mac_Overview.png`}
-      />
-    </div>
+    <DeviceTeaser teaser={t.overview} variant="laptop" src={`/raw/${language}/Mac_Overview.png`} />
   );
 }
 

@@ -1,20 +1,11 @@
-import { DeviceFrame, ScreenComponentProps } from "@screegen/components";
+import { ScreenComponentProps } from "@screegen/components";
+import { DeviceTeaser } from "../components/DeviceTeaser";
 import translations from "../translations";
-import styles from "./iPadEdit.module.scss";
 
 function iPadEditScreen({ language }: ScreenComponentProps) {
   const t = translations[language];
 
-  return (
-    <div className={styles.edit}>
-      <div className={styles.teaser}>{t.edit}</div>
-      <DeviceFrame
-        variant="tablet"
-        className={styles.device}
-        src={`/raw/${language}/iPad_Edit.png`}
-      />
-    </div>
-  );
+  return <DeviceTeaser teaser={t.edit} variant="tablet" src={`/raw/${language}/iPad_Edit.png`} />;
 }
 
 export default iPadEditScreen;

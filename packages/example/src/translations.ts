@@ -15,17 +15,17 @@ const translations: Record<string, Translation> = {
         {
           title: "Print",
           description: "Easily print your letters directly from the app",
-          icon: "print",
+          icon: "printer",
         },
         {
           title: "Share & Export",
           description: "Share your letters digitally or export them as PDF files",
-          icon: "arrow-up-right-from-square",
+          icon: "external-link",
         },
         {
           title: "Search",
           description: "The search function makes it easy to find letters quickly and conveniently",
-          icon: "magnifying-glass",
+          icon: "search",
         },
         {
           title: "Storage",
@@ -40,7 +40,7 @@ const translations: Record<string, Translation> = {
         {
           title: "AI Assitant",
           description: "Refine or create professional letters with the AI Assitant",
-          icon: "wand-magic-sparkles",
+          icon: "wand-sparkles",
         },
         {
           title: "Signatures",
@@ -50,22 +50,22 @@ const translations: Record<string, Translation> = {
         {
           title: "Sender",
           description: "Enter your sender information once",
-          icon: "address-card",
+          icon: "id-card",
         },
         {
           title: "Contacts",
           description: "Easily incorporate contact addresses from your address book",
-          icon: "address-book",
+          icon: "book-user",
         },
         {
           title: "Templates",
           description: "Utilize a wide range of templates for various occasions",
-          icon: "file-lines",
+          icon: "file-text",
         },
         {
           title: "Layout",
           description: "Customize the layout of your letters to your specific needs",
-          icon: "gear",
+          icon: "settings",
         },
       ],
     },
@@ -84,17 +84,17 @@ const translations: Record<string, Translation> = {
         {
           title: "Drucken",
           description: "Drucken Sie Ihre Briefe bequem direkt aus der App",
-          icon: "print",
+          icon: "printer",
         },
         {
           title: "Teilen & Exportieren",
           description: "Teilen Sie Ihre Briefe digital oder exportiere sie als PDF-Dateien",
-          icon: "arrow-up-right-from-square",
+          icon: "external-link",
         },
         {
           title: "Suche",
           description: "Mit der Suchfunktion finden Sie Ihre Briefe schnell und einfach wieder",
-          icon: "magnifying-glass",
+          icon: "search",
         },
         {
           title: "Speicherung",
@@ -109,7 +109,7 @@ const translations: Record<string, Translation> = {
         {
           title: "KI-Assistent",
           description: "Verbessern oder erstellen Sie professionelle Briefe mit dem KI-Assistenten",
-          icon: "wand-magic-sparkles",
+          icon: "wand-sparkles",
         },
         {
           title: "Unterschriften",
@@ -119,22 +119,22 @@ const translations: Record<string, Translation> = {
         {
           title: "Absender",
           description: "Erfassen Sie einmalig Ihre Absenderinformationen",
-          icon: "address-card",
+          icon: "id-card",
         },
         {
           title: "Kontakte",
           description: "Verwenden Sie Ihre Kontaktadressen direkt aus Ihrem Adressbuch",
-          icon: "address-book",
+          icon: "book-user",
         },
         {
           title: "Templates",
           description: "Nutzen Sie viele Vorlagen für verschiedene Gelegenheiten",
-          icon: "file-lines",
+          icon: "file-text",
         },
         {
           title: "Layout",
           description: "Passen Sie die Formatierung Ihrer Briefe an Ihre Bedürfnisse an",
-          icon: "gear",
+          icon: "settings",
         },
       ],
     },
@@ -153,17 +153,17 @@ const translations: Record<string, Translation> = {
         {
           title: "Afdrukken",
           description: "Print eenvoudig je brieven rechtstreeks vanuit de app",
-          icon: "print",
+          icon: "printer",
         },
         {
           title: "Delen en Exporteren",
           description: "Deel je brieven digitaal of exporteer ze als PDF-bestanden",
-          icon: "arrow-up-right-from-square",
+          icon: "external-link",
         },
         {
           title: "Zoeken",
           description: "Met de zoekfunctie vind je brieven snel en handig",
-          icon: "magnifying-glass",
+          icon: "search",
         },
         {
           title: "Opslag",
@@ -178,7 +178,7 @@ const translations: Record<string, Translation> = {
         {
           title: "AI-assistent",
           description: "Verfijn of creëer professionele brieven met de AI-assistent",
-          icon: "wand-magic-sparkles",
+          icon: "wand-sparkles",
         },
         {
           title: "Handtekeningen",
@@ -188,23 +188,23 @@ const translations: Record<string, Translation> = {
         {
           title: "Afzender",
           description: "Voer je afzenderinformatie eenmalig in",
-          icon: "address-card",
+          icon: "id-card",
         },
         {
           title: "Contacten",
           description: "Incorporeren van contactadressen uit je adresboek is eenvoudig",
-          icon: "address-book",
+          icon: "book-user",
         },
         {
           title: "Sjablonen",
           description:
             "Maak gebruik van een breed scala aan sjablonen voor verschillende gelegenheden",
-          icon: "file-lines",
+          icon: "file-text",
         },
         {
           title: "Indeling",
           description: "Pas de indeling van je brieven aan aan je specifieke behoeften",
-          icon: "gear",
+          icon: "settings",
         },
       ],
     },
@@ -223,18 +223,18 @@ const translations: Record<string, Translation> = {
         {
           title: "Impression",
           description: "Imprimez facilement vos lettres directement depuis l'application",
-          icon: "print",
+          icon: "printer",
         },
         {
           title: "Partage et Exportation",
           description: "Partagez vos lettres numériquement ou exportez-les au format PDF",
-          icon: "arrow-up-right-from-square",
+          icon: "external-link",
         },
         {
           title: "Recherche",
           description:
             "La fonction de recherche facilite la recherche rapide et pratique des lettres",
-          icon: "magnifying-glass",
+          icon: "search",
         },
         {
           title: "Stockage",
@@ -249,7 +249,7 @@ const translations: Record<string, Translation> = {
         {
           title: "Assistant IA",
           description: "Affinez ou créez des lettres professionnelles avec l'assistant IA",
-          icon: "wand-magic-sparkles",
+          icon: "wand-sparkles",
         },
         {
           title: "Signatures",
@@ -259,22 +259,22 @@ const translations: Record<string, Translation> = {
         {
           title: "Expéditeur",
           description: "Entrez vos informations d'expéditeur une seule fois",
-          icon: "address-card",
+          icon: "id-card",
         },
         {
           title: "Contacts",
           description: "Intégrez facilement les adresses de votre carnet de contacts",
-          icon: "address-book",
+          icon: "book-user",
         },
         {
           title: "Modèles",
           description: "Utilisez une large gamme de modèles pour différentes occasions",
-          icon: "file-lines",
+          icon: "file-text",
         },
         {
           title: "Mise en Page",
           description: "Personnalisez la mise en page de vos lettres selon vos besoins spécifiques",
-          icon: "gear",
+          icon: "settings",
         },
       ],
     },
@@ -293,17 +293,17 @@ const translations: Record<string, Translation> = {
         {
           title: "Stampa",
           description: "Stampa facilmente le tue lettere direttamente dall'app",
-          icon: "print",
+          icon: "printer",
         },
         {
           title: "Condividi ed Esporta",
           description: "Condividi digitalmente le tue lettere o esportale in formato PDF",
-          icon: "arrow-up-right-from-square",
+          icon: "external-link",
         },
         {
           title: "Ricerca",
           description: "La funzione di ricerca facilita la ricerca delle lettere",
-          icon: "magnifying-glass",
+          icon: "search",
         },
         {
           title: "Archiviazione",
@@ -318,7 +318,7 @@ const translations: Record<string, Translation> = {
         {
           title: "Assistente IA",
           description: "Affina o crea lettere professionali con l'assistente IA",
-          icon: "wand-magic-sparkles",
+          icon: "wand-sparkles",
         },
         {
           title: "Firme",
@@ -328,23 +328,23 @@ const translations: Record<string, Translation> = {
         {
           title: "Mittente",
           description: "Inserisci le tue informazioni come mittente una sola volta",
-          icon: "address-card",
+          icon: "id-card",
         },
         {
           title: "Contatti",
           description: "Incorpora facilmente gli indirizzi dei contatti dalla tua rubrica",
-          icon: "address-book",
+          icon: "book-user",
         },
         {
           title: "Modelli",
           description: "Utilizza una vasta gamma di modelli per diverse occasioni",
-          icon: "file-lines",
+          icon: "file-text",
         },
         {
           title: "Layout",
           description:
             "Personalizza il layout delle tue lettere secondo le tue esigenze specifiche",
-          icon: "gear",
+          icon: "settings",
         },
       ],
     },
@@ -363,17 +363,17 @@ const translations: Record<string, Translation> = {
         {
           title: "Imprimir",
           description: "Imprime fácilmente tus cartas directamente desde la aplicación",
-          icon: "print",
+          icon: "printer",
         },
         {
           title: "Compartir y Exportar",
           description: "Comparte tus cartas digitalmente o exportalas como archivos PDF",
-          icon: "arrow-up-right-from-square",
+          icon: "external-link",
         },
         {
           title: "Buscar",
           description: "La función de búsqueda facilita encontrar cartas rápidamente",
-          icon: "magnifying-glass",
+          icon: "search",
         },
         {
           title: "Almacenamiento",
@@ -388,7 +388,7 @@ const translations: Record<string, Translation> = {
         {
           title: "Asistente IA",
           description: "Refina o crea cartas profesionales con el asistente IA",
-          icon: "wand-magic-sparkles",
+          icon: "wand-sparkles",
         },
         {
           title: "Firmas",
@@ -398,22 +398,22 @@ const translations: Record<string, Translation> = {
         {
           title: "Remitente",
           description: "Ingresa tu información como remitente una sola vez",
-          icon: "address-card",
+          icon: "id-card",
         },
         {
           title: "Contactos",
           description: "Utiliza los contactos de tu agenda.",
-          icon: "address-book",
+          icon: "book-user",
         },
         {
           title: "Plantillas",
           description: "Utiliza una amplia gama de plantillas para diferentes ocasiones",
-          icon: "file-lines",
+          icon: "file-text",
         },
         {
           title: "Diseño",
           description: "Personaliza el diseño de tus cartas según tus necesidades específicas",
-          icon: "gear",
+          icon: "settings",
         },
       ],
     },
@@ -432,17 +432,17 @@ const translations: Record<string, Translation> = {
         {
           title: "Imprimir",
           description: "Imprima facilmente as suas cartas diretamente a partir da aplicação",
-          icon: "print",
+          icon: "printer",
         },
         {
           title: "Partilhar e Exportar",
           description: "Partilhe as suas cartas digitalmente ou exporte-as como ficheiros PDF",
-          icon: "arrow-up-right-from-square",
+          icon: "external-link",
         },
         {
           title: "Pesquisa",
           description: "A função de pesquisa facilita a localização rápida e conveniente de cartas",
-          icon: "magnifying-glass",
+          icon: "search",
         },
         {
           title: "Armazenamento",
@@ -457,7 +457,7 @@ const translations: Record<string, Translation> = {
         {
           title: "Assistente IA",
           description: "Refine ou crie cartas profissionais com o assistente IA",
-          icon: "wand-magic-sparkles",
+          icon: "wand-sparkles",
         },
         {
           title: "Assinaturas",
@@ -467,23 +467,23 @@ const translations: Record<string, Translation> = {
         {
           title: "Remetente",
           description: "Introduza as informações do remetente uma vez",
-          icon: "address-card",
+          icon: "id-card",
         },
         {
           title: "Contactos",
           description: "Incorpore facilmente endereços de contactos da sua lista de contactos",
-          icon: "address-book",
+          icon: "book-user",
         },
         {
           title: "Modelos",
           description: "Utilize uma ampla gama de modelos para diversas ocasiões",
-          icon: "file-lines",
+          icon: "file-text",
         },
         {
           title: "Layout",
           description:
             "Personalize o layout das suas cartas de acordo com as suas necessidades específicas",
-          icon: "gear",
+          icon: "settings",
         },
       ],
     },
