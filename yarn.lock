@@ -1704,7 +1704,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@screegen/cli@npm:0.0.2, @screegen/cli@workspace:packages/cli":
+"@screegen/cli@npm:0.0.5, @screegen/cli@workspace:packages/cli":
   version: 0.0.0-use.local
   resolution: "@screegen/cli@workspace:packages/cli"
   dependencies:
@@ -1721,7 +1721,7 @@ __metadata:
     eslint-plugin-prettier: "npm:^5.5.4"
     get-port: "npm:^7.1.0"
     globals: "npm:^17.0.0"
-    jiti: "npm:^2.6.1"
+    jiti: "npm:^2.7.0"
     ora: "npm:^8.1.0"
     playwright: "npm:^1.49.1"
     prettier: "npm:^3.7.4"
@@ -1737,7 +1737,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@screegen/components@npm:0.0.2, @screegen/components@workspace:packages/components":
+"@screegen/components@npm:0.0.5, @screegen/components@workspace:packages/components":
   version: 0.0.0-use.local
   resolution: "@screegen/components@workspace:packages/components"
   dependencies:
@@ -1753,7 +1753,7 @@ __metadata:
     eslint: "npm:^9.39.2"
     eslint-config-prettier: "npm:^10.1.8"
     eslint-plugin-prettier: "npm:^5.5.4"
-    jiti: "npm:^2.6.1"
+    jiti: "npm:^2.7.0"
     jsdom: "npm:^25.0.1"
     prettier: "npm:^3.7.4"
     react: "npm:^18.3.1"
@@ -3620,8 +3620,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "example@workspace:packages/example"
   dependencies:
-    "@screegen/cli": "npm:0.0.2"
-    "@screegen/components": "npm:0.0.2"
+    "@screegen/cli": "npm:0.0.5"
+    "@screegen/components": "npm:0.0.5"
     "@types/react": "npm:^18.3.17"
     "@types/react-dom": "npm:^18.3.5"
     "@typescript-eslint/eslint-plugin": "npm:^8.52.0"
@@ -3630,7 +3630,7 @@ __metadata:
     eslint: "npm:^9.39.2"
     eslint-config-prettier: "npm:^10.1.8"
     eslint-plugin-prettier: "npm:^5.5.4"
-    jiti: "npm:^2.6.1"
+    jiti: "npm:^2.7.0"
     prettier: "npm:^3.7.4"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
@@ -4270,12 +4270,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jiti@npm:^2.6.1":
-  version: 2.6.1
-  resolution: "jiti@npm:2.6.1"
+"jiti@npm:^2.7.0":
+  version: 2.7.0
+  resolution: "jiti@npm:2.7.0"
   bin:
     jiti: lib/jiti-cli.mjs
-  checksum: 10c0/79b2e96a8e623f66c1b703b98ec1b8be4500e1d217e09b09e343471bbb9c105381b83edbb979d01cef18318cc45ce6e153571b6c83122170eefa531c64b6789b
+  checksum: 10c0/1b1e2310a490dce1aeea3da5f5dfe18273516c20ce48be2e98eb8ea452d5f3dcc8fd0cfd6d28b4052a24c5dbab6e3089b2d7e79f0bce7915b10d750929563c42
   languageName: node
   linkType: hard
 
