@@ -20,10 +20,10 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install --frozen-lockfile
       - name: Lint code
-        run: yarn lint
+        run: pnpm lint
       - name: Build
-        run: yarn build
+        run: pnpm build
       - name: Run Tests
-        run: yarn test
+        run: pnpm test

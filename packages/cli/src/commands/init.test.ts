@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vite-plus/test";
 import fs from "fs/promises";
 import path from "path";
 import prompts from "prompts";
@@ -74,27 +74,23 @@ describe("initCommand", () => {
       message: "Project name:",
       initial: "my-screenshot-app",
     });
-    expect(mockFs.mkdir).toHaveBeenCalledWith(
-      path.resolve("/tmp", "prompted-app"),
-      { recursive: true },
-    );
+    expect(mockFs.mkdir).toHaveBeenCalledWith(path.resolve("/tmp", "prompted-app"), {
+      recursive: true,
+    });
   });
 
   it("exits if no project name is provided after prompt", async () => {
     mockPrompts.mockResolvedValue({ projectName: undefined });
 
-    await expect(initCommand({ directory: "/tmp" })).rejects.toThrow(
-      "process.exit(1)",
-    );
+    await expect(initCommand({ directory: "/tmp" })).rejects.toThrow("process.exit(1)");
   });
 
   it("uses current directory when directory option is not set", async () => {
     await initCommand({ name: "test-project", directory: "" });
 
-    expect(mockFs.mkdir).toHaveBeenCalledWith(
-      path.resolve("/test/cwd", "test-project"),
-      { recursive: true },
-    );
+    expect(mockFs.mkdir).toHaveBeenCalledWith(path.resolve("/test/cwd", "test-project"), {
+      recursive: true,
+    });
   });
 
   it("copies all template files with replacements", async () => {
@@ -113,16 +109,10 @@ describe("initCommand", () => {
     expect(writtenPaths).toContain(path.join(targetDir, "screegen.config.ts"));
     expect(writtenPaths).toContain(path.join(targetDir, "index.html"));
     expect(writtenPaths).toContain(path.join(targetDir, "src", "index.tsx"));
-    expect(writtenPaths).toContain(
-      path.join(targetDir, "src", "vite-env.d.ts"),
-    );
+    expect(writtenPaths).toContain(path.join(targetDir, "src", "vite-env.d.ts"));
     expect(writtenPaths).toContain(path.join(targetDir, "src", "App.tsx"));
-    expect(writtenPaths).toContain(
-      path.join(targetDir, "src", "translations.ts"),
-    );
-    expect(writtenPaths).toContain(
-      path.join(targetDir, "src", "screens", "ExampleScreen.tsx"),
-    );
+    expect(writtenPaths).toContain(path.join(targetDir, "src", "translations.ts"));
+    expect(writtenPaths).toContain(path.join(targetDir, "src", "screens", "ExampleScreen.tsx"));
     expect(writtenPaths).toContain(
       path.join(targetDir, "src", "screens", "ExampleScreen.module.scss"),
     );
@@ -143,14 +133,10 @@ describe("initCommand", () => {
   it("displays success message and next steps", async () => {
     await initCommand({ name: "my-app", directory: "/tmp" });
 
-    expect(
-      consoleLogs.some((log) => log.includes("Project created successfully")),
-    ).toBe(true);
+    expect(consoleLogs.some((log) => log.includes("Project created successfully"))).toBe(true);
     expect(consoleLogs.some((log) => log.includes("cd my-app"))).toBe(true);
-    expect(consoleLogs.some((log) => log.includes("yarn install"))).toBe(true);
-    expect(consoleLogs.some((log) => log.includes("yarn dev"))).toBe(true);
-    expect(consoleLogs.some((log) => log.includes("yarn generate"))).toBe(
-      true,
-    );
+    expect(consoleLogs.some((log) => log.includes("pnpm install"))).toBe(true);
+    expect(consoleLogs.some((log) => log.includes("pnpm dev"))).toBe(true);
+    expect(consoleLogs.some((log) => log.includes("pnpm generate"))).toBe(true);
   });
 });

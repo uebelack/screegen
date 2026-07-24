@@ -1,8 +1,8 @@
-import { Routes, Route } from 'react-router-dom';
-import { ProjectConfig } from '../../types';
-import { ScreengenConfig } from '../ScreengenConfig';
-import { ScreenPage } from './ScreenPage';
-import { OverviewPage } from './OverviewPage';
+import { Routes, Route } from "react-router-dom";
+import { ProjectConfig } from "../../types";
+import { ScreengenConfig } from "../ScreengenConfig";
+import { ScreenPage } from "./ScreenPage";
+import { OverviewPage } from "./OverviewPage";
 
 export interface ScreegenProps {
   config: ProjectConfig;

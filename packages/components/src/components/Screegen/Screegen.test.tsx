@@ -1,17 +1,12 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { MemoryRouter, Routes, Route } from 'react-router-dom';
-import { Screegen } from './Screegen';
-import { ScreenPage } from './ScreenPage';
-import { OverviewPage } from './OverviewPage';
-import { ProjectConfig, ScreenComponentProps } from '../../types';
+import { describe, it, expect, vi, beforeEach, afterEach } from "vite-plus/test";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { MemoryRouter, Routes, Route } from "react-router-dom";
+import { Screegen } from "./Screegen";
+import { ScreenPage } from "./ScreenPage";
+import { OverviewPage } from "./OverviewPage";
+import { ProjectConfig, ScreenComponentProps } from "../../types";
 
-function MockScreenComponent({
-  language,
-  deviceKey,
-  width,
-  height,
-}: ScreenComponentProps) {
+function MockScreenComponent({ language, deviceKey, width, height }: ScreenComponentProps) {
   return (
     <div data-testid="mock-screen">
       MockScreen: {language} - {deviceKey} - {width}x{height}
@@ -20,116 +15,112 @@ function MockScreenComponent({
 }
 
 const mockConfig: ProjectConfig = {
-  languages: ['en-US', 'de-DE'],
+  languages: ["en-US", "de-DE"],
   devices: [
     {
-      key: 'iphone',
-      fastlaneKeys: ['APP_IPHONE_67'],
+      key: "iphone",
+      fastlaneKeys: ["APP_IPHONE_67"],
       width: 1290,
       height: 2796,
       screens: [
-        { key: 'overview', component: MockScreenComponent },
-        { key: 'details', component: MockScreenComponent },
+        { key: "overview", component: MockScreenComponent },
+        { key: "details", component: MockScreenComponent },
       ],
     },
     {
-      key: 'ipad',
-      fastlaneKeys: ['APP_IPAD_PRO_129'],
+      key: "ipad",
+      fastlaneKeys: ["APP_IPAD_PRO_129"],
       width: 2732,
       height: 2048,
-      screens: [{ key: 'home', component: MockScreenComponent }],
+      screens: [{ key: "home", component: MockScreenComponent }],
     },
   ],
 };
 
-describe('Screegen', () => {
-  it('renders OverviewPage at root path', () => {
+describe("Screegen", () => {
+  it("renders OverviewPage at root path", () => {
     render(
-      <MemoryRouter initialEntries={['/']}>
+      <MemoryRouter initialEntries={["/"]}>
         <Screegen config={mockConfig} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
-    expect(screen.getByTestId('overview-grid')).toBeInTheDocument();
+    expect(screen.getByTestId("overview-grid")).toBeInTheDocument();
   });
 
-  it('renders ScreengenConfig at /config path', () => {
+  it("renders ScreengenConfig at /config path", () => {
     render(
-      <MemoryRouter initialEntries={['/config']}>
+      <MemoryRouter initialEntries={["/config"]}>
         <Screegen config={mockConfig} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
-    expect(screen.getByTestId('screegen-config')).toBeInTheDocument();
+    expect(screen.getByTestId("screegen-config")).toBeInTheDocument();
   });
 
-  it('renders ScreenPage at /screens/:deviceKey/:screenKey/:language path', () => {
+  it("renders ScreenPage at /screens/:deviceKey/:screenKey/:language path", () => {
     render(
-      <MemoryRouter initialEntries={['/screens/iphone/overview/en-US']}>
+      <MemoryRouter initialEntries={["/screens/iphone/overview/en-US"]}>
         <Screegen config={mockConfig} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
-    expect(screen.getByTestId('mock-screen')).toBeInTheDocument();
-    expect(
-      screen.getByText('MockScreen: en-US - iphone - 1290x2796')
-    ).toBeInTheDocument();
+    expect(screen.getByTestId("mock-screen")).toBeInTheDocument();
+    expect(screen.getByText("MockScreen: en-US - iphone - 1290x2796")).toBeInTheDocument();
   });
 });
 
-describe('ScreenPage', () => {
-  it('renders Screen component with correct props', () => {
+describe("ScreenPage", () => {
+  it("renders Screen component with correct props", () => {
     render(
-      <MemoryRouter initialEntries={['/screens/iphone/overview/en-US']}>
+      <MemoryRouter initialEntries={["/screens/iphone/overview/en-US"]}>
         <Routes>
           <Route
             path="/screens/:deviceKey/:screenKey/:language"
             element={<ScreenPage config={mockConfig} />}
           />
         </Routes>
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
-    expect(screen.getByTestId('mock-screen')).toBeInTheDocument();
-    expect(
-      screen.getByText('MockScreen: en-US - iphone - 1290x2796')
-    ).toBeInTheDocument();
+    expect(screen.getByTestId("mock-screen")).toBeInTheDocument();
+    expect(screen.getByText("MockScreen: en-US - iphone - 1290x2796")).toBeInTheDocument();
   });
 
-  it('renders Screen for different device and language', () => {
+  it("renders Screen for different device and language", () => {
     render(
-      <MemoryRouter initialEntries={['/screens/ipad/home/de-DE']}>
+      <MemoryRouter initialEntries={["/screens/ipad/home/de-DE"]}>
         <Routes>
           <Route
             path="/screens/:deviceKey/:screenKey/:language"
             element={<ScreenPage config={mockConfig} />}
           />
         </Routes>
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
-    expect(
-      screen.getByText('MockScreen: de-DE - ipad - 2732x2048')
-    ).toBeInTheDocument();
+    expect(screen.getByText("MockScreen: de-DE - ipad - 2732x2048")).toBeInTheDocument();
   });
 
-  it('renders error message when params are missing', () => {
+  it("renders error message when params are missing", () => {
     render(
-      <MemoryRouter initialEntries={['/screens']}>
+      <MemoryRouter initialEntries={["/screens"]}>
         <Routes>
           <Route path="/screens" element={<ScreenPage config={mockConfig} />} />
         </Routes>
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
-    expect(screen.getByText('Invalid screen parameters')).toBeInTheDocument();
+    expect(screen.getByText("Invalid screen parameters")).toBeInTheDocument();
   });
 });
 
-describe('OverviewPage', () => {
+describe("OverviewPage", () => {
+  const originalMatchMedia = window.matchMedia;
+
   beforeEach(() => {
-    vi.spyOn(window, 'matchMedia').mockImplementation((query) => ({
-      matches: query === '(prefers-color-scheme: dark)',
+    window.matchMedia = vi.fn().mockImplementation((query: string) => ({
+      matches: query === "(prefers-color-scheme: dark)",
       media: query,
       onchange: null,
       addListener: vi.fn(),
@@ -141,95 +132,96 @@ describe('OverviewPage', () => {
   });
 
   afterEach(() => {
+    window.matchMedia = originalMatchMedia;
     vi.restoreAllMocks();
   });
 
-  it('renders OverviewGrid with default values', () => {
+  it("renders OverviewGrid with default values", () => {
     render(
-      <MemoryRouter initialEntries={['/']}>
+      <MemoryRouter initialEntries={["/"]}>
         <OverviewPage config={mockConfig} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
-    expect(screen.getByTestId('overview-grid')).toBeInTheDocument();
+    expect(screen.getByTestId("overview-grid")).toBeInTheDocument();
   });
 
-  it('uses language from URL params', () => {
+  it("uses language from URL params", () => {
     render(
-      <MemoryRouter initialEntries={['/?language=de-DE']}>
+      <MemoryRouter initialEntries={["/?language=de-DE"]}>
         <OverviewPage config={mockConfig} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
-    expect(screen.getByTestId('overview-grid')).toBeInTheDocument();
+    expect(screen.getByTestId("overview-grid")).toBeInTheDocument();
   });
 
-  it('uses scale from URL params', () => {
+  it("uses scale from URL params", () => {
     render(
-      <MemoryRouter initialEntries={['/?scale=0.5']}>
+      <MemoryRouter initialEntries={["/?scale=0.5"]}>
         <OverviewPage config={mockConfig} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
-    expect(screen.getByTestId('overview-grid')).toBeInTheDocument();
+    expect(screen.getByTestId("overview-grid")).toBeInTheDocument();
   });
 
-  it('uses colorScheme from URL params', () => {
+  it("uses colorScheme from URL params", () => {
     render(
-      <MemoryRouter initialEntries={['/?colorScheme=light']}>
+      <MemoryRouter initialEntries={["/?colorScheme=light"]}>
         <OverviewPage config={mockConfig} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
-    expect(screen.getByTestId('overview-grid')).toBeInTheDocument();
+    expect(screen.getByTestId("overview-grid")).toBeInTheDocument();
   });
 
-  it('falls back to system color scheme when not specified', () => {
+  it("falls back to system color scheme when not specified", () => {
     render(
-      <MemoryRouter initialEntries={['/']}>
+      <MemoryRouter initialEntries={["/"]}>
         <OverviewPage config={mockConfig} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
-    expect(screen.getByTestId('overview-grid')).toBeInTheDocument();
+    expect(screen.getByTestId("overview-grid")).toBeInTheDocument();
   });
 
-  it('updates language when changed', () => {
+  it("updates language when changed", () => {
     render(
-      <MemoryRouter initialEntries={['/']}>
+      <MemoryRouter initialEntries={["/"]}>
         <OverviewPage config={mockConfig} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
-    const languageSelect = screen.getByLabelText('Language:');
-    fireEvent.change(languageSelect, { target: { value: 'de-DE' } });
+    const languageSelect = screen.getByLabelText("Language:");
+    fireEvent.change(languageSelect, { target: { value: "de-DE" } });
 
-    expect(languageSelect).toHaveValue('de-DE');
+    expect(languageSelect).toHaveValue("de-DE");
   });
 
-  it('updates scale when changed', () => {
+  it("updates scale when changed", () => {
     render(
-      <MemoryRouter initialEntries={['/']}>
+      <MemoryRouter initialEntries={["/"]}>
         <OverviewPage config={mockConfig} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
-    const scaleSelect = screen.getByLabelText('Scale:');
-    fireEvent.change(scaleSelect, { target: { value: '0.1' } });
+    const scaleSelect = screen.getByLabelText("Scale:");
+    fireEvent.change(scaleSelect, { target: { value: "0.1" } });
 
-    expect(scaleSelect).toHaveValue('0.1');
+    expect(scaleSelect).toHaveValue("0.1");
   });
 
-  it('updates colorScheme when changed', () => {
+  it("updates colorScheme when changed", () => {
     render(
-      <MemoryRouter initialEntries={['/']}>
+      <MemoryRouter initialEntries={["/"]}>
         <OverviewPage config={mockConfig} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
-    const colorSchemeSelect = screen.getByLabelText('Color Scheme:');
-    fireEvent.change(colorSchemeSelect, { target: { value: 'light' } });
+    const colorSchemeSelect = screen.getByLabelText("Color Scheme:");
+    fireEvent.change(colorSchemeSelect, { target: { value: "light" } });
 
-    expect(colorSchemeSelect).toHaveValue('light');
+    expect(colorSchemeSelect).toHaveValue("light");
   });
 });

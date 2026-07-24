@@ -1,5 +1,5 @@
-import { ProjectConfig } from '../../types';
-import styles from './Screen.module.scss';
+import { ProjectConfig } from "../../types";
+import styles from "./Screen.module.scss";
 
 export interface ScreenProps {
   config: ProjectConfig;
@@ -9,13 +9,7 @@ export interface ScreenProps {
   className?: string;
 }
 
-export function Screen({
-  config,
-  deviceKey,
-  screenKey,
-  language,
-  className,
-}: ScreenProps) {
+export function Screen({ config, deviceKey, screenKey, language, className }: ScreenProps) {
   const device = config.devices.find((d) => d.key === deviceKey);
   const screen = device?.screens.find((s) => s.key === screenKey);
 
@@ -27,7 +21,7 @@ export function Screen({
 
   return (
     <div
-      className={`${styles.screen} ${className || ''}`}
+      className={`${styles.screen} ${className || ""}`}
       data-device={device.key}
       style={{ width: device.width, height: device.height }}
     >

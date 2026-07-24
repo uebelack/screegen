@@ -1,6 +1,6 @@
-import { ScreenComponentProps } from '@screegen/components';
-import translations from '../translations';
-import styles from './iPhoneOverview.module.scss';
+import { DeviceFrame, ScreenComponentProps } from "@screegen/components";
+import translations from "../translations";
+import styles from "./iPhoneOverview.module.scss";
 
 function iPhoneOverviewScreen({ language }: ScreenComponentProps) {
   const t = translations[language];
@@ -8,12 +8,11 @@ function iPhoneOverviewScreen({ language }: ScreenComponentProps) {
   return (
     <div>
       <div className={styles.teaser}>{t.overview}</div>
-      <img
-        className={styles.screenshot}
-        alt="screenshot"
+      <DeviceFrame
+        variant="phone"
+        className={styles.device}
         src={`/raw/${language}/iPhone_Overview.png`}
       />
-      <img className={styles.mock} alt="iphone" src="/iphone.png" />
     </div>
   );
 }

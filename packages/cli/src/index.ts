@@ -32,14 +32,9 @@ export function runCli(argv?: string[]): void {
 }
 
 // Only parse when running as main module
-export function isMainModule(
-  importMetaUrl: string,
-  processArgv: string[],
-): boolean {
+export function isMainModule(importMetaUrl: string, processArgv: string[]): boolean {
   return (
-    importMetaUrl === `file://${processArgv[1]}` ||
-    processArgv[1]?.endsWith("screegen.js") ||
-    false
+    importMetaUrl === `file://${processArgv[1]}` || processArgv[1]?.endsWith("screegen.js") || false
   );
 }
 

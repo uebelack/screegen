@@ -1,4 +1,4 @@
-import { Translation } from './types';
+import { Translation } from "./types";
 
 const translations: Record<string, Translation> = {
   "en-US": {
@@ -9,31 +9,32 @@ const translations: Record<string, Translation> = {
       features: [
         {
           title: "Auto Format",
-          description:
-            "Letters are automatically formatted in a professional manner",
+          description: "Letters are automatically formatted in a professional manner",
           icon: "align-justify",
+        },
+        {
+          title: "Rich Text",
+          description: "Emphasize what matters with bold, italic and underline",
+          icon: "type",
         },
         {
           title: "Print",
           description: "Easily print your letters directly from the app",
-          icon: "print",
+          icon: "printer",
         },
         {
           title: "Share & Export",
-          description:
-            "Share your letters digitally or export them as PDF files",
-          icon: "arrow-up-right-from-square",
+          description: "Share your letters digitally or export them as PDF files",
+          icon: "external-link",
         },
         {
           title: "Search",
-          description:
-            "The search function makes it easy to find letters quickly and conveniently",
-          icon: "magnifying-glass",
+          description: "The search function makes it easy to find letters quickly and conveniently",
+          icon: "search",
         },
         {
           title: "Storage",
-          description:
-            "Your letters are synchronized across devices using iCloud",
+          description: "Your letters are synchronized across devices using iCloud",
           icon: "cloud",
         },
       ],
@@ -43,9 +44,8 @@ const translations: Record<string, Translation> = {
       features: [
         {
           title: "AI Assitant",
-          description:
-            "Refine or create professional letters with the AI Assitant",
-          icon: "wand-magic-sparkles",
+          description: "Refine or create professional letters with the AI Assitant",
+          icon: "wand-sparkles",
         },
         {
           title: "Signatures",
@@ -55,32 +55,28 @@ const translations: Record<string, Translation> = {
         {
           title: "Sender",
           description: "Enter your sender information once",
-          icon: "address-card",
+          icon: "id-card",
         },
         {
           title: "Contacts",
-          description:
-            "Easily incorporate contact addresses from your address book",
-          icon: "address-book",
+          description: "Easily incorporate contact addresses from your address book",
+          icon: "book-user",
         },
         {
           title: "Templates",
-          description:
-            "Utilize a wide range of templates for various occasions",
-          icon: "file-lines",
+          description: "Utilize a wide range of templates for various occasions",
+          icon: "file-text",
         },
         {
           title: "Layout",
-          description:
-            "Customize the layout of your letters to your specific needs",
-          icon: "gear",
+          description: "Customize the layout of your letters to your specific needs",
+          icon: "settings",
         },
       ],
     },
   },
   "de-DE": {
-    overview:
-      "Im Handumdrehen professionell formatierte Briefe erstellen und drucken.",
+    overview: "Im Handumdrehen professionell formatierte Briefe erstellen und drucken.",
     edit: "Einfacher Editor - Fokussiert auf das Wesentliche.",
     features: {
       title: "Funktionen",
@@ -91,26 +87,28 @@ const translations: Record<string, Translation> = {
           icon: "align-justify",
         },
         {
+          title: "Textformatierung",
+          description: "Heben Sie Wichtiges mit Fett, Kursiv und Unterstreichung hervor",
+          icon: "type",
+        },
+        {
           title: "Drucken",
           description: "Drucken Sie Ihre Briefe bequem direkt aus der App",
-          icon: "print",
+          icon: "printer",
         },
         {
           title: "Teilen & Exportieren",
-          description:
-            "Teilen Sie Ihre Briefe digital oder exportiere sie als PDF-Dateien",
-          icon: "arrow-up-right-from-square",
+          description: "Teilen Sie Ihre Briefe digital oder exportiere sie als PDF-Dateien",
+          icon: "external-link",
         },
         {
           title: "Suche",
-          description:
-            "Mit der Suchfunktion finden Sie Ihre Briefe schnell und einfach wieder",
-          icon: "magnifying-glass",
+          description: "Mit der Suchfunktion finden Sie Ihre Briefe schnell und einfach wieder",
+          icon: "search",
         },
         {
           title: "Speicherung",
-          description:
-            "Ihre Briefe werden über die iCloud geräteübergreifend synchronisiert",
+          description: "Ihre Briefe werden über die iCloud geräteübergreifend synchronisiert",
           icon: "cloud",
         },
       ],
@@ -120,38 +118,33 @@ const translations: Record<string, Translation> = {
       features: [
         {
           title: "KI-Assistent",
-          description:
-            "Verbessern oder erstellen Sie professionelle Briefe mit dem KI-Assistenten",
-          icon: "wand-magic-sparkles",
+          description: "Verbessern oder erstellen Sie professionelle Briefe mit dem KI-Assistenten",
+          icon: "wand-sparkles",
         },
         {
           title: "Unterschriften",
-          description:
-            "Fügen Sie persönliche Unterschriften direkt in der App hinzu",
+          description: "Fügen Sie persönliche Unterschriften direkt in der App hinzu",
           icon: "signature",
         },
         {
           title: "Absender",
           description: "Erfassen Sie einmalig Ihre Absenderinformationen",
-          icon: "address-card",
+          icon: "id-card",
         },
         {
           title: "Kontakte",
-          description:
-            "Verwenden Sie Ihre Kontaktadressen direkt aus Ihrem Adressbuch",
-          icon: "address-book",
+          description: "Verwenden Sie Ihre Kontaktadressen direkt aus Ihrem Adressbuch",
+          icon: "book-user",
         },
         {
           title: "Templates",
-          description:
-            "Nutzen Sie viele Vorlagen für verschiedene Gelegenheiten",
-          icon: "file-lines",
+          description: "Nutzen Sie viele Vorlagen für verschiedene Gelegenheiten",
+          icon: "file-text",
         },
         {
           title: "Layout",
-          description:
-            "Passen Sie die Formatierung Ihrer Briefe an Ihre Bedürfnisse an",
-          icon: "gear",
+          description: "Passen Sie die Formatierung Ihrer Briefe an Ihre Bedürfnisse an",
+          icon: "settings",
         },
       ],
     },
@@ -164,30 +157,32 @@ const translations: Record<string, Translation> = {
       features: [
         {
           title: "Automatische Opmaak",
-          description:
-            "Brieven worden automatisch op professionele wijze opgemaakt",
+          description: "Brieven worden automatisch op professionele wijze opgemaakt",
           icon: "align-justify",
+        },
+        {
+          title: "Tekstopmaak",
+          description: "Benadruk wat belangrijk is met vet, cursief en onderstreping",
+          icon: "type",
         },
         {
           title: "Afdrukken",
           description: "Print eenvoudig je brieven rechtstreeks vanuit de app",
-          icon: "print",
+          icon: "printer",
         },
         {
           title: "Delen en Exporteren",
-          description:
-            "Deel je brieven digitaal of exporteer ze als PDF-bestanden",
-          icon: "arrow-up-right-from-square",
+          description: "Deel je brieven digitaal of exporteer ze als PDF-bestanden",
+          icon: "external-link",
         },
         {
           title: "Zoeken",
           description: "Met de zoekfunctie vind je brieven snel en handig",
-          icon: "magnifying-glass",
+          icon: "search",
         },
         {
           title: "Opslag",
-          description:
-            "Je brieven worden gesynchroniseerd over apparaten met iCloud",
+          description: "Je brieven worden gesynchroniseerd over apparaten met iCloud",
           icon: "cloud",
         },
       ],
@@ -197,77 +192,73 @@ const translations: Record<string, Translation> = {
       features: [
         {
           title: "AI-assistent",
-          description:
-            "Verfijn of creëer professionele brieven met de AI-assistent",
-          icon: "wand-magic-sparkles",
+          description: "Verfijn of creëer professionele brieven met de AI-assistent",
+          icon: "wand-sparkles",
         },
         {
           title: "Handtekeningen",
-          description:
-            "Voeg persoonlijke handtekeningen rechtstreeks toe in de app",
+          description: "Voeg persoonlijke handtekeningen rechtstreeks toe in de app",
           icon: "signature",
         },
         {
           title: "Afzender",
           description: "Voer je afzenderinformatie eenmalig in",
-          icon: "address-card",
+          icon: "id-card",
         },
         {
           title: "Contacten",
-          description:
-            "Incorporeren van contactadressen uit je adresboek is eenvoudig",
-          icon: "address-book",
+          description: "Incorporeren van contactadressen uit je adresboek is eenvoudig",
+          icon: "book-user",
         },
         {
           title: "Sjablonen",
           description:
             "Maak gebruik van een breed scala aan sjablonen voor verschillende gelegenheden",
-          icon: "file-lines",
+          icon: "file-text",
         },
         {
           title: "Indeling",
-          description:
-            "Pas de indeling van je brieven aan aan je specifieke behoeften",
-          icon: "gear",
+          description: "Pas de indeling van je brieven aan aan je specifieke behoeften",
+          icon: "settings",
         },
       ],
     },
   },
   "fr-FR": {
-    overview:
-      "Créez et imprimez des lettres parfaitement formatées en un rien de temps.",
+    overview: "Créez et imprimez des lettres parfaitement formatées en un rien de temps.",
     edit: "Éditeur minimaliste pour que vous puissiez vous concentrer sur le contenu.",
     features: {
       title: "Fonctionnalités",
       features: [
         {
           title: "Formatage Automatique",
-          description:
-            "Les lettres sont automatiquement formatées de manière professionnelle",
+          description: "Les lettres sont automatiquement formatées de manière professionnelle",
           icon: "align-justify",
         },
         {
+          title: "Texte enrichi",
+          description: "Mettez en valeur l'essentiel en gras, italique et souligné",
+          icon: "type",
+        },
+        {
           title: "Impression",
-          description:
-            "Imprimez facilement vos lettres directement depuis l'application",
-          icon: "print",
+          description: "Imprimez facilement vos lettres directement depuis l'application",
+          icon: "printer",
         },
         {
           title: "Partage et Exportation",
-          description:
-            "Partagez vos lettres numériquement ou exportez-les au format PDF",
-          icon: "arrow-up-right-from-square",
+          description: "Partagez vos lettres numériquement ou exportez-les au format PDF",
+          icon: "external-link",
         },
         {
           title: "Recherche",
           description:
             "La fonction de recherche facilite la recherche rapide et pratique des lettres",
-          icon: "magnifying-glass",
+          icon: "search",
         },
         {
           title: "Stockage",
-          description:
-            "Vos lettres sont synchronisées sur tous vos appareils grâce à iCloud",
+          description: "Vos lettres sont synchronisées sur tous vos appareils grâce à iCloud",
           icon: "cloud",
         },
       ],
@@ -277,76 +268,71 @@ const translations: Record<string, Translation> = {
       features: [
         {
           title: "Assistant IA",
-          description:
-            "Affinez ou créez des lettres professionnelles avec l'assistant IA",
-          icon: "wand-magic-sparkles",
+          description: "Affinez ou créez des lettres professionnelles avec l'assistant IA",
+          icon: "wand-sparkles",
         },
         {
           title: "Signatures",
-          description:
-            "Ajoutez des signatures personnelles directement dans l'application",
+          description: "Ajoutez des signatures personnelles directement dans l'application",
           icon: "signature",
         },
         {
           title: "Expéditeur",
           description: "Entrez vos informations d'expéditeur une seule fois",
-          icon: "address-card",
+          icon: "id-card",
         },
         {
           title: "Contacts",
-          description:
-            "Intégrez facilement les adresses de votre carnet de contacts",
-          icon: "address-book",
+          description: "Intégrez facilement les adresses de votre carnet de contacts",
+          icon: "book-user",
         },
         {
           title: "Modèles",
-          description:
-            "Utilisez une large gamme de modèles pour différentes occasions",
-          icon: "file-lines",
+          description: "Utilisez une large gamme de modèles pour différentes occasions",
+          icon: "file-text",
         },
         {
           title: "Mise en Page",
-          description:
-            "Personnalisez la mise en page de vos lettres selon vos besoins spécifiques",
-          icon: "gear",
+          description: "Personnalisez la mise en page de vos lettres selon vos besoins spécifiques",
+          icon: "settings",
         },
       ],
     },
   },
   "it-IT": {
-    overview:
-      "Crea e stampa lettere perfettamente formattate in pochissimo tempo.",
+    overview: "Crea e stampa lettere perfettamente formattate in pochissimo tempo.",
     edit: "Editor minimalista, in modo da poterti concentrare sul contenuto.",
     features: {
       title: "Caratteristiche",
       features: [
         {
           title: "Formattazione Auto",
-          description:
-            "Le lettere vengono automaticamente formattate in modo professionale",
+          description: "Le lettere vengono automaticamente formattate in modo professionale",
           icon: "align-justify",
+        },
+        {
+          title: "Testo formattato",
+          description: "Evidenzia ciò che conta con grassetto, corsivo e sottolineato",
+          icon: "type",
         },
         {
           title: "Stampa",
           description: "Stampa facilmente le tue lettere direttamente dall'app",
-          icon: "print",
+          icon: "printer",
         },
         {
           title: "Condividi ed Esporta",
-          description:
-            "Condividi digitalmente le tue lettere o esportale in formato PDF",
-          icon: "arrow-up-right-from-square",
+          description: "Condividi digitalmente le tue lettere o esportale in formato PDF",
+          icon: "external-link",
         },
         {
           title: "Ricerca",
-          description:
-            "La funzione di ricerca facilita la ricerca delle lettere",
-          icon: "magnifying-glass",
+          description: "La funzione di ricerca facilita la ricerca delle lettere",
+          icon: "search",
         },
         {
           title: "Archiviazione",
-          description:
-            "Le tue lettere sono sincronizzate su tutti i dispositivi tramite iCloud",
+          description: "Le tue lettere sono sincronizzate su tutti i dispositivi tramite iCloud",
           icon: "cloud",
         },
       ],
@@ -356,9 +342,8 @@ const translations: Record<string, Translation> = {
       features: [
         {
           title: "Assistente IA",
-          description:
-            "Affina o crea lettere professionali con l'assistente IA",
-          icon: "wand-magic-sparkles",
+          description: "Affina o crea lettere professionali con l'assistente IA",
+          icon: "wand-sparkles",
         },
         {
           title: "Firme",
@@ -367,27 +352,24 @@ const translations: Record<string, Translation> = {
         },
         {
           title: "Mittente",
-          description:
-            "Inserisci le tue informazioni come mittente una sola volta",
-          icon: "address-card",
+          description: "Inserisci le tue informazioni come mittente una sola volta",
+          icon: "id-card",
         },
         {
           title: "Contatti",
-          description:
-            "Incorpora facilmente gli indirizzi dei contatti dalla tua rubrica",
-          icon: "address-book",
+          description: "Incorpora facilmente gli indirizzi dei contatti dalla tua rubrica",
+          icon: "book-user",
         },
         {
           title: "Modelli",
-          description:
-            "Utilizza una vasta gamma di modelli per diverse occasioni",
-          icon: "file-lines",
+          description: "Utilizza una vasta gamma di modelli per diverse occasioni",
+          icon: "file-text",
         },
         {
           title: "Layout",
           description:
             "Personalizza il layout delle tue lettere secondo le tue esigenze specifiche",
-          icon: "gear",
+          icon: "settings",
         },
       ],
     },
@@ -404,27 +386,28 @@ const translations: Record<string, Translation> = {
           icon: "align-justify",
         },
         {
+          title: "Texto enriquecido",
+          description: "Destaca lo importante con negrita, cursiva y subrayado",
+          icon: "type",
+        },
+        {
           title: "Imprimir",
-          description:
-            "Imprime fácilmente tus cartas directamente desde la aplicación",
-          icon: "print",
+          description: "Imprime fácilmente tus cartas directamente desde la aplicación",
+          icon: "printer",
         },
         {
           title: "Compartir y Exportar",
-          description:
-            "Comparte tus cartas digitalmente o exportalas como archivos PDF",
-          icon: "arrow-up-right-from-square",
+          description: "Comparte tus cartas digitalmente o exportalas como archivos PDF",
+          icon: "external-link",
         },
         {
           title: "Buscar",
-          description:
-            "La función de búsqueda facilita encontrar cartas rápidamente",
-          icon: "magnifying-glass",
+          description: "La función de búsqueda facilita encontrar cartas rápidamente",
+          icon: "search",
         },
         {
           title: "Almacenamiento",
-          description:
-            "Tus cartas se sincronizan en todos tus dispositivos mediante iCloud",
+          description: "Tus cartas se sincronizan en todos tus dispositivos mediante iCloud",
           icon: "cloud",
         },
       ],
@@ -435,35 +418,32 @@ const translations: Record<string, Translation> = {
         {
           title: "Asistente IA",
           description: "Refina o crea cartas profesionales con el asistente IA",
-          icon: "wand-magic-sparkles",
+          icon: "wand-sparkles",
         },
         {
           title: "Firmas",
-          description:
-            "Agrega firmas personales directamente dentro de la aplicación",
+          description: "Agrega firmas personales directamente dentro de la aplicación",
           icon: "signature",
         },
         {
           title: "Remitente",
           description: "Ingresa tu información como remitente una sola vez",
-          icon: "address-card",
+          icon: "id-card",
         },
         {
           title: "Contactos",
           description: "Utiliza los contactos de tu agenda.",
-          icon: "address-book",
+          icon: "book-user",
         },
         {
           title: "Plantillas",
-          description:
-            "Utiliza una amplia gama de plantillas para diferentes ocasiones",
-          icon: "file-lines",
+          description: "Utiliza una amplia gama de plantillas para diferentes ocasiones",
+          icon: "file-text",
         },
         {
           title: "Diseño",
-          description:
-            "Personaliza el diseño de tus cartas según tus necesidades específicas",
-          icon: "gear",
+          description: "Personaliza el diseño de tus cartas según tus necesidades específicas",
+          icon: "settings",
         },
       ],
     },
@@ -476,32 +456,32 @@ const translations: Record<string, Translation> = {
       features: [
         {
           title: "Formatação Automática",
-          description:
-            "As cartas são automaticamente formatadas de forma profissional",
+          description: "As cartas são automaticamente formatadas de forma profissional",
           icon: "align-justify",
         },
         {
+          title: "Texto formatado",
+          description: "Realce o que importa com negrito, itálico e sublinhado",
+          icon: "type",
+        },
+        {
           title: "Imprimir",
-          description:
-            "Imprima facilmente as suas cartas diretamente a partir da aplicação",
-          icon: "print",
+          description: "Imprima facilmente as suas cartas diretamente a partir da aplicação",
+          icon: "printer",
         },
         {
           title: "Partilhar e Exportar",
-          description:
-            "Partilhe as suas cartas digitalmente ou exporte-as como ficheiros PDF",
-          icon: "arrow-up-right-from-square",
+          description: "Partilhe as suas cartas digitalmente ou exporte-as como ficheiros PDF",
+          icon: "external-link",
         },
         {
           title: "Pesquisa",
-          description:
-            "A função de pesquisa facilita a localização rápida e conveniente de cartas",
-          icon: "magnifying-glass",
+          description: "A função de pesquisa facilita a localização rápida e conveniente de cartas",
+          icon: "search",
         },
         {
           title: "Armazenamento",
-          description:
-            "As suas cartas são sincronizadas entre dispositivos através do iCloud",
+          description: "As suas cartas são sincronizadas entre dispositivos através do iCloud",
           icon: "cloud",
         },
       ],
@@ -511,9 +491,8 @@ const translations: Record<string, Translation> = {
       features: [
         {
           title: "Assistente IA",
-          description:
-            "Refine ou crie cartas profissionais com o assistente IA",
-          icon: "wand-magic-sparkles",
+          description: "Refine ou crie cartas profissionais com o assistente IA",
+          icon: "wand-sparkles",
         },
         {
           title: "Assinaturas",
@@ -523,25 +502,23 @@ const translations: Record<string, Translation> = {
         {
           title: "Remetente",
           description: "Introduza as informações do remetente uma vez",
-          icon: "address-card",
+          icon: "id-card",
         },
         {
           title: "Contactos",
-          description:
-            "Incorpore facilmente endereços de contactos da sua lista de contactos",
-          icon: "address-book",
+          description: "Incorpore facilmente endereços de contactos da sua lista de contactos",
+          icon: "book-user",
         },
         {
           title: "Modelos",
-          description:
-            "Utilize uma ampla gama de modelos para diversas ocasiões",
-          icon: "file-lines",
+          description: "Utilize uma ampla gama de modelos para diversas ocasiões",
+          icon: "file-text",
         },
         {
           title: "Layout",
           description:
             "Personalize o layout das suas cartas de acordo com as suas necessidades específicas",
-          icon: "gear",
+          icon: "settings",
         },
       ],
     },

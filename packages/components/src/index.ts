@@ -20,6 +20,9 @@ export { useUrlState } from "./hooks/useUrlState";
 export { Screen } from "./components/Screen";
 export type { ScreenProps } from "./components/Screen";
 
+export { DeviceFrame } from "./components/DeviceFrame";
+export type { DeviceFrameProps, DeviceVariant } from "./components/DeviceFrame";
+
 export { OverviewGrid } from "./components/OverviewGrid";
 export type { OverviewGridProps } from "./components/OverviewGrid";
 

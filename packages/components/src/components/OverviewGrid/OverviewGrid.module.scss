@@ -1,7 +1,9 @@
 .overviewPage {
   padding: 20px;
   min-height: 100vh;
-  transition: background-color 0.2s, color 0.2s;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 
   &.light {
     background-color: #f5f5f5;
@@ -37,7 +39,10 @@
     color: #333;
     cursor: pointer;
     min-width: 120px;
-    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+    transition:
+      background-color 0.2s,
+      border-color 0.2s,
+      color 0.2s;
 
     &:hover {
       border-color: #999;
@@ -45,7 +50,7 @@
 
     &:focus {
       outline: none;
-      border-color: #0080FC;
+      border-color: #0080fc;
       box-shadow: 0 0 0 2px rgba(0, 128, 252, 0.2);
     }
   }
@@ -62,7 +67,7 @@
     }
 
     &:focus {
-      border-color: #0080FC;
+      border-color: #0080fc;
     }
   }
 
@@ -75,15 +80,6 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
-}
-
-.overviewDevice {
-  h2 {
-    margin: 0 0 15px 0;
-    font-size: 24px;
-    font-weight: 400;
-    text-transform: capitalize;
-  }
 }
 
 .overviewScreens {
