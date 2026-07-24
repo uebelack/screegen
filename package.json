@@ -1,7 +1,12 @@
 {
   "name": "screegen",
-  "version": "0.0.5",
-  "private": true,
+  "version": "0.0.6",
+  "license": "MIT",
+  "author": "David Übelacker",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uebelack/screegen"
+  },
   "type": "module",
   "scripts": {
     "build": "pnpm -r run build",
