@@ -1,6 +1,6 @@
-import { useParams } from 'react-router-dom';
-import { ProjectConfig } from '../../types';
-import { Screen } from '../Screen';
+import { useParams } from "react-router-dom";
+import { ProjectConfig } from "../../types";
+import { Screen } from "../Screen";
 
 export interface ScreenPageProps {
   config: ProjectConfig;
@@ -17,12 +17,5 @@ export function ScreenPage({ config }: ScreenPageProps) {
     return <div>Invalid screen parameters</div>;
   }
 
-  return (
-    <Screen
-      config={config}
-      deviceKey={deviceKey}
-      screenKey={screenKey}
-      language={language}
-    />
-  );
+  return <Screen config={config} deviceKey={deviceKey} screenKey={screenKey} language={language} />;
 }

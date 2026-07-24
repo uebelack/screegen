@@ -1,5 +1,5 @@
-import { Screegen } from '@screegen/components';
-import config from '../screegen.config';
+import { Screegen } from "@screegen/components";
+import config from "../screegen.config";
 
 function App() {
   return <Screegen config={config} />;

@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vite-plus/test";
 import { renderHook, act } from "@testing-library/react";
 import { getSystemColorScheme, useColorScheme } from "./useColorScheme";
 
@@ -91,9 +91,7 @@ describe("useColorScheme", () => {
     expect(result.current).toBe("light");
 
     act(() => {
-      mediaQueryListeners.forEach((listener) =>
-        listener({ matches: true } as MediaQueryListEvent),
-      );
+      mediaQueryListeners.forEach((listener) => listener({ matches: true } as MediaQueryListEvent));
     });
 
     expect(result.current).toBe("dark");
@@ -143,10 +141,7 @@ describe("useColorScheme", () => {
 
     unmount();
 
-    expect(removeEventListener).toHaveBeenCalledWith(
-      "change",
-      expect.any(Function),
-    );
+    expect(removeEventListener).toHaveBeenCalledWith("change", expect.any(Function));
   });
 
   it("handles missing matchMedia gracefully", () => {

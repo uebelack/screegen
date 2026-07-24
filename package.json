@@ -1,35 +1,22 @@
 {
   "name": "screegen",
-  "version": "0.0.6",
+  "version": "0.0.5",
   "private": true,
   "type": "module",
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
-    "build": "yarn workspaces foreach -A run build",
-    "test": "yarn workspaces foreach -A run test",
-    "lint": "yarn workspaces foreach -A run lint",
-    "test-init": "yarn workspace @screegen/cli node bin/screegen.js init -n my-screenshot-app -d ../../../",
+    "build": "pnpm -r run build",
+    "test": "pnpm -r run test",
+    "lint": "vp lint",
+    "format": "vp fmt",
+    "check": "vp check",
+    "test-init": "pnpm --filter @screegen/cli exec node bin/screegen.js init -n my-screenshot-app -d ../../../",
     "update-version": "node scripts/update-version.js"
   },
-  "packageManager": "yarn@4.6.0",
-  "jest": {
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "**/*.mjs"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 100,
-        "functions": 100,
-        "lines": 100,
-        "statements": 100
-      }
-    }
-  },
   "devDependencies": {
-    "@types/node": "^22.10.5",
-    "typescript": "^5.7.2"
-  }
+    "@types/node": "^26.1.1",
+    "typescript": "^5.9.3",
+    "vite": "npm:@voidzero-dev/vite-plus-core@0.2.6",
+    "vite-plus": "0.2.6"
+  },
+  "packageManager": "pnpm@11.16.0"
 }

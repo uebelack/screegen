@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vite-plus/test";
 import { EventEmitter } from "events";
 import { generateCommand } from "./generate.js";
 
@@ -144,15 +144,12 @@ describe("generateCommand", () => {
 
     // Simulate dev server starting
     await new Promise((resolve) => setTimeout(resolve, 10));
-    mockProcess.stdout.emit(
-      "data",
-      Buffer.from("Local: http://localhost:3000"),
-    );
+    mockProcess.stdout.emit("data", Buffer.from("Local: http://localhost:3000"));
 
     await generatePromise;
 
     expect(mockSpawn).toHaveBeenCalledWith(
-      "yarn",
+      "pnpm",
       ["dev", "--port", "3000"],
       expect.objectContaining({ shell: true }),
     );
@@ -193,10 +190,7 @@ describe("generateCommand", () => {
 
     // Simulate dev server starting via stderr
     await new Promise((resolve) => setTimeout(resolve, 10));
-    mockProcess.stderr.emit(
-      "data",
-      Buffer.from("Local: http://localhost:3000"),
-    );
+    mockProcess.stderr.emit("data", Buffer.from("Local: http://localhost:3000"));
 
     await generatePromise;
 
@@ -240,10 +234,7 @@ describe("generateCommand", () => {
     });
 
     await new Promise((resolve) => setTimeout(resolve, 10));
-    mockProcess.stdout.emit(
-      "data",
-      Buffer.from("Local: http://localhost:3000"),
-    );
+    mockProcess.stdout.emit("data", Buffer.from("Local: http://localhost:3000"));
 
     await generatePromise;
 
@@ -285,10 +276,7 @@ describe("generateCommand", () => {
     });
 
     await new Promise((resolve) => setTimeout(resolve, 10));
-    mockProcess.stdout.emit(
-      "data",
-      Buffer.from("Local: http://localhost:3000"),
-    );
+    mockProcess.stdout.emit("data", Buffer.from("Local: http://localhost:3000"));
 
     await generatePromise;
 
@@ -316,10 +304,7 @@ describe("generateCommand", () => {
     });
 
     await new Promise((resolve) => setTimeout(resolve, 10));
-    mockProcess.stdout.emit(
-      "data",
-      Buffer.from("Local: http://localhost:3000"),
-    );
+    mockProcess.stdout.emit("data", Buffer.from("Local: http://localhost:3000"));
 
     await generatePromise;
 
@@ -342,17 +327,12 @@ describe("generateCommand", () => {
     });
 
     await new Promise((resolve) => setTimeout(resolve, 10));
-    mockProcess.stdout.emit(
-      "data",
-      Buffer.from("Local: http://localhost:3000"),
-    );
+    mockProcess.stdout.emit("data", Buffer.from("Local: http://localhost:3000"));
 
     await generatePromise;
 
     expect(process.exit).toHaveBeenCalledWith(1);
-    expect(console.error).toHaveBeenCalledWith(
-      expect.stringContaining("Failed to read config"),
-    );
+    expect(console.error).toHaveBeenCalledWith(expect.stringContaining("Failed to read config"));
   });
 
   it("handles dev server error event", async () => {
@@ -370,9 +350,7 @@ describe("generateCommand", () => {
     await generatePromise;
 
     expect(process.exit).toHaveBeenCalledWith(1);
-    expect(console.error).toHaveBeenCalledWith(
-      expect.stringContaining("Spawn error"),
-    );
+    expect(console.error).toHaveBeenCalledWith(expect.stringContaining("Spawn error"));
   });
 
   it("handles dev server exit event", async () => {
@@ -407,10 +385,7 @@ describe("generateCommand", () => {
     });
 
     await new Promise((resolve) => setTimeout(resolve, 10));
-    mockProcess.stdout.emit(
-      "data",
-      Buffer.from("Local: http://localhost:3000"),
-    );
+    mockProcess.stdout.emit("data", Buffer.from("Local: http://localhost:3000"));
 
     await generatePromise;
 
@@ -430,10 +405,7 @@ describe("generateCommand", () => {
     });
 
     await new Promise((resolve) => setTimeout(resolve, 10));
-    mockProcess.stdout.emit(
-      "data",
-      Buffer.from("Local: http://localhost:3000"),
-    );
+    mockProcess.stdout.emit("data", Buffer.from("Local: http://localhost:3000"));
 
     await generatePromise;
 
@@ -494,25 +466,19 @@ describe("generateCommand", () => {
     });
 
     await new Promise((resolve) => setTimeout(resolve, 10));
-    mockProcess.stdout.emit(
-      "data",
-      Buffer.from("Local: http://localhost:3000"),
-    );
+    mockProcess.stdout.emit("data", Buffer.from("Local: http://localhost:3000"));
 
     await generatePromise;
 
-    expect(mockFs.mkdir).toHaveBeenCalledWith(
-      expect.stringContaining("output-dir"),
-      { recursive: true },
-    );
-    expect(mockFs.mkdir).toHaveBeenCalledWith(
-      expect.stringContaining("en-US"),
-      { recursive: true },
-    );
-    expect(mockFs.mkdir).toHaveBeenCalledWith(
-      expect.stringContaining("de-DE"),
-      { recursive: true },
-    );
+    expect(mockFs.mkdir).toHaveBeenCalledWith(expect.stringContaining("output-dir"), {
+      recursive: true,
+    });
+    expect(mockFs.mkdir).toHaveBeenCalledWith(expect.stringContaining("en-US"), {
+      recursive: true,
+    });
+    expect(mockFs.mkdir).toHaveBeenCalledWith(expect.stringContaining("de-DE"), {
+      recursive: true,
+    });
   });
 
   it("ignores stderr URL after already resolved from stdout", async () => {
@@ -546,15 +512,9 @@ describe("generateCommand", () => {
 
     await new Promise((resolve) => setTimeout(resolve, 10));
     // First resolve via stdout
-    mockProcess.stdout.emit(
-      "data",
-      Buffer.from("Local: http://localhost:3000"),
-    );
+    mockProcess.stdout.emit("data", Buffer.from("Local: http://localhost:3000"));
     // Then emit stderr (should be ignored since already resolved)
-    mockProcess.stderr.emit(
-      "data",
-      Buffer.from("Local: http://localhost:4000"),
-    );
+    mockProcess.stderr.emit("data", Buffer.from("Local: http://localhost:4000"));
 
     await generatePromise;
 
@@ -592,10 +552,7 @@ describe("generateCommand", () => {
 
     await new Promise((resolve) => setTimeout(resolve, 10));
     // First resolve via stdout
-    mockProcess.stdout.emit(
-      "data",
-      Buffer.from("Local: http://localhost:3000"),
-    );
+    mockProcess.stdout.emit("data", Buffer.from("Local: http://localhost:3000"));
     // Then emit error (should be ignored since already resolved)
     mockProcess.emit("error", new Error("Late error"));
 
@@ -636,10 +593,7 @@ describe("generateCommand", () => {
 
     await new Promise((resolve) => setTimeout(resolve, 10));
     // First resolve via stdout
-    mockProcess.stdout.emit(
-      "data",
-      Buffer.from("Local: http://localhost:3000"),
-    );
+    mockProcess.stdout.emit("data", Buffer.from("Local: http://localhost:3000"));
     // Then emit exit (should be ignored since already resolved)
     mockProcess.emit("exit", 1);
 
@@ -680,15 +634,9 @@ describe("generateCommand", () => {
 
     await new Promise((resolve) => setTimeout(resolve, 10));
     // First resolve via stdout
-    mockProcess.stdout.emit(
-      "data",
-      Buffer.from("Local: http://localhost:3000"),
-    );
+    mockProcess.stdout.emit("data", Buffer.from("Local: http://localhost:3000"));
     // Emit again (should be ignored)
-    mockProcess.stdout.emit(
-      "data",
-      Buffer.from("Local: http://localhost:3000"),
-    );
+    mockProcess.stdout.emit("data", Buffer.from("Local: http://localhost:3000"));
 
     await generatePromise;
 
@@ -728,10 +676,7 @@ describe("generateCommand", () => {
     // Let the command start
     await vi.advanceTimersByTimeAsync(10);
     // Resolve via stdout first
-    mockProcess.stdout.emit(
-      "data",
-      Buffer.from("Local: http://localhost:3000"),
-    );
+    mockProcess.stdout.emit("data", Buffer.from("Local: http://localhost:3000"));
     // Now advance past the 30 second timeout (should be ignored since already resolved)
     await vi.advanceTimersByTimeAsync(31000);
 

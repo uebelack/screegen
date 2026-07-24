@@ -1,19 +1,16 @@
-import { ScreenComponentProps } from '@screegen/components';
-import { FeatureList } from '../components/FeatureList';
-import translations from '../translations';
-import styles from './Features.module.scss';
+import { ScreenComponentProps } from "@screegen/components";
+import { FeatureList } from "../components/FeatureList";
+import translations from "../translations";
 
-function Features({ language }: ScreenComponentProps) {
+function Features({ language, width, height }: ScreenComponentProps) {
   const t = translations[language];
 
   return (
-    <div className={styles.features}>
-      <FeatureList
-        title={t.features.title}
-        features={t.features.features}
-        className={styles.features}
-      />
-    </div>
+    <FeatureList
+      title={t.features.title}
+      features={t.features.features}
+      columns={width > height ? 2 : 1}
+    />
   );
 }
 

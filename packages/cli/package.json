@@ -1,50 +1,40 @@
 {
   "name": "@screegen/cli",
-  "version": "0.0.6",
-  "type": "module",
+  "version": "0.0.5",
+  "license": "MIT",
   "bin": {
     "screegen": "bin/screegen.js"
   },
-  "main": "dist/index.js",
-  "license": "MIT",
-  "types": "dist/index.d.ts",
   "files": [
     "bin",
     "dist",
     "templates"
   ],
+  "type": "module",
+  "main": "dist/index.mjs",
+  "types": "dist/index.d.mts",
   "scripts": {
-    "dev": "tsup --watch",
-    "build": "tsup",
-    "lint": "eslint src",
-    "test": "vitest run --coverage"
+    "dev": "vp pack --watch",
+    "build": "vp pack",
+    "test": "vp test run --coverage"
   },
   "dependencies": {
-    "chalk": "^5.3.0",
-    "commander": "^12.1.0",
-    "get-port": "^7.1.0",
-    "ora": "^8.1.0",
-    "playwright": "^1.49.1",
+    "chalk": "^5.6.2",
+    "commander": "^15.0.0",
+    "get-port": "^7.2.0",
+    "ora": "^9.4.1",
+    "playwright": "^1.61.1",
     "prompts": "^2.4.2",
-    "vite": "^6.0.0"
+    "vite": "npm:@voidzero-dev/vite-plus-core@0.2.6"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.2",
-    "@types/node": "^22.10.5",
+    "@types/node": "^26.1.1",
     "@types/prompts": "^2.4.9",
-    "@typescript-eslint/eslint-plugin": "^8.52.0",
-    "@typescript-eslint/parser": "^8.52.0",
-    "@vitest/coverage-v8": "^4.0.16",
-    "eslint": "^9.39.2",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.4",
-    "globals": "^17.0.0",
+    "@vitest/coverage-v8": "4.1.10",
     "jiti": "^2.6.1",
-    "prettier": "^3.7.4",
-    "tsup": "^8.3.5",
     "tsx": "^4.21.0",
-    "typescript": "^5.7.2",
-    "typescript-eslint": "^8.52.0",
-    "vitest": "^4.0.16"
+    "typescript": "^5.9.3",
+    "vite-plus": "0.2.6",
+    "vitest": "4.1.10"
   }
 }

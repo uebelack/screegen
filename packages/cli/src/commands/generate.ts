@@ -50,11 +50,9 @@ async function fetchConfig(
   return JSON.parse(configText);
 }
 
-function startDevServer(
-  port: number,
-): Promise<{ process: ChildProcess; url: string }> {
+function startDevServer(port: number): Promise<{ process: ChildProcess; url: string }> {
   return new Promise((resolve, reject) => {
-    const devProcess = spawn("yarn", ["dev", "--port", String(port)], {
+    const devProcess = spawn("pnpm", ["dev", "--port", String(port)], {
       cwd: process.cwd(),
       stdio: ["ignore", "pipe", "pipe"],
       shell: true,
@@ -115,7 +113,7 @@ export async function generateCommand(options: GenerateOptions): Promise<void> {
     // Get available port
     const port = await getPort({ port: parseInt(options.port) });
 
-    // Start dev server using yarn dev
+    // Start dev server using pnpm dev
     const { process: serverProcess, url: baseUrl } = await startDevServer(port);
     devProcess = serverProcess;
 
@@ -191,18 +189,14 @@ export async function generateCommand(options: GenerateOptions): Promise<void> {
     devProcess.kill();
     devProcess = null;
 
-    console.log(
-      chalk.green(`\nGenerated ${screenshotCount} screenshots to ${outputDir}`),
-    );
+    console.log(chalk.green(`\nGenerated ${screenshotCount} screenshots to ${outputDir}`));
   } catch (error) {
     // Clean up dev server on error
     if (devProcess) {
       devProcess.kill();
     }
     spinner.fail("Generation failed");
-    console.error(
-      chalk.red(error instanceof Error ? error.message : String(error)),
-    );
+    console.error(chalk.red(error instanceof Error ? error.message : String(error)));
     process.exit(1);
   }
 }
