@@ -1704,7 +1704,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@screegen/cli@npm:0.0.2, @screegen/cli@workspace:packages/cli":
+"@screegen/cli@npm:0.0.5, @screegen/cli@workspace:packages/cli":
   version: 0.0.0-use.local
   resolution: "@screegen/cli@workspace:packages/cli"
   dependencies:
@@ -1720,7 +1720,7 @@ __metadata:
     eslint-config-prettier: "npm:^10.1.8"
     eslint-plugin-prettier: "npm:^5.5.4"
     get-port: "npm:^7.1.0"
-    globals: "npm:^17.0.0"
+    globals: "npm:^17.7.0"
     jiti: "npm:^2.6.1"
     ora: "npm:^8.1.0"
     playwright: "npm:^1.49.1"
@@ -1737,7 +1737,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@screegen/components@npm:0.0.2, @screegen/components@workspace:packages/components":
+"@screegen/components@npm:0.0.5, @screegen/components@workspace:packages/components":
   version: 0.0.0-use.local
   resolution: "@screegen/components@workspace:packages/components"
   dependencies:
@@ -3620,8 +3620,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "example@workspace:packages/example"
   dependencies:
-    "@screegen/cli": "npm:0.0.2"
-    "@screegen/components": "npm:0.0.2"
+    "@screegen/cli": "npm:0.0.5"
+    "@screegen/components": "npm:0.0.5"
     "@types/react": "npm:^18.3.17"
     "@types/react-dom": "npm:^18.3.5"
     "@typescript-eslint/eslint-plugin": "npm:^8.52.0"
@@ -3964,10 +3964,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:^17.0.0":
-  version: 17.0.0
-  resolution: "globals@npm:17.0.0"
-  checksum: 10c0/e3c169fdcb0fc6755707b697afb367bea483eb29992cfc0de1637382eb893146e17f8f96db6d7453e3696b478a7863ae2000e6c71cd2f4061410285106d3847a
+"globals@npm:^17.7.0":
+  version: 17.7.0
+  resolution: "globals@npm:17.7.0"
+  checksum: 10c0/e83f791acf537b85fa1632ac48a45432a1999a61acd9f955b5c2145f66d6b5000a7945029874b6184fa2dfac8d33af03885a5a7ffa457866f1bcf0b40d0c1291
   languageName: node
   linkType: hard
 
