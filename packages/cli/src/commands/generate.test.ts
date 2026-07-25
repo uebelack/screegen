@@ -481,6 +481,57 @@ describe("generateCommand", () => {
     });
   });
 
+  it("expands the [language] placeholder in the output path", async () => {
+    const mockProcess = createMockProcess();
+    mockSpawn.mockReturnValue(mockProcess as never);
+
+    const configPage = createMockPage();
+    configPage.$eval.mockResolvedValue(
+      JSON.stringify({
+        languages: ["en-US", "de-DE"],
+        devices: [
+          {
+            key: "iphone",
+            fastlaneKeys: ["APP_IPHONE_67"],
+            width: 1290,
+            height: 2796,
+            screens: [{ key: "home" }],
+          },
+        ],
+      }),
+    );
+
+    const screenshotPage = createMockPage();
+    const mockBrowser = createMockBrowser(configPage, screenshotPage);
+    mockChromium.launch.mockResolvedValue(mockBrowser as never);
+
+    const generatePromise = generateCommand({
+      output: "fastlane/metadata/android/[language]/images",
+      port: "3000",
+    });
+
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    mockProcess.stdout.emit("data", Buffer.from("Local: http://localhost:3000"));
+
+    await generatePromise;
+
+    // The placeholder is replaced with each language, not appended as a subdir.
+    expect(mockFs.mkdir).toHaveBeenCalledWith(
+      expect.stringContaining("fastlane/metadata/android/en-US/images"),
+      { recursive: true },
+    );
+    expect(mockFs.mkdir).toHaveBeenCalledWith(
+      expect.stringContaining("fastlane/metadata/android/de-DE/images"),
+      { recursive: true },
+    );
+    // Screenshots are written inside the expanded directory.
+    expect(screenshotPage.screenshot).toHaveBeenCalledWith(
+      expect.objectContaining({
+        path: expect.stringContaining("fastlane/metadata/android/en-US/images"),
+      }),
+    );
+  });
+
   it("ignores stderr URL after already resolved from stdout", async () => {
     const mockProcess = createMockProcess();
     mockSpawn.mockReturnValue(mockProcess as never);

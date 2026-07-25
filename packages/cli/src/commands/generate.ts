@@ -11,6 +11,24 @@ interface GenerateOptions {
   port: string;
 }
 
+const LANGUAGE_PLACEHOLDER = "[language]";
+
+/**
+ * Resolves the output directory for a given language.
+ *
+ * If the output pattern contains the `[language]` placeholder, it is replaced
+ * with the language code (allowing patterns like
+ * `fastlane/metadata/android/[language]/images`). Otherwise the language is
+ * appended as a subdirectory, preserving the previous default behavior.
+ */
+function resolveLanguageDir(output: string, language: string): string {
+  const cwd = process.cwd();
+  if (output.includes(LANGUAGE_PLACEHOLDER)) {
+    return path.resolve(cwd, output.split(LANGUAGE_PLACEHOLDER).join(language));
+  }
+  return path.join(path.resolve(cwd, output), language);
+}
+
 interface ScreenConfig {
   key: string;
 }
@@ -140,8 +158,13 @@ export async function generateCommand(options: GenerateOptions): Promise<void> {
     spinner.succeed("Setup complete");
     console.log(chalk.blue("\nGenerating screenshots...\n"));
 
-    const outputDir = path.resolve(process.cwd(), options.output);
-    await fs.mkdir(outputDir, { recursive: true });
+    // When the output pattern contains the [language] placeholder, the base
+    // directory is created per-language below. Otherwise create the shared
+    // base directory up front.
+    const hasLanguagePlaceholder = options.output.includes(LANGUAGE_PLACEHOLDER);
+    if (!hasLanguagePlaceholder) {
+      await fs.mkdir(path.resolve(process.cwd(), options.output), { recursive: true });
+    }
 
     let screenshotCount = 0;
 
@@ -164,7 +187,7 @@ export async function generateCommand(options: GenerateOptions): Promise<void> {
           // Wait for fonts and images
           await page.waitForTimeout(500);
 
-          const langDir = path.join(outputDir, language);
+          const langDir = resolveLanguageDir(options.output, language);
           await fs.mkdir(langDir, { recursive: true });
 
           for (const fastlaneKey of device.fastlaneKeys) {
@@ -189,7 +212,7 @@ export async function generateCommand(options: GenerateOptions): Promise<void> {
     devProcess.kill();
     devProcess = null;
 
-    console.log(chalk.green(`\nGenerated ${screenshotCount} screenshots to ${outputDir}`));
+    console.log(chalk.green(`\nGenerated ${screenshotCount} screenshots to ${options.output}`));
   } catch (error) {
     // Clean up dev server on error
     if (devProcess) {

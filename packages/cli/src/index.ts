@@ -20,7 +20,11 @@ export function createProgram(): Command {
   program
     .command("generate")
     .description("Generate screenshots using Playwright")
-    .option("-o, --output <dir>", "Output directory", "screenshots")
+    .option(
+      "-o, --output <dir>",
+      "Output directory; supports a [language] placeholder (e.g. fastlane/metadata/android/[language]/images)",
+      "screenshots",
+    )
     .option("-p, --port <port>", "Dev server port", "3000")
     .action(generateCommand);
 
