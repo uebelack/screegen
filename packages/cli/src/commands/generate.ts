@@ -12,21 +12,31 @@ interface GenerateOptions {
 }
 
 const LANGUAGE_PLACEHOLDER = "[language]";
+const FASTLANE_KEY_PLACEHOLDER = "[fastlaneKey]";
 
 /**
- * Resolves the output directory for a given language.
+ * Resolves the output directory for a given language and fastlane key.
  *
- * If the output pattern contains the `[language]` placeholder, it is replaced
- * with the language code (allowing patterns like
- * `fastlane/metadata/android/[language]/images`). Otherwise the language is
- * appended as a subdirectory, preserving the previous default behavior.
+ * The output pattern may contain the `[language]` and `[fastlaneKey]`
+ * placeholders, which are replaced with the language code and fastlane key
+ * respectively (allowing patterns like
+ * `snailmail-android/screenshots/[language]/images/[fastlaneKey]`).
+ *
+ * If the pattern does not contain the `[language]` placeholder, the language is
+ * appended as a subdirectory, preserving the previous default behavior. The
+ * `[fastlaneKey]` placeholder is purely opt-in — when absent, the fastlane key
+ * only appears in the screenshot filename as before.
  */
-function resolveLanguageDir(output: string, language: string): string {
+function resolveOutputDir(output: string, language: string, fastlaneKey: string): string {
   const cwd = process.cwd();
-  if (output.includes(LANGUAGE_PLACEHOLDER)) {
-    return path.resolve(cwd, output.split(LANGUAGE_PLACEHOLDER).join(language));
-  }
-  return path.join(path.resolve(cwd, output), language);
+  const hasLanguagePlaceholder = output.includes(LANGUAGE_PLACEHOLDER);
+  const resolved = output
+    .split(LANGUAGE_PLACEHOLDER)
+    .join(language)
+    .split(FASTLANE_KEY_PLACEHOLDER)
+    .join(fastlaneKey);
+  const base = path.resolve(cwd, resolved);
+  return hasLanguagePlaceholder ? base : path.join(base, language);
 }
 
 interface ScreenConfig {
@@ -158,14 +168,8 @@ export async function generateCommand(options: GenerateOptions): Promise<void> {
     spinner.succeed("Setup complete");
     console.log(chalk.blue("\nGenerating screenshots...\n"));
 
-    // When the output pattern contains the [language] placeholder, the base
-    // directory is created per-language below. Otherwise create the shared
-    // base directory up front.
-    const hasLanguagePlaceholder = options.output.includes(LANGUAGE_PLACEHOLDER);
-    if (!hasLanguagePlaceholder) {
-      await fs.mkdir(path.resolve(process.cwd(), options.output), { recursive: true });
-    }
-
+    // Output directories are created per language/fastlane key inside the loop
+    // below, since either may be part of the resolved path.
     let screenshotCount = 0;
 
     for (const device of config.devices) {
@@ -187,13 +191,13 @@ export async function generateCommand(options: GenerateOptions): Promise<void> {
           // Wait for fonts and images
           await page.waitForTimeout(500);
 
-          const langDir = resolveLanguageDir(options.output, language);
-          await fs.mkdir(langDir, { recursive: true });
-
           for (const fastlaneKey of device.fastlaneKeys) {
+            const outputDir = resolveOutputDir(options.output, language, fastlaneKey);
+            await fs.mkdir(outputDir, { recursive: true });
+
             const screenIndex = device.screens.indexOf(screen) + 1;
             const filename = `${screenIndex}_${fastlaneKey}_${screenIndex}.png`;
-            const filepath = path.join(langDir, filename);
+            const filepath = path.join(outputDir, filename);
 
             await page.screenshot({ path: filepath });
             screenshotCount++;

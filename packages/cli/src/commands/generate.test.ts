@@ -532,6 +532,57 @@ describe("generateCommand", () => {
     );
   });
 
+  it("expands the [fastlaneKey] placeholder in the output path", async () => {
+    const mockProcess = createMockProcess();
+    mockSpawn.mockReturnValue(mockProcess as never);
+
+    const configPage = createMockPage();
+    configPage.$eval.mockResolvedValue(
+      JSON.stringify({
+        languages: ["en-US"],
+        devices: [
+          {
+            key: "iphone",
+            fastlaneKeys: ["APP_IPHONE_67", "APP_IPHONE_55"],
+            width: 1290,
+            height: 2796,
+            screens: [{ key: "home" }],
+          },
+        ],
+      }),
+    );
+
+    const screenshotPage = createMockPage();
+    const mockBrowser = createMockBrowser(configPage, screenshotPage);
+    mockChromium.launch.mockResolvedValue(mockBrowser as never);
+
+    const generatePromise = generateCommand({
+      output: "snailmail-android/screenshots/[language]/images/[fastlaneKey]",
+      port: "3000",
+    });
+
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    mockProcess.stdout.emit("data", Buffer.from("Local: http://localhost:3000"));
+
+    await generatePromise;
+
+    // Each fastlane key expands into its own directory.
+    expect(mockFs.mkdir).toHaveBeenCalledWith(
+      expect.stringContaining("snailmail-android/screenshots/en-US/images/APP_IPHONE_67"),
+      { recursive: true },
+    );
+    expect(mockFs.mkdir).toHaveBeenCalledWith(
+      expect.stringContaining("snailmail-android/screenshots/en-US/images/APP_IPHONE_55"),
+      { recursive: true },
+    );
+    // Screenshots are written inside the expanded per-key directory.
+    expect(screenshotPage.screenshot).toHaveBeenCalledWith(
+      expect.objectContaining({
+        path: expect.stringContaining("snailmail-android/screenshots/en-US/images/APP_IPHONE_67"),
+      }),
+    );
+  });
+
   it("ignores stderr URL after already resolved from stdout", async () => {
     const mockProcess = createMockProcess();
     mockSpawn.mockReturnValue(mockProcess as never);

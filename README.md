@@ -33,6 +33,33 @@ pnpm dev
 pnpm generate
 ```
 
+#### Options
+
+| Option               | Default       | Description                                                  |
+| -------------------- | ------------- | ------------------------------------------------------------ |
+| `-o, --output <dir>` | `screenshots` | Output directory. Supports the placeholders described below. |
+| `-p, --port <port>`  | `3000`        | Dev server port used while capturing screenshots.            |
+
+##### Output placeholders
+
+The `--output` value may contain placeholders that are expanded per screenshot:
+
+- `[language]` — replaced with the language code (e.g. `en-US`). If omitted, the language is appended as a subdirectory.
+- `[fastlaneKey]` — replaced with the device's fastlane key (e.g. `APP_IPHONE_67`). If omitted, the fastlane key only appears in the screenshot filename.
+
+Examples:
+
+```bash
+# Default: screenshots/<language>/<index>_<fastlaneKey>_<index>.png
+screegen generate
+
+# fastlane deliver layout
+screegen generate --output "fastlane/metadata/android/[language]/images"
+
+# Per-key directories
+screegen generate --output "snailmail-android/screenshots/[language]/images/[fastlaneKey]"
+```
+
 ## Features
 
 - **Multi-device support**: Generate screenshots for iPhone, iPad, Mac, and more
