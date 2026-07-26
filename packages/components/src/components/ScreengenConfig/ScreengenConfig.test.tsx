@@ -133,6 +133,69 @@ describe("ScreengenConfig", () => {
     expect(content).toContain('  "languages"');
   });
 
+  it("includes the device path when present", () => {
+    const configWithPath: ProjectConfig = {
+      languages: ["en-US"],
+      devices: [
+        {
+          key: "phone",
+          fastlaneKeys: ["phoneScreenshots"],
+          width: 1080,
+          height: 1920,
+          path: "[language]/images/[fastlaneKey]",
+          screens: [{ key: "home", component: MockComponent }],
+        },
+      ],
+    };
+
+    render(<ScreengenConfig config={configWithPath} />);
+
+    const parsedConfig = JSON.parse(document.getElementById("screegen-config")!.textContent!);
+    expect(parsedConfig.devices[0].path).toBe("[language]/images/[fastlaneKey]");
+  });
+
+  it("serializes graphics without component references", () => {
+    const configWithGraphics: ProjectConfig = {
+      languages: ["en-US"],
+      devices: [],
+      graphics: [
+        {
+          key: "play-store",
+          component: MockComponent,
+          path: "[language]/images",
+          width: 1200,
+          height: 600,
+          filename: "banner.png",
+        },
+        {
+          // No key/width/height/filename -> key falls back to the index, the
+          // optional fields are omitted.
+          component: MockComponent,
+          path: "[language]",
+        },
+      ],
+    };
+
+    render(<ScreengenConfig config={configWithGraphics} />);
+
+    const content = document.getElementById("screegen-config")!.textContent!;
+    const parsedConfig = JSON.parse(content);
+
+    expect(content).not.toContain("MockComponent");
+    expect(parsedConfig.graphics).toHaveLength(2);
+    expect(parsedConfig.graphics[0]).toEqual({
+      key: "play-store",
+      path: "[language]/images",
+      width: 1200,
+      height: 600,
+      filename: "banner.png",
+    });
+    expect(parsedConfig.graphics[1]).toEqual({
+      key: "1",
+      path: "[language]",
+    });
+  });
+
   it("handles empty devices array", () => {
     const emptyConfig: ProjectConfig = {
       languages: ["en-US"],

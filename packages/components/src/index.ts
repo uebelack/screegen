@@ -7,10 +7,11 @@ export type {
   ScreenConfig,
   ScreenComponentProps,
   DeviceConfig,
+  GraphicConfig,
   ProjectConfig,
   ScreenProps as ScreenPropsType,
 } from "./types";
-export { colorSchemes } from "./types";
+export { colorSchemes, GRAPHIC_WIDTH, GRAPHIC_HEIGHT, GRAPHIC_FILENAME } from "./types";
 
 // Hooks
 export { useColorScheme, getSystemColorScheme } from "./hooks/useColorScheme";
@@ -22,6 +23,9 @@ export type { ScreenProps } from "./components/Screen";
 
 export { DeviceFrame } from "./components/DeviceFrame";
 export type { DeviceFrameProps, DeviceVariant } from "./components/DeviceFrame";
+
+export { Graphic } from "./components/Graphic";
+export type { GraphicProps } from "./components/Graphic";
 
 export { OverviewGrid } from "./components/OverviewGrid";
 export type { OverviewGridProps } from "./components/OverviewGrid";

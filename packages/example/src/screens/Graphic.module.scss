@@ -1,0 +1,41 @@
+/* Wide 1024×500 Play Store banner. Shares the screenshots' design language:
+   solid #0080fc field, white Lexend type, rounded-tile logo lockup. */
+.graphic {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 72px;
+  padding: 0 90px;
+  background: #0080fc;
+  color: #fff;
+}
+
+.logo {
+  flex: none;
+  height: 232px;
+  width: auto;
+  box-shadow: 0 36px 72px rgba(0, 0, 0, 0.22);
+}
+
+.text {
+  min-width: 0;
+  max-width: 460px;
+}
+
+.name {
+  font-size: 66px;
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -1px;
+}
+
+.tagline {
+  margin-top: 24px;
+  font-size: 33px;
+  font-weight: 300;
+  line-height: 1.34;
+  color: rgba(255, 255, 255, 0.85);
+}

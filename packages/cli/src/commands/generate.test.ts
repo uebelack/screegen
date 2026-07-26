@@ -149,8 +149,7 @@ describe("generateCommand", () => {
     await generatePromise;
 
     expect(mockSpawn).toHaveBeenCalledWith(
-      "pnpm",
-      ["dev", "--port", "3000"],
+      "pnpm dev --port 3000",
       expect.objectContaining({ shell: true }),
     );
     expect(mockChromium.launch).toHaveBeenCalled();
@@ -579,6 +578,164 @@ describe("generateCommand", () => {
     expect(screenshotPage.screenshot).toHaveBeenCalledWith(
       expect.objectContaining({
         path: expect.stringContaining("snailmail-android/screenshots/en-US/images/APP_IPHONE_67"),
+      }),
+    );
+  });
+
+  it("joins the per-device path template onto the output base directory", async () => {
+    const mockProcess = createMockProcess();
+    mockSpawn.mockReturnValue(mockProcess as never);
+
+    const configPage = createMockPage();
+    configPage.$eval.mockResolvedValue(
+      JSON.stringify({
+        languages: ["en-US"],
+        devices: [
+          {
+            key: "phone",
+            fastlaneKeys: ["phoneScreenshots"],
+            width: 1080,
+            height: 1920,
+            path: "[language]/images/[fastlaneKey]",
+            screens: [{ key: "home" }],
+          },
+        ],
+      }),
+    );
+
+    const screenshotPage = createMockPage();
+    const mockBrowser = createMockBrowser(configPage, screenshotPage);
+    mockChromium.launch.mockResolvedValue(mockBrowser as never);
+
+    const generatePromise = generateCommand({
+      output: "fastlane/metadata/android",
+      port: "3000",
+    });
+
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    mockProcess.stdout.emit("data", Buffer.from("Local: http://localhost:3000"));
+
+    await generatePromise;
+
+    // --output is the base dir; the device path (with placeholders expanded)
+    // is joined onto it.
+    expect(mockFs.mkdir).toHaveBeenCalledWith(
+      expect.stringContaining("fastlane/metadata/android/en-US/images/phoneScreenshots"),
+      { recursive: true },
+    );
+    expect(screenshotPage.screenshot).toHaveBeenCalledWith(
+      expect.objectContaining({
+        path: expect.stringContaining(
+          "fastlane/metadata/android/en-US/images/phoneScreenshots/1_phoneScreenshots_1.png",
+        ),
+      }),
+    );
+  });
+
+  it("generates a graphic per language", async () => {
+    const mockProcess = createMockProcess();
+    mockSpawn.mockReturnValue(mockProcess as never);
+
+    const configPage = createMockPage();
+    configPage.$eval.mockResolvedValue(
+      JSON.stringify({
+        languages: ["en-US", "de-DE"],
+        devices: [
+          {
+            key: "phone",
+            fastlaneKeys: ["phoneScreenshots"],
+            width: 1080,
+            height: 1920,
+            path: "[language]/images/[fastlaneKey]",
+            screens: [{ key: "home" }],
+          },
+        ],
+        graphics: [
+          {
+            key: "play-store",
+            path: "[language]/images",
+          },
+        ],
+      }),
+    );
+
+    const screenshotPage = createMockPage();
+    const mockBrowser = createMockBrowser(configPage, screenshotPage);
+    mockChromium.launch.mockResolvedValue(mockBrowser as never);
+
+    const generatePromise = generateCommand({
+      output: "fastlane/metadata/android",
+      port: "3000",
+    });
+
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    mockProcess.stdout.emit("data", Buffer.from("Local: http://localhost:3000"));
+
+    await generatePromise;
+
+    // Graphic is rendered at the default 1024×500.
+    expect(screenshotPage.setViewportSize).toHaveBeenCalledWith({ width: 1024, height: 500 });
+
+    // Rendered via the graphic route for each language.
+    expect(screenshotPage.goto).toHaveBeenCalledWith("http://localhost:3000/graphics/0/en-US");
+    expect(screenshotPage.goto).toHaveBeenCalledWith("http://localhost:3000/graphics/0/de-DE");
+
+    // Written as featureGraphic.png inside the resolved directory per language.
+    expect(mockFs.mkdir).toHaveBeenCalledWith(
+      expect.stringContaining("fastlane/metadata/android/en-US/images"),
+      { recursive: true },
+    );
+    expect(screenshotPage.screenshot).toHaveBeenCalledWith(
+      expect.objectContaining({
+        path: expect.stringContaining("fastlane/metadata/android/en-US/images/featureGraphic.png"),
+      }),
+    );
+    expect(screenshotPage.screenshot).toHaveBeenCalledWith(
+      expect.objectContaining({
+        path: expect.stringContaining("fastlane/metadata/android/de-DE/images/featureGraphic.png"),
+      }),
+    );
+  });
+
+  it("respects custom graphic dimensions and filename", async () => {
+    const mockProcess = createMockProcess();
+    mockSpawn.mockReturnValue(mockProcess as never);
+
+    const configPage = createMockPage();
+    configPage.$eval.mockResolvedValue(
+      JSON.stringify({
+        languages: ["en-US"],
+        devices: [],
+        graphics: [
+          {
+            key: "banner",
+            path: "[language]",
+            width: 1200,
+            height: 600,
+            filename: "banner.png",
+          },
+        ],
+      }),
+    );
+
+    const screenshotPage = createMockPage();
+    const mockBrowser = createMockBrowser(configPage, screenshotPage);
+    mockChromium.launch.mockResolvedValue(mockBrowser as never);
+
+    const generatePromise = generateCommand({
+      output: "out",
+      port: "3000",
+    });
+
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    mockProcess.stdout.emit("data", Buffer.from("Local: http://localhost:3000"));
+
+    await generatePromise;
+
+    expect(screenshotPage.setViewportSize).toHaveBeenCalledWith({ width: 1200, height: 600 });
+    expect(screenshotPage.screenshot).toHaveBeenCalledWith(
+      expect.objectContaining({
+        path: expect.stringContaining("out/en-US/banner.png"),
       }),
     );
   });

@@ -2,6 +2,7 @@ import { Translation } from "./types";
 
 const translations: Record<string, Translation> = {
   "en-US": {
+    slogan: "Letter: just write letters",
     overview: "Create and print perfectly formatted letters in no time.",
     edit: "Minimalistic editor, so you can focus on the content.",
     features: {
@@ -76,6 +77,7 @@ const translations: Record<string, Translation> = {
     },
   },
   "de-DE": {
+    slogan: "Briefe: einfach schreiben",
     overview: "Im Handumdrehen professionell formatierte Briefe erstellen und drucken.",
     edit: "Einfacher Editor - Fokussiert auf das Wesentliche.",
     features: {
@@ -150,6 +152,7 @@ const translations: Record<string, Translation> = {
     },
   },
   "nl-NL": {
+    slogan: "Brieven: gewoon schrijven",
     overview: "Maak en print perfect opgemaakte brieven in no-time.",
     edit: "Minimalistische editor, zodat je je kunt concentreren op de inhoud.",
     features: {
@@ -225,6 +228,7 @@ const translations: Record<string, Translation> = {
     },
   },
   "fr-FR": {
+    slogan: "Lettres: écrire des lettres",
     overview: "Créez et imprimez des lettres parfaitement formatées en un rien de temps.",
     edit: "Éditeur minimaliste pour que vous puissiez vous concentrer sur le contenu.",
     features: {
@@ -300,6 +304,7 @@ const translations: Record<string, Translation> = {
     },
   },
   "it-IT": {
+    slogan: "Lettere: scrivere lettere",
     overview: "Crea e stampa lettere perfettamente formattate in pochissimo tempo.",
     edit: "Editor minimalista, in modo da poterti concentrare sul contenuto.",
     features: {
@@ -375,6 +380,7 @@ const translations: Record<string, Translation> = {
     },
   },
   "es-ES": {
+    slogan: "Cartas: escribir cartas",
     overview: "Crea e imprime cartas perfectamente formate en muy poco tiempo.",
     edit: "Editor minimalista para que puedas centrarte en el contenido.",
     features: {
@@ -449,6 +455,7 @@ const translations: Record<string, Translation> = {
     },
   },
   "pt-PT": {
+    slogan: "Cartas: redação de cartas",
     overview: "Crie e imprima cartas perfeitamente formatadas em pouco tempo.",
     edit: "Editor minimalista, para que possa focar no conteúdo.",
     features: {

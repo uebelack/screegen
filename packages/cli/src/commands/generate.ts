@@ -14,28 +14,48 @@ interface GenerateOptions {
 const LANGUAGE_PLACEHOLDER = "[language]";
 const FASTLANE_KEY_PLACEHOLDER = "[fastlaneKey]";
 
+const GRAPHIC_WIDTH = 1024;
+const GRAPHIC_HEIGHT = 500;
+const GRAPHIC_FILENAME = "featureGraphic.png";
+
 /**
- * Resolves the output directory for a given language and fastlane key.
- *
- * The output pattern may contain the `[language]` and `[fastlaneKey]`
- * placeholders, which are replaced with the language code and fastlane key
- * respectively (allowing patterns like
- * `snailmail-android/screenshots/[language]/images/[fastlaneKey]`).
- *
- * If the pattern does not contain the `[language]` placeholder, the language is
- * appended as a subdirectory, preserving the previous default behavior. The
- * `[fastlaneKey]` placeholder is purely opt-in — when absent, the fastlane key
- * only appears in the screenshot filename as before.
+ * Replaces the `[language]` and `[fastlaneKey]` placeholders in a path template.
  */
-function resolveOutputDir(output: string, language: string, fastlaneKey: string): string {
-  const cwd = process.cwd();
-  const hasLanguagePlaceholder = output.includes(LANGUAGE_PLACEHOLDER);
-  const resolved = output
+function resolveTemplate(template: string, language: string, fastlaneKey: string): string {
+  return template
     .split(LANGUAGE_PLACEHOLDER)
     .join(language)
     .split(FASTLANE_KEY_PLACEHOLDER)
     .join(fastlaneKey);
-  const base = path.resolve(cwd, resolved);
+}
+
+/**
+ * Resolves the output directory for a given language and fastlane key.
+ *
+ * When the device declares a relative `path` template, `--output` is treated as
+ * a plain base directory and the (placeholder-expanded) `path` is joined onto
+ * it — e.g. base `.../fastlane/metadata/android` + path
+ * `[language]/images/[fastlaneKey]`.
+ *
+ * When no `path` is given, the legacy behaviour applies: the `[language]` and
+ * `[fastlaneKey]` placeholders are expanded within `--output` itself, and if
+ * `[language]` is absent the language is appended as a subdirectory.
+ */
+function resolveOutputDir(
+  output: string,
+  language: string,
+  fastlaneKey: string,
+  relativePath?: string,
+): string {
+  const cwd = process.cwd();
+
+  if (relativePath !== undefined) {
+    const base = path.resolve(cwd, output);
+    return path.join(base, resolveTemplate(relativePath, language, fastlaneKey));
+  }
+
+  const hasLanguagePlaceholder = output.includes(LANGUAGE_PLACEHOLDER);
+  const base = path.resolve(cwd, resolveTemplate(output, language, fastlaneKey));
   return hasLanguagePlaceholder ? base : path.join(base, language);
 }
 
@@ -49,11 +69,21 @@ interface DeviceConfig {
   width: number;
   height: number;
   screens: ScreenConfig[];
+  path?: string;
+}
+
+interface GraphicConfig {
+  key: string;
+  path: string;
+  width?: number;
+  height?: number;
+  filename?: string;
 }
 
 interface ProjectConfig {
   languages: string[];
   devices: DeviceConfig[];
+  graphics?: GraphicConfig[];
 }
 
 async function fetchConfig(
@@ -80,7 +110,10 @@ async function fetchConfig(
 
 function startDevServer(port: number): Promise<{ process: ChildProcess; url: string }> {
   return new Promise((resolve, reject) => {
-    const devProcess = spawn("pnpm", ["dev", "--port", String(port)], {
+    // Pass the command as a single string (not command + args array) so that
+    // Node does not emit DEP0190 for combining an args array with `shell: true`.
+    // `port` is a number from get-port, so there is nothing to escape.
+    const devProcess = spawn(`pnpm dev --port ${port}`, {
       cwd: process.cwd(),
       stdio: ["ignore", "pipe", "pipe"],
       shell: true,
@@ -160,8 +193,8 @@ export async function generateCommand(options: GenerateOptions): Promise<void> {
       process.exit(1);
     }
 
-    if (config.devices.length === 0) {
-      spinner.fail("No devices found in config");
+    if (config.devices.length === 0 && (config.graphics ?? []).length === 0) {
+      spinner.fail("No devices or graphics found in config");
       process.exit(1);
     }
 
@@ -192,7 +225,7 @@ export async function generateCommand(options: GenerateOptions): Promise<void> {
           await page.waitForTimeout(500);
 
           for (const fastlaneKey of device.fastlaneKeys) {
-            const outputDir = resolveOutputDir(options.output, language, fastlaneKey);
+            const outputDir = resolveOutputDir(options.output, language, fastlaneKey, device.path);
             await fs.mkdir(outputDir, { recursive: true });
 
             const screenIndex = device.screens.indexOf(screen) + 1;
@@ -207,6 +240,45 @@ export async function generateCommand(options: GenerateOptions): Promise<void> {
 
           await page.close();
         }
+      }
+    }
+
+    // Graphics (e.g. the Google Play "Feature graphic", 1024×500).
+    // Rendered once per language and written to a single file each.
+    const graphics = config.graphics ?? [];
+    for (let index = 0; index < graphics.length; index++) {
+      const graphic = graphics[index];
+      console.log(chalk.cyan(`\n${graphic.key}:`));
+
+      const width = Math.floor(graphic.width ?? GRAPHIC_WIDTH);
+      const height = Math.floor(graphic.height ?? GRAPHIC_HEIGHT);
+      const filename = graphic.filename ?? GRAPHIC_FILENAME;
+
+      for (const language of config.languages) {
+        const page = await browser.newPage();
+
+        await page.setViewportSize({ width, height });
+
+        const url = `${baseUrl}/graphics/${index}/${language}`;
+        await page.goto(url);
+        await page.waitForLoadState("networkidle");
+
+        // Wait for fonts and images
+        await page.waitForTimeout(500);
+
+        const outputDir = path.join(
+          path.resolve(process.cwd(), options.output),
+          resolveTemplate(graphic.path, language, ""),
+        );
+        await fs.mkdir(outputDir, { recursive: true });
+
+        const filepath = path.join(outputDir, filename);
+        await page.screenshot({ path: filepath });
+        screenshotCount++;
+
+        console.log(chalk.gray(`  ${language}/${filename}`));
+
+        await page.close();
       }
     }
 

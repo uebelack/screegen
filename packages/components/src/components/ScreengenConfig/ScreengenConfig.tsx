@@ -13,10 +13,22 @@ export function ScreengenConfig({ config }: ScreengenConfigProps) {
       fastlaneKeys: device.fastlaneKeys,
       width: device.width,
       height: device.height,
+      ...(device.path !== undefined ? { path: device.path } : {}),
       screens: device.screens.map((screen) => ({
         key: screen.key,
       })),
     })),
+    ...(config.graphics
+      ? {
+          graphics: config.graphics.map((graphic, index) => ({
+            key: graphic.key ?? String(index),
+            path: graphic.path,
+            ...(graphic.width !== undefined ? { width: graphic.width } : {}),
+            ...(graphic.height !== undefined ? { height: graphic.height } : {}),
+            ...(graphic.filename !== undefined ? { filename: graphic.filename } : {}),
+          })),
+        }
+      : {}),
   };
 
   return (

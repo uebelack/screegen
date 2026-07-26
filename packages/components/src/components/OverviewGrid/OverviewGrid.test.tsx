@@ -168,4 +168,37 @@ describe("OverviewGrid", () => {
     fireEvent.change(scaleSelect, { target: { value: "0.1" } });
     fireEvent.change(colorSchemeSelect, { target: { value: "dark" } });
   });
+
+  it("renders graphics from the config", () => {
+    const configWithGraphics: ProjectConfig = {
+      ...mockConfig,
+      graphics: [
+        {
+          key: "play-store",
+          component: MockScreenComponent,
+          path: "[language]/images",
+        },
+        {
+          // No key/dimensions -> falls back to the index and 1024×500 defaults.
+          component: MockScreenComponent,
+          path: "[language]/banners",
+        },
+      ],
+    };
+
+    const { container } = render(
+      <OverviewGrid config={configWithGraphics} language="en-US" scale={0.25} />,
+    );
+
+    // Both graphics get a heading (keyed, and index-fallback).
+    expect(screen.getByRole("heading", { name: "play-store" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "1" })).toBeInTheDocument();
+
+    // Default 1024×500 tile scaled by 0.25 -> 256px wide wrapper.
+    const wrappers = container.querySelectorAll('[style*="width"]');
+    const graphicWrapper = Array.from(wrappers).find(
+      (el) => (el as HTMLElement).style.width === "256px",
+    );
+    expect(graphicWrapper).toBeDefined();
+  });
 });

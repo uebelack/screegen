@@ -10,6 +10,7 @@ export interface FeatureSection {
 }
 
 export interface Translation {
+  slogan: string;
   overview: string;
   edit: string;
   features: FeatureSection;

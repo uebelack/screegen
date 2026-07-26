@@ -22,7 +22,7 @@ export function createProgram(): Command {
     .description("Generate screenshots using Playwright")
     .option(
       "-o, --output <dir>",
-      "Output directory; supports [language] and [fastlaneKey] placeholders (e.g. fastlane/metadata/android/[language]/images)",
+      "Output base directory. Devices/graphics resolve their relative `path` (with [language] and [fastlaneKey] placeholders) against it (e.g. fastlane/metadata/android). For devices without a `path`, the placeholders may also be used directly in this value.",
       "screenshots",
     )
     .option("-p, --port <port>", "Dev server port", "3000")

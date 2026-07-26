@@ -4,6 +4,7 @@ import { MemoryRouter, Routes, Route } from "react-router-dom";
 import { Screegen } from "./Screegen";
 import { ScreenPage } from "./ScreenPage";
 import { OverviewPage } from "./OverviewPage";
+import { GraphicPage } from "./GraphicPage";
 import { ProjectConfig, ScreenComponentProps } from "../../types";
 
 function MockScreenComponent({ language, deviceKey, width, height }: ScreenComponentProps) {
@@ -33,6 +34,13 @@ const mockConfig: ProjectConfig = {
       width: 2732,
       height: 2048,
       screens: [{ key: "home", component: MockScreenComponent }],
+    },
+  ],
+  graphics: [
+    {
+      key: "play-store",
+      component: MockScreenComponent,
+      path: "[language]/images",
     },
   ],
 };
@@ -67,6 +75,43 @@ describe("Screegen", () => {
 
     expect(screen.getByTestId("mock-screen")).toBeInTheDocument();
     expect(screen.getByText("MockScreen: en-US - iphone - 1290x2796")).toBeInTheDocument();
+  });
+
+  it("renders GraphicPage at /graphics/:index/:language path", () => {
+    render(
+      <MemoryRouter initialEntries={["/graphics/0/en-US"]}>
+        <Screegen config={mockConfig} />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByTestId("mock-screen")).toBeInTheDocument();
+    expect(screen.getByText("MockScreen: en-US - play-store - 1024x500")).toBeInTheDocument();
+  });
+});
+
+describe("GraphicPage", () => {
+  it("renders the graphic with correct props", () => {
+    render(
+      <MemoryRouter initialEntries={["/graphics/0/de-DE"]}>
+        <Routes>
+          <Route path="/graphics/:index/:language" element={<GraphicPage config={mockConfig} />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByText("MockScreen: de-DE - play-store - 1024x500")).toBeInTheDocument();
+  });
+
+  it("renders error message when params are missing", () => {
+    render(
+      <MemoryRouter initialEntries={["/graphics"]}>
+        <Routes>
+          <Route path="/graphics" element={<GraphicPage config={mockConfig} />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByText("Invalid graphic parameters")).toBeInTheDocument();
   });
 });
 

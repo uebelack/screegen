@@ -3,6 +3,7 @@ import { ProjectConfig } from "@screegen/components";
 import translations from "./src/translations";
 
 import FeaturesScreen from "./src/screens/Features";
+import Graphic from "./src/screens/Graphic";
 import iPadEdit from "./src/screens/iPadEdit";
 import iPadOverview from "./src/screens/iPadOverview";
 import iPhoneDetail from "./src/screens/iPhoneDetail";
@@ -20,6 +21,7 @@ const config: ProjectConfig = {
       fastlaneKeys: ["APP_IPHONE_67"],
       width: 1290,
       height: 2796,
+      path: "[language]/images/[fastlaneKey]",
       screens: [
         { key: "overview", component: iPhoneOverview },
         { key: "details", component: iPhoneDetail },
@@ -33,6 +35,7 @@ const config: ProjectConfig = {
       fastlaneKeys: ["APP_IPAD_PRO_129"],
       width: 2732,
       height: 2048,
+      path: "[language]/images/[fastlaneKey]",
       screens: [
         { key: "overview", component: iPadOverview },
         { key: "edit", component: iPadEdit },
@@ -45,12 +48,22 @@ const config: ProjectConfig = {
       fastlaneKeys: ["APP_DESKTOP"],
       width: 2880,
       height: 1800,
+      path: "[language]/images/[fastlaneKey]",
       screens: [
         { key: "overview", component: MacOverview },
         { key: "edit", component: MacEdit },
         { key: "features", component: FeaturesScreen },
         { key: "proFeatures", component: ProFeaturesScreen },
       ],
+    },
+  ],
+  graphics: [
+    {
+      key: "featureGraphic",
+      component: Graphic,
+      path: "[language]/images",
+      width: 1024,
+      height: 500,
     },
   ],
 };

@@ -1,6 +1,13 @@
 import React from "react";
-import { ProjectConfig, ColorScheme, colorSchemes } from "../../types";
+import {
+  ProjectConfig,
+  ColorScheme,
+  colorSchemes,
+  GRAPHIC_WIDTH,
+  GRAPHIC_HEIGHT,
+} from "../../types";
 import { Screen } from "../Screen";
+import { Graphic } from "../Graphic";
 import styles from "./OverviewGrid.module.scss";
 
 const SCALE_OPTIONS = [0.1, 0.25, 1.0];
@@ -115,6 +122,34 @@ export function OverviewGrid({
             </div>
           </div>
         ))}
+
+        {config.graphics?.map((graphic, index) => {
+          const key = graphic.key ?? String(index);
+          const width = graphic.width ?? GRAPHIC_WIDTH;
+          const height = graphic.height ?? GRAPHIC_HEIGHT;
+
+          return (
+            <div key={`graphic-${key}`} className={styles.overviewDevice}>
+              <h2>{key}</h2>
+              <div className={styles.overviewScreens}>
+                <div
+                  className={styles.overviewScreenWrapper}
+                  style={{ width: width * scale, height: height * scale }}
+                >
+                  <div
+                    className={styles.overviewScreenScaled}
+                    style={{
+                      transform: `scale(${scale})`,
+                      transformOrigin: "top left",
+                    }}
+                  >
+                    <Graphic config={config} index={index} language={language} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

@@ -35,29 +35,73 @@ pnpm generate
 
 #### Options
 
-| Option               | Default       | Description                                                  |
-| -------------------- | ------------- | ------------------------------------------------------------ |
-| `-o, --output <dir>` | `screenshots` | Output directory. Supports the placeholders described below. |
-| `-p, --port <port>`  | `3000`        | Dev server port used while capturing screenshots.            |
+| Option               | Default       | Description                                        |
+| -------------------- | ------------- | -------------------------------------------------- |
+| `-o, --output <dir>` | `screenshots` | Output base directory (see path resolution below). |
+| `-p, --port <port>`  | `3000`        | Dev server port used while capturing screenshots.  |
 
-##### Output placeholders
+##### Output paths
 
-The `--output` value may contain placeholders that are expanded per screenshot:
+Prefer giving each device (and graphic) a relative `path` in the config
+and pointing `--output` at the base directory. The `path` supports these
+placeholders:
 
-- `[language]` — replaced with the language code (e.g. `en-US`). If omitted, the language is appended as a subdirectory.
-- `[fastlaneKey]` — replaced with the device's fastlane key (e.g. `APP_IPHONE_67`). If omitted, the fastlane key only appears in the screenshot filename.
+- `[language]` — replaced with the language code (e.g. `en-US`).
+- `[fastlaneKey]` — replaced with the device's fastlane key (e.g. `APP_IPHONE_67`).
 
-Examples:
+```ts
+devices: [
+  {
+    key: "phone",
+    fastlaneKeys: ["phoneScreenshots"],
+    width: 1080,
+    height: 1920,
+    path: "[language]/images/[fastlaneKey]",
+    screens: [...],
+  },
+],
+```
+
+```bash
+# base dir + device.path -> .../android/en-US/images/phoneScreenshots/1_phoneScreenshots_1.png
+screegen generate --output "fastlane/metadata/android"
+```
+
+For **backward compatibility**, a device without a `path` falls back to
+expanding the placeholders directly in `--output` (and appending the language as
+a subdirectory when `[language]` is absent):
 
 ```bash
 # Default: screenshots/<language>/<index>_<fastlaneKey>_<index>.png
 screegen generate
 
-# fastlane deliver layout
+# fastlane deliver layout via --output placeholders
 screegen generate --output "fastlane/metadata/android/[language]/images"
+```
 
-# Per-key directories
-screegen generate --output "snailmail-android/screenshots/[language]/images/[fastlaneKey]"
+##### Graphics
+
+Google Play requires a 1024×500 "Feature graphic". Declare one (or more) via the
+top-level `featureGraphics` array. Each is rendered once per language (no device
+frame) and written as `featureGraphic.png`:
+
+```ts
+const config: ProjectConfig = {
+  languages: ["en-US", "de-DE"],
+  devices: [...],
+  featureGraphics: [
+    {
+      component: FeatureGraphic, // receives { language, deviceKey, width, height }
+      path: "[language]/images",
+      // width/height default to 1024×500; filename defaults to featureGraphic.png
+    },
+  ],
+};
+```
+
+```bash
+# writes .../android/en-US/images/featureGraphic.png (per language)
+screegen generate --output "fastlane/metadata/android"
 ```
 
 ## Features
