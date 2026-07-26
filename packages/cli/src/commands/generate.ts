@@ -113,10 +113,16 @@ function startDevServer(port: number): Promise<{ process: ChildProcess; url: str
     // Pass the command as a single string (not command + args array) so that
     // Node does not emit DEP0190 for combining an args array with `shell: true`.
     // `port` is a number from get-port, so there is nothing to escape.
+    //
+    // `detached: true` puts the server in its own process group so we can later
+    // kill the whole tree (shell -> pnpm -> vite); otherwise the vite grandchild
+    // survives, keeps the port and our stdio pipes open, and prevents the CLI
+    // from exiting.
     const devProcess = spawn(`pnpm dev --port ${port}`, {
       cwd: process.cwd(),
       stdio: ["ignore", "pipe", "pipe"],
       shell: true,
+      detached: true,
     });
 
     let resolved = false;
@@ -164,6 +170,28 @@ function startDevServer(port: number): Promise<{ process: ChildProcess; url: str
       }
     });
   });
+}
+
+/**
+ * Stops the dev server and everything it spawned.
+ *
+ * The server runs in its own process group (`detached: true`), so it has
+ * children of its own (pnpm -> vite). Signalling the negative PID targets the
+ * whole group, ensuring nothing is left holding the port or keeping our stdio
+ * pipes — and therefore the event loop — open. Falls back to a direct kill when
+ * the group is already gone (or when there is no PID, e.g. in tests).
+ */
+function stopDevServer(devProcess: ChildProcess): void {
+  const { pid } = devProcess;
+  if (pid !== undefined) {
+    try {
+      process.kill(-pid, "SIGTERM");
+      return;
+    } catch {
+      /* group already exited — fall back to a direct kill */
+    }
+  }
+  devProcess.kill();
 }
 
 export async function generateCommand(options: GenerateOptions): Promise<void> {
@@ -235,7 +263,7 @@ export async function generateCommand(options: GenerateOptions): Promise<void> {
             await page.screenshot({ path: filepath });
             screenshotCount++;
 
-            console.log(chalk.gray(`  ${language}/${filename}`));
+            console.log(chalk.gray(`  ${filepath}`));
           }
 
           await page.close();
@@ -276,7 +304,7 @@ export async function generateCommand(options: GenerateOptions): Promise<void> {
         await page.screenshot({ path: filepath });
         screenshotCount++;
 
-        console.log(chalk.gray(`  ${language}/${filename}`));
+        console.log(chalk.gray(`  ${filepath}`));
 
         await page.close();
       }
@@ -284,15 +312,23 @@ export async function generateCommand(options: GenerateOptions): Promise<void> {
 
     await browser.close();
 
-    // Kill dev server
-    devProcess.kill();
+    // Stop the dev server (and its whole process tree).
+    stopDevServer(devProcess);
     devProcess = null;
 
-    console.log(chalk.green(`\nGenerated ${screenshotCount} screenshots to ${options.output}`));
+    console.log(
+      chalk.green(
+        `\nGenerated ${screenshotCount} screenshots to ${path.resolve(process.cwd(), options.output)}`,
+      ),
+    );
+
+    // Exit explicitly: even after stopping the dev server, straggling handles
+    // (e.g. Playwright internals) can otherwise keep the process alive.
+    process.exit(0);
   } catch (error) {
     // Clean up dev server on error
     if (devProcess) {
-      devProcess.kill();
+      stopDevServer(devProcess);
     }
     spinner.fail("Generation failed");
     console.error(chalk.red(error instanceof Error ? error.message : String(error)));

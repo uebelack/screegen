@@ -56,6 +56,7 @@ function createMockProcess() {
     stdout: EventEmitter;
     stderr: EventEmitter;
     kill: ReturnType<typeof vi.fn>;
+    pid?: number;
   };
   proc.stdout = new EventEmitter();
   proc.stderr = new EventEmitter();
@@ -156,6 +157,89 @@ describe("generateCommand", () => {
     expect(screenshotPage.screenshot).toHaveBeenCalled();
     expect(mockBrowser.close).toHaveBeenCalled();
     expect(mockProcess.kill).toHaveBeenCalled();
+  });
+
+  it("kills the whole dev-server process group when it has a pid", async () => {
+    const mockProcess = createMockProcess();
+    mockProcess.pid = 4242;
+    mockSpawn.mockReturnValue(mockProcess as never);
+    const killSpy = vi.spyOn(process, "kill").mockImplementation(() => true);
+
+    const configPage = createMockPage();
+    configPage.$eval.mockResolvedValue(
+      JSON.stringify({
+        languages: ["en-US"],
+        devices: [
+          {
+            key: "iphone",
+            fastlaneKeys: ["APP_IPHONE_67"],
+            width: 1290,
+            height: 2796,
+            screens: [{ key: "home" }],
+          },
+        ],
+      }),
+    );
+
+    const screenshotPage = createMockPage();
+    const mockBrowser = createMockBrowser(configPage, screenshotPage);
+    mockChromium.launch.mockResolvedValue(mockBrowser as never);
+
+    const generatePromise = generateCommand({ output: "screenshots", port: "3000" });
+
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    mockProcess.stdout.emit("data", Buffer.from("Local: http://localhost:3000"));
+
+    await generatePromise;
+
+    // Negative pid targets the whole process group.
+    expect(killSpy).toHaveBeenCalledWith(-4242, "SIGTERM");
+    // The group kill succeeded, so no direct kill fallback.
+    expect(mockProcess.kill).not.toHaveBeenCalled();
+
+    killSpy.mockRestore();
+  });
+
+  it("falls back to a direct kill when the group kill fails", async () => {
+    const mockProcess = createMockProcess();
+    mockProcess.pid = 4242;
+    mockSpawn.mockReturnValue(mockProcess as never);
+    const killSpy = vi.spyOn(process, "kill").mockImplementation(() => {
+      throw new Error("ESRCH");
+    });
+
+    const configPage = createMockPage();
+    configPage.$eval.mockResolvedValue(
+      JSON.stringify({
+        languages: ["en-US"],
+        devices: [
+          {
+            key: "iphone",
+            fastlaneKeys: ["APP_IPHONE_67"],
+            width: 1290,
+            height: 2796,
+            screens: [{ key: "home" }],
+          },
+        ],
+      }),
+    );
+
+    const screenshotPage = createMockPage();
+    const mockBrowser = createMockBrowser(configPage, screenshotPage);
+    mockChromium.launch.mockResolvedValue(mockBrowser as never);
+
+    const generatePromise = generateCommand({ output: "screenshots", port: "3000" });
+
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    mockProcess.stdout.emit("data", Buffer.from("Local: http://localhost:3000"));
+
+    await generatePromise;
+
+    expect(killSpy).toHaveBeenCalledWith(-4242, "SIGTERM");
+    // Group kill threw, so we fall back to the direct kill.
+    expect(mockProcess.kill).toHaveBeenCalled();
+
+    killSpy.mockRestore();
   });
 
   it("handles dev server URL from stderr", async () => {
