@@ -1,5 +1,6 @@
 .device {
   position: absolute;
-  left: 96px;
+  left: 50%;
   top: 400px;
+  transform: translateX(-50%);
 }
