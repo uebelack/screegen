@@ -1,27 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vite-plus/test";
-import { createProgram, runCli, isMainModule } from "./index.js";
-
-describe("isMainModule", () => {
-  it("returns true when import.meta.url matches process.argv[1]", () => {
-    const result = isMainModule("file:///path/to/script.js", ["node", "/path/to/script.js"]);
-    expect(result).toBe(true);
-  });
-
-  it("returns true when process.argv[1] ends with screegen.js", () => {
-    const result = isMainModule("file:///other/path.js", ["node", "/usr/bin/screegen.js"]);
-    expect(result).toBe(true);
-  });
-
-  it("returns false when neither condition is met", () => {
-    const result = isMainModule("file:///path/to/module.js", ["node", "/path/to/other.js"]);
-    expect(result).toBe(false);
-  });
-
-  it("returns false when process.argv[1] is undefined", () => {
-    const result = isMainModule("file:///path/to/module.js", ["node"]);
-    expect(result).toBe(false);
-  });
-});
+import { createProgram, runCli } from "./index.js";
 
 describe("runCli", () => {
   const originalExit = process.exit;
@@ -40,39 +18,6 @@ describe("runCli", () => {
   it("creates and parses the program with --version", () => {
     runCli(["node", "screegen", "--version"]);
     expect(process.stdout.write).toHaveBeenCalled();
-  });
-});
-
-describe("main entry point", () => {
-  const originalArgv = process.argv;
-  const originalExit = process.exit;
-  const originalStdoutWrite = process.stdout.write;
-
-  beforeEach(() => {
-    vi.resetModules();
-    process.exit = vi.fn() as never;
-    process.stdout.write = vi.fn() as never;
-  });
-
-  afterEach(() => {
-    process.argv = originalArgv;
-    process.exit = originalExit;
-    process.stdout.write = originalStdoutWrite;
-  });
-
-  it("runs CLI when executed as main module", async () => {
-    // Set up argv to make isMainModule return true
-    process.argv = ["node", "/path/to/screegen.js", "--version"];
-
-    // Dynamic import to get fresh module evaluation. The `?test=main` query
-    // forces Vite to re-evaluate the module and is not resolvable by tsc.
-    // @ts-expect-error -- query-suffixed module specifier has no type declaration
-    const indexModule = await import("./index.js?test=main");
-
-    // Verify the functions exist (module loaded successfully)
-    expect(indexModule.createProgram).toBeDefined();
-    expect(indexModule.runCli).toBeDefined();
-    expect(indexModule.isMainModule).toBeDefined();
   });
 });
 

@@ -1,6 +1,6 @@
 {
   "name": "@screegen/cli",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "license": "MIT",
   "author": "David Übelacker",
   "repository": {
@@ -28,16 +28,16 @@
     "commander": "^15.0.0",
     "get-port": "^7.2.0",
     "ora": "^9.4.1",
-    "playwright": "^1.61.1",
+    "playwright": "^1.62.0",
     "prompts": "^2.4.2",
     "vite": "npm:@voidzero-dev/vite-plus-core@0.2.6"
   },
   "devDependencies": {
-    "@types/node": "^26.1.1",
+    "@types/node": "^26.1.2",
     "@types/prompts": "^2.4.9",
     "@vitest/coverage-v8": "4.1.10",
-    "jiti": "^2.6.1",
-    "tsx": "^4.21.0",
+    "jiti": "^2.7.0",
+    "tsx": "^4.23.1",
     "typescript": "^5.9.3",
     "vite-plus": "0.2.6",
     "vitest": "4.1.10"

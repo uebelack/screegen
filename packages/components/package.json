@@ -1,6 +1,6 @@
 {
   "name": "@screegen/components",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "license": "MIT",
   "author": "David Übelacker",
   "repository": {
@@ -34,12 +34,12 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.4",
     "@vitest/coverage-v8": "4.1.10",
-    "jiti": "^2.6.1",
+    "jiti": "^2.7.0",
     "jsdom": "^29.1.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.1",
-    "sass": "^1.101.6",
+    "sass": "^1.102.0",
     "typescript": "^5.9.3",
     "vite": "npm:@voidzero-dev/vite-plus-core@0.2.6",
     "vite-plugin-dts": "^5.0.3",

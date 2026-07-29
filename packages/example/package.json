@@ -1,6 +1,6 @@
 {
   "name": "example",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "license": "MIT",
   "author": "David Übelacker",
   "repository": {
@@ -18,7 +18,7 @@
   "dependencies": {
     "@screegen/cli": "workspace:*",
     "@screegen/components": "workspace:*",
-    "lucide-react": "^1.26.0",
+    "lucide-react": "^1.27.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.1"
@@ -27,8 +27,8 @@
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.4",
-    "jiti": "^2.6.1",
-    "sass": "^1.101.6",
+    "jiti": "^2.7.0",
+    "sass": "^1.102.0",
     "typescript": "^5.9.3",
     "vite": "npm:@voidzero-dev/vite-plus-core@0.2.6",
     "vite-plus": "0.2.6"

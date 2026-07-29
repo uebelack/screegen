@@ -1,6 +1,6 @@
 {
   "name": "screegen",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "license": "MIT",
   "author": "David Übelacker",
   "repository": {
@@ -18,7 +18,7 @@
     "update-version": "node scripts/update-version.js"
   },
   "devDependencies": {
-    "@types/node": "^26.1.1",
+    "@types/node": "^26.1.2",
     "typescript": "^5.9.3",
     "vite": "npm:@voidzero-dev/vite-plus-core@0.2.6",
     "vite-plus": "0.2.6"

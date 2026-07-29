@@ -34,15 +34,3 @@ export function createProgram(): Command {
 export function runCli(argv?: string[]): void {
   createProgram().parse(argv);
 }
-
-// Only parse when running as main module
-export function isMainModule(importMetaUrl: string, processArgv: string[]): boolean {
-  return (
-    importMetaUrl === `file://${processArgv[1]}` || processArgv[1]?.endsWith("screegen.js") || false
-  );
-}
-
-// Main entry point - executed when run directly
-if (isMainModule(import.meta.url, process.argv)) {
-  runCli();
-}
