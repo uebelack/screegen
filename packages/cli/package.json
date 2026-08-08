@@ -28,7 +28,7 @@
     "commander": "^15.0.0",
     "get-port": "^7.2.0",
     "ora": "^9.4.1",
-    "playwright": "^1.62.0",
+    "playwright": "^1.62.1",
     "prompts": "^2.4.2",
     "vite": "npm:@voidzero-dev/vite-plus-core@0.2.6"
   },
