@@ -31,6 +31,6 @@
     "sass": "^1.102.0",
     "typescript": "^5.9.3",
     "vite": "npm:@voidzero-dev/vite-plus-core@0.2.6",
-    "vite-plus": "0.2.6"
+    "vite-plus": "0.2.9"
   }
 }
