@@ -11,11 +11,13 @@
   "scripts": {
     "build": "pnpm -r run build",
     "test": "pnpm -r run test",
-    "lint": "vp lint",
-    "format": "vp fmt",
     "check": "vp check",
     "test-init": "pnpm --filter @screegen/cli exec node bin/screegen.js init -n my-screenshot-app -d ../../../",
-    "update-version": "node scripts/update-version.js"
+    "update-version": "node scripts/update-version.js",
+    "lint:check": "vp lint",
+    "lint:fix": "vp lint --fix",
+    "format:check": "vp fmt --check",
+    "format:write": "vp fmt"
   },
   "devDependencies": {
     "@types/node": "^26.1.2",
