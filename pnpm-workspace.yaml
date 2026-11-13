@@ -11,6 +11,8 @@ autoInstallPeers: false
 # @voidzero-dev/vite-plus-core directly in every package's dependencies.
 overrides:
   vitest: "4.1.10"
+  # Types match the minimum supported Node (engines), also for transitive "*" ranges.
+  "@types/node": "^24.19.2"
 
 allowBuilds:
   "@parcel/watcher": true

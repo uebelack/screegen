@@ -7,7 +7,7 @@ export default defineConfig({
     dts: true,
     clean: true,
     platform: "node",
-    target: "node18",
+    target: "node24",
     shims: true,
     // Declared dependencies (commander, chalk, ora, prompts, get-port,
     // playwright, vite) are externalized automatically by tsdown.
