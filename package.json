@@ -13,7 +13,6 @@
     "test": "pnpm -r run test",
     "check": "vp check",
     "test-init": "pnpm --filter @screegen/cli exec node bin/screegen.js init -n my-screenshot-app -d ../../../",
-    "update-version": "node scripts/update-version.js",
     "lint:check": "vp lint",
     "lint:fix": "vp lint --fix",
     "format:check": "vp fmt --check",
