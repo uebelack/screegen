@@ -27,7 +27,7 @@
     "chalk": "^6.0.1",
     "commander": "^15.1.0",
     "get-port": "^7.2.0",
-    "ora": "^9.4.1",
+    "ora": "^10.0.0",
     "playwright": "^1.65.0",
     "prompts": "^2.4.2",
     "vite": "catalog:"
