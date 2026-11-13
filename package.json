@@ -1,11 +1,15 @@
 {
   "name": "screegen",
   "version": "0.0.11",
+  "homepage": "https://github.com/uebelack/screegen#readme",
+  "bugs": {
+    "url": "https://github.com/uebelack/screegen/issues"
+  },
   "license": "MIT",
   "author": "David Übelacker",
   "repository": {
     "type": "git",
-    "url": "https://github.com/uebelack/screegen"
+    "url": "git+https://github.com/uebelack/screegen.git"
   },
   "type": "module",
   "scripts": {

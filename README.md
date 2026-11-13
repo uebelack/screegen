@@ -13,12 +13,15 @@ A screenshot generation toolkit for creating App Store screenshots. Build beauti
 
 ## Quick Start
 
+Requires Node.js 24 or later and pnpm.
+
 ### Create a new project
 
 ```bash
-npx @screegen/cli init -n my-app
+pnpm dlx @screegen/cli init -n my-app
 cd my-app
 pnpm install
+pnpm dlx playwright install --only-shell chromium   # browser for `pnpm generate`
 ```
 
 ### Development
@@ -127,8 +130,8 @@ screegen/
 │   │
 │   └── cli/            # @screegen/cli - Command line tool
 │       ├── src/
-│       │   ├── commands/       # init, generate commands
-│       │   └── templates/      # Project scaffolding templates
+│       │   └── commands/       # init, generate commands
+│       ├── templates/          # Project scaffolding templates
 │       └── package.json
 │
 └── package.json        # Root workspace config
@@ -136,18 +139,34 @@ screegen/
 
 ## Development
 
-This is a pnpm workspaces monorepo.
+This is a pnpm workspaces monorepo built with [Vite+](https://viteplus.dev) (`vp`). Use the Node.js version from `.nvmrc`.
 
 ```bash
 # Install dependencies
 pnpm install
 
+# Check formatting and lint (including type checks)
+pnpm run format:check
+pnpm run lint:check
+
 # Build all packages
 pnpm build
 
-# Run tests
+# Run tests (with 100 % coverage thresholds)
 pnpm test
 ```
+
+### Releasing
+
+All packages share one version. Set it, update the changelog and push a tag:
+
+```bash
+pnpm -r --include-workspace-root exec npm pkg set version=<x.y.z>
+pnpm dlx git-cliff --tag v<x.y.z> -o CHANGELOG.md
+git commit -am "🔖 chore: release v<x.y.z>" && git tag v<x.y.z> && git push --follow-tags
+```
+
+The release workflow stages `@screegen/cli` and `@screegen/components` on npm; approve them with `npm stage approve <stage-id>`.
 
 ## Configuration
 

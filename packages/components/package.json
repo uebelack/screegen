@@ -1,11 +1,23 @@
 {
   "name": "@screegen/components",
   "version": "0.0.11",
+  "keywords": [
+    "app-store",
+    "components",
+    "google-play",
+    "react",
+    "screenshots"
+  ],
+  "homepage": "https://github.com/uebelack/screegen#readme",
+  "bugs": {
+    "url": "https://github.com/uebelack/screegen/issues"
+  },
   "license": "MIT",
   "author": "David Übelacker",
   "repository": {
     "type": "git",
-    "url": "https://github.com/uebelack/screegen"
+    "url": "git+https://github.com/uebelack/screegen.git",
+    "directory": "packages/components"
   },
   "files": [
     "dist"

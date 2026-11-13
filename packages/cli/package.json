@@ -1,11 +1,24 @@
 {
   "name": "@screegen/cli",
   "version": "0.0.11",
+  "keywords": [
+    "app-store",
+    "cli",
+    "fastlane",
+    "google-play",
+    "playwright",
+    "screenshots"
+  ],
+  "homepage": "https://github.com/uebelack/screegen#readme",
+  "bugs": {
+    "url": "https://github.com/uebelack/screegen/issues"
+  },
   "license": "MIT",
   "author": "David Übelacker",
   "repository": {
     "type": "git",
-    "url": "https://github.com/uebelack/screegen"
+    "url": "git+https://github.com/uebelack/screegen.git",
+    "directory": "packages/cli"
   },
   "bin": {
     "screegen": "bin/screegen.js"
