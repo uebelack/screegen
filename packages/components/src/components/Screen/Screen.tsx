@@ -1,4 +1,4 @@
-import { ProjectConfig } from "../../types";
+import { ProjectConfig } from "../../types/index.js";
 import styles from "./Screen.module.scss";
 
 export interface ScreenProps {

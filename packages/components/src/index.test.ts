@@ -9,24 +9,24 @@ import {
   getSystemColorScheme,
   useUrlState,
   colorSchemes,
-} from "./index";
+} from "./index.js";
 
 // Import from sub-indexes to ensure coverage
 import {
   Screen as ScreenFromComponents,
   OverviewGrid as OverviewGridFromComponents,
   ScreengenConfig as ScreengenConfigFromComponents,
-} from "./components";
+} from "./components/index.js";
 import {
   useColorScheme as useColorSchemeFromHooks,
   getSystemColorScheme as getSystemColorSchemeFromHooks,
   useUrlState as useUrlStateFromHooks,
-} from "./hooks";
+} from "./hooks/index.js";
 
 // Import from component-level indexes
-import { Screen as ScreenDirect } from "./components/Screen";
-import { OverviewGrid as OverviewGridDirect } from "./components/OverviewGrid";
-import { ScreengenConfig as ScreengenConfigDirect } from "./components/ScreengenConfig";
+import { Screen as ScreenDirect } from "./components/Screen/index.js";
+import { OverviewGrid as OverviewGridDirect } from "./components/OverviewGrid/index.js";
+import { ScreengenConfig as ScreengenConfigDirect } from "./components/ScreengenConfig/index.js";
 
 describe("package exports", () => {
   it("exports Screen component from all entry points", () => {

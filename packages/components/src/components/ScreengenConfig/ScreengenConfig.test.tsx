@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vite-plus/test";
 import { render } from "@testing-library/react";
-import { ScreengenConfig } from "./ScreengenConfig";
-import { ProjectConfig, ScreenComponentProps } from "../../types";
+import { ScreengenConfig } from "./ScreengenConfig.js";
+import { ProjectConfig, ScreenComponentProps } from "../../types/index.js";
 
 function MockComponent({ language }: ScreenComponentProps) {
   return <div>Mock: {language}</div>;

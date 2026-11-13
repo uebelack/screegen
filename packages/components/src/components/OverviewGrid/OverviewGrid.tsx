@@ -5,9 +5,9 @@ import {
   colorSchemes,
   GRAPHIC_WIDTH,
   GRAPHIC_HEIGHT,
-} from "../../types";
-import { Screen } from "../Screen";
-import { Graphic } from "../Graphic";
+} from "../../types/index.js";
+import { Screen } from "../Screen/index.js";
+import { Graphic } from "../Graphic/index.js";
 import styles from "./OverviewGrid.module.scss";
 
 const SCALE_OPTIONS = [0.1, 0.25, 1.0];

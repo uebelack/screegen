@@ -1,4 +1,4 @@
-import { ProjectConfig, GRAPHIC_WIDTH, GRAPHIC_HEIGHT } from "../../types";
+import { ProjectConfig, GRAPHIC_WIDTH, GRAPHIC_HEIGHT } from "../../types/index.js";
 import styles from "./Graphic.module.scss";
 
 export interface GraphicProps {

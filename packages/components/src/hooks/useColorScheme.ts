@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ColorScheme } from "../types";
+import { ColorScheme } from "../types/index.js";
 
 /**
  * Get the system color scheme preference

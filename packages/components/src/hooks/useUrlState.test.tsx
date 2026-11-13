@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vite-plus/test";
 import { renderHook, act } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { useUrlState } from "./useUrlState";
+import { useUrlState } from "./useUrlState.js";
 
 function createWrapper(initialEntries: string[] = ["/"]) {
   return function Wrapper({ children }: { children: React.ReactNode }) {

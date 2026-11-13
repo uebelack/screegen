@@ -1,2 +1,2 @@
-export { Graphic } from "./Graphic";
-export type { GraphicProps } from "./Graphic";
+export { Graphic } from "./Graphic.js";
+export type { GraphicProps } from "./Graphic.js";

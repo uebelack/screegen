@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import { ProjectConfig } from "../../types";
-import { Screen } from "../Screen";
+import { ProjectConfig } from "../../types/index.js";
+import { Screen } from "../Screen/index.js";
 
 export interface ScreenPageProps {
   config: ProjectConfig;

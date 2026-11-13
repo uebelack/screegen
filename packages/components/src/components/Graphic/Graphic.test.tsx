@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vite-plus/test";
 import { render, screen } from "@testing-library/react";
-import { Graphic } from "./Graphic";
-import { ProjectConfig, ScreenComponentProps, GraphicConfig } from "../../types";
+import { Graphic } from "./Graphic.js";
+import { ProjectConfig, ScreenComponentProps, GraphicConfig } from "../../types/index.js";
 
 function MockGraphic({ language, deviceKey, width, height }: ScreenComponentProps) {
   return (

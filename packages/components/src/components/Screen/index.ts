@@ -1,2 +1,2 @@
-export { Screen } from "./Screen";
-export type { ScreenProps } from "./Screen";
+export { Screen } from "./Screen.js";
+export type { ScreenProps } from "./Screen.js";

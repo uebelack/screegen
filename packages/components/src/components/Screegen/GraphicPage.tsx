@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import { ProjectConfig } from "../../types";
-import { Graphic } from "../Graphic";
+import { ProjectConfig } from "../../types/index.js";
+import { Graphic } from "../Graphic/index.js";
 
 export interface GraphicPageProps {
   config: ProjectConfig;

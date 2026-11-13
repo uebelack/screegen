@@ -1,7 +1,7 @@
-import { ProjectConfig, ColorScheme } from "../../types";
-import { OverviewGrid } from "../OverviewGrid";
-import { useColorScheme } from "../../hooks/useColorScheme";
-import { useUrlState } from "../../hooks/useUrlState";
+import { ProjectConfig, ColorScheme } from "../../types/index.js";
+import { OverviewGrid } from "../OverviewGrid/index.js";
+import { useColorScheme } from "../../hooks/useColorScheme.js";
+import { useUrlState } from "../../hooks/useUrlState.js";
 
 export interface OverviewPageProps {
   config: ProjectConfig;

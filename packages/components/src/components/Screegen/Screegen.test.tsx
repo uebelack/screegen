@@ -1,11 +1,11 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vite-plus/test";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
-import { Screegen } from "./Screegen";
-import { ScreenPage } from "./ScreenPage";
-import { OverviewPage } from "./OverviewPage";
-import { GraphicPage } from "./GraphicPage";
-import { ProjectConfig, ScreenComponentProps } from "../../types";
+import { Screegen } from "./Screegen.js";
+import { ScreenPage } from "./ScreenPage.js";
+import { OverviewPage } from "./OverviewPage.js";
+import { GraphicPage } from "./GraphicPage.js";
+import { ProjectConfig, ScreenComponentProps } from "../../types/index.js";
 
 function MockScreenComponent({ language, deviceKey, width, height }: ScreenComponentProps) {
   return (

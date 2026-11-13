@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vite-plus/test";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { OverviewGrid } from "./OverviewGrid";
-import { ProjectConfig, ScreenComponentProps } from "../../types";
+import { OverviewGrid } from "./OverviewGrid.js";
+import { ProjectConfig, ScreenComponentProps } from "../../types/index.js";
 
 function MockScreenComponent({ language }: ScreenComponentProps) {
   return <div data-testid="mock-screen">Screen: {language}</div>;

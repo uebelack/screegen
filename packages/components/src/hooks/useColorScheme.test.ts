@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vite-plus/test";
 import { renderHook, act } from "@testing-library/react";
-import { getSystemColorScheme, useColorScheme } from "./useColorScheme";
+import { getSystemColorScheme, useColorScheme } from "./useColorScheme.js";
 
 describe("getSystemColorScheme", () => {
   const originalMatchMedia = window.matchMedia;

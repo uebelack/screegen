@@ -1,2 +1,2 @@
-export { OverviewGrid } from "./OverviewGrid";
-export type { OverviewGridProps } from "./OverviewGrid";
+export { OverviewGrid } from "./OverviewGrid.js";
+export type { OverviewGridProps } from "./OverviewGrid.js";

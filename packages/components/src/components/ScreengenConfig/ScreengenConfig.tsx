@@ -1,4 +1,4 @@
-import { ProjectConfig } from "../../types";
+import { ProjectConfig } from "../../types/index.js";
 
 export interface ScreengenConfigProps {
   config: ProjectConfig;

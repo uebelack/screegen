@@ -10,28 +10,28 @@ export type {
   GraphicConfig,
   ProjectConfig,
   ScreenProps as ScreenPropsType,
-} from "./types";
-export { colorSchemes, GRAPHIC_WIDTH, GRAPHIC_HEIGHT, GRAPHIC_FILENAME } from "./types";
+} from "./types/index.js";
+export { colorSchemes, GRAPHIC_WIDTH, GRAPHIC_HEIGHT, GRAPHIC_FILENAME } from "./types/index.js";
 
 // Hooks
-export { useColorScheme, getSystemColorScheme } from "./hooks/useColorScheme";
-export { useUrlState } from "./hooks/useUrlState";
+export { useColorScheme, getSystemColorScheme } from "./hooks/useColorScheme.js";
+export { useUrlState } from "./hooks/useUrlState.js";
 
 // Components
-export { Screen } from "./components/Screen";
-export type { ScreenProps } from "./components/Screen";
+export { Screen } from "./components/Screen/index.js";
+export type { ScreenProps } from "./components/Screen/index.js";
 
-export { DeviceFrame } from "./components/DeviceFrame";
-export type { DeviceFrameProps, DeviceVariant } from "./components/DeviceFrame";
+export { DeviceFrame } from "./components/DeviceFrame/index.js";
+export type { DeviceFrameProps, DeviceVariant } from "./components/DeviceFrame/index.js";
 
-export { Graphic } from "./components/Graphic";
-export type { GraphicProps } from "./components/Graphic";
+export { Graphic } from "./components/Graphic/index.js";
+export type { GraphicProps } from "./components/Graphic/index.js";
 
-export { OverviewGrid } from "./components/OverviewGrid";
-export type { OverviewGridProps } from "./components/OverviewGrid";
+export { OverviewGrid } from "./components/OverviewGrid/index.js";
+export type { OverviewGridProps } from "./components/OverviewGrid/index.js";
 
-export { ScreengenConfig } from "./components/ScreengenConfig";
-export type { ScreengenConfigProps } from "./components/ScreengenConfig";
+export { ScreengenConfig } from "./components/ScreengenConfig/index.js";
+export type { ScreengenConfigProps } from "./components/ScreengenConfig/index.js";
 
-export { Screegen } from "./components/Screegen";
-export type { ScreegenProps } from "./components/Screegen";
+export { Screegen } from "./components/Screegen/index.js";
+export type { ScreegenProps } from "./components/Screegen/index.js";

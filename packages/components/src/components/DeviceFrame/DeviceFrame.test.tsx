@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vite-plus/test";
 import { render, screen } from "@testing-library/react";
-import { DeviceFrame } from "./DeviceFrame";
+import { DeviceFrame } from "./DeviceFrame.js";
 
 describe("DeviceFrame", () => {
   it("renders a phone frame with a custom alt and extra className", () => {

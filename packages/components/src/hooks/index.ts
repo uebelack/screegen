@@ -1,2 +1,2 @@
-export { useColorScheme, getSystemColorScheme } from "./useColorScheme";
-export { useUrlState } from "./useUrlState";
+export { useColorScheme, getSystemColorScheme } from "./useColorScheme.js";
+export { useUrlState } from "./useUrlState.js";

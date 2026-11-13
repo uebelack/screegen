@@ -1,2 +1,2 @@
-export { DeviceFrame } from "./DeviceFrame";
-export type { DeviceFrameProps, DeviceVariant } from "./DeviceFrame";
+export { DeviceFrame } from "./DeviceFrame.js";
+export type { DeviceFrameProps, DeviceVariant } from "./DeviceFrame.js";
