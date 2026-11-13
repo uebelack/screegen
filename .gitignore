@@ -28,3 +28,6 @@ yarn-error.log*
 .idea/
 *.swp
 *.swo
+
+# Vitest cache
+.vitest/

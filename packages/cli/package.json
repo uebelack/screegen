@@ -30,17 +30,17 @@
     "ora": "^9.4.1",
     "playwright": "^1.65.0",
     "prompts": "^2.4.2",
-    "vite": "npm:@voidzero-dev/vite-plus-core@0.2.6"
+    "vite": "catalog:"
   },
   "devDependencies": {
     "@types/node": "^24.19.2",
     "@types/prompts": "^2.4.9",
-    "@vitest/coverage-v8": "4.1.10",
+    "@vitest/coverage-v8": "catalog:",
     "jiti": "^2.7.0",
     "tsx": "^4.23.15",
     "typescript": "^5.9.3",
-    "vite-plus": "0.2.6",
-    "vitest": "4.1.10"
+    "vite-plus": "catalog:",
+    "vitest": "catalog:"
   },
   "engines": {
     "node": ">=24.0.0"

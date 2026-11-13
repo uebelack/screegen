@@ -1,32 +1,29 @@
 packages:
   - "packages/*"
 
-# The `vite` alias resolves to @voidzero-dev/vite-plus-core (version 0.2.6),
-# which doesn't semver-satisfy Vitest's `vite@^6||^7||^8` peer. Auto-installing
-# that peer would pull a second, real Vite. All real peers are declared
-# explicitly, so disable auto-install to keep a single Vite+ instance.
-autoInstallPeers: false
+# Vite+ versions, shared by every package. `vite` is aliased to
+# @voidzero-dev/vite-plus-core and Vitest is pinned to the version Vite+ bundles.
+catalog:
+  vite: npm:@voidzero-dev/vite-plus-core@1.6.0
+  vitest: 5.1.0
+  vite-plus: 1.6.0
+  "@vitest/coverage-v8": 5.1.0
 
-# Pin Vitest to the version Vite+ bundles. Vite itself is aliased to
-# @voidzero-dev/vite-plus-core directly in every package's dependencies.
 overrides:
-  vitest: "4.1.10"
+  vite@*: "catalog:"
+  vitest@*: "catalog:"
   # Types match the minimum supported Node (engines), also for transitive "*" ranges.
   "@types/node": "^24.19.2"
+
+# The vite-plus-core alias doesn't semver-satisfy the `vite` peer ranges of
+# Vitest and Vite plugins. Auto-installing those peers would pull a second,
+# real Vite, so keep auto-install off and accept the alias for both peers.
+autoInstallPeers: false
+peerDependencyRules:
+  allowAny:
+    - vite
+    - vitest
 
 allowBuilds:
   "@parcel/watcher": true
   esbuild: true
-
-minimumReleaseAgeExclude:
-  - "@voidzero-dev/vite-plus-core@0.2.6"
-  - "@voidzero-dev/vite-plus-darwin-arm64@0.2.6"
-  - "@voidzero-dev/vite-plus-darwin-x64@0.2.6"
-  - "@voidzero-dev/vite-plus-linux-arm64-gnu@0.2.6"
-  - "@voidzero-dev/vite-plus-linux-arm64-musl@0.2.6"
-  - "@voidzero-dev/vite-plus-linux-x64-gnu@0.2.6"
-  - "@voidzero-dev/vite-plus-linux-x64-musl@0.2.6"
-  - "@voidzero-dev/vite-plus-win32-arm64-msvc@0.2.6"
-  - "@voidzero-dev/vite-plus-win32-x64-msvc@0.2.6"
-  - sass@1.101.6
-  - vite-plus@0.2.6
