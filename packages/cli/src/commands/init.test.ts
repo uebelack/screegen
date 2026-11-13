@@ -104,6 +104,7 @@ describe("initCommand", () => {
     const writtenPaths = writeFileCalls.map((call) => call[0]);
 
     expect(writtenPaths).toContain(path.join(targetDir, "package.json"));
+    expect(writtenPaths).toContain(path.join(targetDir, "pnpm-workspace.yaml"));
     expect(writtenPaths).toContain(path.join(targetDir, "tsconfig.json"));
     expect(writtenPaths).toContain(path.join(targetDir, "vite.config.ts"));
     expect(writtenPaths).toContain(path.join(targetDir, ".gitignore"));

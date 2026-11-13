@@ -72,6 +72,7 @@ export async function initCommand(options: InitOptions): Promise<void> {
   const replacements = { projectName, screegenVersion: version };
 
   await copyTemplate("package.json.template", targetDir, "package.json", replacements);
+  await copyTemplate("pnpm-workspace.yaml.template", targetDir, "pnpm-workspace.yaml");
   await copyTemplate("tsconfig.json.template", targetDir, "tsconfig.json");
   await copyTemplate("vite.config.ts.template", targetDir, "vite.config.ts");
   await copyTemplate(".gitignore.template", targetDir, ".gitignore");
