@@ -35,7 +35,7 @@ commit_parsers = [
   { message = "^(💥)", group = "<!-- 00 -->Breaking changes" },
   { message = "^(⚡|perf)", group = "<!-- 04 -->Performance" },
   { message = "^(♻|🔨|refactor)", group = "<!-- 05 -->Refactoring" },
-  { message = "^(⬆|⬇|➕|➖|📌|deps)", group = "<!-- 06 -->Dependencies" },
+  { message = "^(⬆|⬇|➕|➖|📌|deps|build\\(deps)", group = "<!-- 06 -->Dependencies" },
   { message = "^(📝|docs)", group = "<!-- 07 -->Documentation" },
   { message = "^(✅|🧪|test)", group = "<!-- 08 -->Tests" },
   { message = "^(👷|💚|ci)", group = "<!-- 09 -->CI" },
