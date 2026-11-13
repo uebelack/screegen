@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import chalk from "chalk";
 import prompts from "prompts";
+import { version } from "../version.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -68,7 +69,7 @@ export async function initCommand(options: InitOptions): Promise<void> {
   await fs.mkdir(path.join(targetDir, "public", "assets"), { recursive: true });
 
   // Copy templates
-  const replacements = { projectName };
+  const replacements = { projectName, screegenVersion: version };
 
   await copyTemplate("package.json.template", targetDir, "package.json", replacements);
   await copyTemplate("tsconfig.json.template", targetDir, "tsconfig.json");

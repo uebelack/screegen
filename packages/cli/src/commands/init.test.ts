@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from "vite-plus/test"
 import fs from "fs/promises";
 import path from "path";
 import prompts from "prompts";
+import packageJson from "../../package.json" with { type: "json" };
 import { initCommand } from "./init.js";
 
 vi.mock("fs/promises");
@@ -128,6 +129,17 @@ describe("initCommand", () => {
       String(call[0]).endsWith("package.json"),
     );
     expect(packageJsonCall?.[1]).toBe("Project: replaced-app");
+  });
+
+  it("replaces the screegen version placeholder with the cli version", async () => {
+    mockFs.readFile.mockResolvedValue('"@screegen/cli": "^{{screegenVersion}}"');
+
+    await initCommand({ name: "versioned-app", directory: "/tmp" });
+
+    const packageJsonCall = mockFs.writeFile.mock.calls.find((call) =>
+      String(call[0]).endsWith("package.json"),
+    );
+    expect(packageJsonCall?.[1]).toBe(`"@screegen/cli": "^${packageJson.version}"`);
   });
 
   it("displays success message and next steps", async () => {

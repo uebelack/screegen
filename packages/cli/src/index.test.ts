@@ -1,4 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vite-plus/test";
+import packageJson from "../package.json" with { type: "json" };
 import { createProgram, runCli } from "./index.js";
 
 describe("runCli", () => {
@@ -34,7 +35,7 @@ describe("createProgram", () => {
 
   it("creates a program with correct version", () => {
     const program = createProgram();
-    expect(program.version()).toBe("1.0.0");
+    expect(program.version()).toBe(packageJson.version);
   });
 
   it("has init command", () => {

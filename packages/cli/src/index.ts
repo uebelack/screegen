@@ -1,6 +1,7 @@
 import { Command } from "commander";
 import { initCommand } from "./commands/init.js";
 import { generateCommand } from "./commands/generate.js";
+import { version } from "./version.js";
 
 export function createProgram(): Command {
   const program = new Command();
@@ -8,7 +9,7 @@ export function createProgram(): Command {
   program
     .name("screegen")
     .description("Screenshot generation tool for app store assets")
-    .version("1.0.0");
+    .version(version);
 
   program
     .command("init")
